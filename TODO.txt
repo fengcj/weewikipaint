@@ -1,0 +1,6 @@
+gitk --all
+
+
+git checkout integration
+
+git merge master —no-ff —log
