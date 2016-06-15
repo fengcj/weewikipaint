@@ -4,3 +4,7 @@ gitk --all
 git checkout integration
 
 git merge master —no-ff —log
+
+git push -u origin master # -u means what
+
+tdjs8  check jake {async:true} complete()
