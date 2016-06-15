@@ -1,7 +1,7 @@
 gitk --all
 
 
-git checkout integration
+git checkout dada integration 
 
 git merge master —no-ff —log
 
