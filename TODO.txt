@@ -1,10 +1,18 @@
-gitk --all
 
+day 6.14
+gitk --all
 
 git checkout dada integration 
 
 git merge master —no-ff —log
 
 
-balabala and quick is quick
 
+
+git push -u origin master # -u means what
+
+day 6.15
+
+tdjs8  check jake {async:true} complete()
+
+chai for assert
