@@ -19,5 +19,6 @@ chai for assert
 
 day 6.16
 document.write("")
+git pull vs git fetch
 
 
