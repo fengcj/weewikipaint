@@ -16,3 +16,8 @@ day 6.15
 tdjs8  check jake {async:true} complete()
 
 chai for assert
+
+day 6.16
+document.write("")
+
+
