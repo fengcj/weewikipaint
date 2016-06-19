@@ -27,4 +27,7 @@ git checkout integration
 git merge master --no-ff -log
 
 read  https://github.com/yjhjstz/deep-into-node
+watch http://limboy.me/essay/2015/08/14/learning-how-to-learn.html
+
+
 
