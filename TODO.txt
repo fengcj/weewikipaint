@@ -43,3 +43,13 @@ practice http://javascript-puzzlers.herokuapp.com/   http://web.jobbole.com/8646
 try  https://github.com/weixin/WeFlow?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io
 
 
+day 6.20
+
+linux  script  /dev/null
+
+www.12factor.net
+
+xkcd:perl problem  xkcd.com/1171/  ?
+
+https://gold.xitu.io/entry/57674901df0eea0062fc2c71
+http://www.importnew.com/20299.html
