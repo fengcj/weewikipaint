@@ -53,3 +53,7 @@ xkcd:perl problem  xkcd.com/1171/  ?
 
 https://gold.xitu.io/entry/57674901df0eea0062fc2c71
 http://www.importnew.com/20299.html
+
+
+day  0910
+http://gold.xitu.io/entry/57674901df0eea0062fc2c71
