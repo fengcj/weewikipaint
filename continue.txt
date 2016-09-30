@@ -1,0 +1,3 @@
+day 20
+	practice http://javascript-puzzlers.herokuapp.com/   http://web.jobbole.com/86463/
+ 	think      https://www.zhihu.com/question/22420900?utm_campaign=official_account&utm_source=weibo&utm_medium=zhihu&utm_content=question   (what is a full stack in my side? I think it is an attitude , it means interested in everything in software development, and want to learn all about these and use them in real life)

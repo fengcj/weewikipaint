@@ -1,4 +1,4 @@
-
+﻿
 day 6.14
 gitk --all
 
@@ -69,4 +69,9 @@ http://www.cnblogs.com/lovecindywang/p/4444915.html
 http://www.kuqin.com/shuoit/20160831/352823.html
 http://www.imooc.com/article/2397
 http://caibaojian.com/fe-daily-20160914.html
+
+
+day0930
+http://ysha.me/
+http://chuansong.me/account/FeZaoDuKe
 
