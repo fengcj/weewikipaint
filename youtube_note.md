@@ -64,5 +64,11 @@ read
 https://www.quora.com/What-is-the-difference-between-a-process-and-a-thread   //  process vs thread
 
 
+download
+http://2.media.letscodejavascript.com/video/live/tdjs425.mp4
+
+
+
+
 
 
