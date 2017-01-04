@@ -63,6 +63,15 @@ https://www.youtube.com/watch?v=32i7ot0y78U&list=PLOU2XLYxmsIJDPXCTt5TLDu67271Pr
 read
 https://www.quora.com/What-is-the-difference-between-a-process-and-a-thread   //  process vs thread
 
+must:
+http://www.opowell.com/post/talks-that-changed-the-way-i-think-about-programming/
+http://blog.gainlo.co/?utm_source=Gainlo&utm_medium=button-hl&utm_campaign=Gainlo
+http://www.gainlo.co/#!/
+
+question:
+https://www.quora.com/What-are-the-differences-between-an-ISP-and-a-DNS-provider-Which-one-is-more-important-Why
+HTTP2.0
+HTTPS
 
 download
 http://2.media.letscodejavascript.com/video/live/tdjs425.mp4
