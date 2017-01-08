@@ -51,6 +51,7 @@ https://www.youtube.com/channel/UCGgX5akKHCMtQhoU8kgvd9w   5星
 
 3) basic
 https://www.youtube.com/user/Udacity/playlists   4星
+https://www.youtube.com/watch?v=Xf3cXhmkB5M&list=PLAwxTw4SYaPmjFQ2w9j05WDX8Jtg5RXWW&index=4
 https://www.youtube.com/user/daveXbang/playlists  3星
 https://www.youtube.com/watch?v=vjYF_fAZI5E&list=PLrRW1w6CGAcXbMtDFj205vALOGmiRc82-&index=24   os(MIT) 5星
 https://www.youtube.com/watch?v=1IcZB26STUE&index=1&list=PL-XXv-cvA_iBDyz-ba4yDskqMDY6A1w_c    os(UC)    5星
@@ -67,11 +68,20 @@ must:
 http://www.opowell.com/post/talks-that-changed-the-way-i-think-about-programming/
 http://blog.gainlo.co/?utm_source=Gainlo&utm_medium=button-hl&utm_campaign=Gainlo
 http://www.gainlo.co/#!/
+http://cs75.tv/2012/summer/#group,lectures
+https://www.youtube.com/watch?v=g1LC-nbnr34&list=PLhQjrBD2T382VRUw5ZpSxQSFrxMOdFObl&index=12
+https://www.youtube.com/watch?v=bC5djYeF1dk&list=PLmVb1OknmNJuC5POdcDv5oCS7_OUkDgpj&index=2
 
 question:
 https://www.quora.com/What-are-the-differences-between-an-ISP-and-a-DNS-provider-Which-one-is-more-important-Why
 HTTP2.0
 HTTPS
+DHCP
+drag event
+SSL
+ISP
+
+onsubmit
 
 download
 http://2.media.letscodejavascript.com/video/live/tdjs425.mp4
