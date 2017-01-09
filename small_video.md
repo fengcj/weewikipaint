@@ -20,3 +20,11 @@ Use for:
 a) history
 b) collaborat
 c) branching
+
+Web Authentication
+a) Hash
+b）Hash + Salting
+c) TLS
+d) OAuth
+e) bearer token
+f) Base Authentication used for?
