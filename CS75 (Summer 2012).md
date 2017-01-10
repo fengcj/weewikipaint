@@ -16,3 +16,7 @@ Lecture 6:
 1) document.forms  利用id直接取form
 2) 登录失败，成功处理
 3) 常见事件 onsubmit onclick onresize onblur...  手机端不同的有...
+
+Lecture 7:
+1) xhr responseBody  responseText responseXML
+2) form onsubmit *.php return false/true redirect

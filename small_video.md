@@ -28,3 +28,9 @@ c) TLS
 d) OAuth
 e) bearer token
 f) Base Authentication used for?
+
+
+5 Usability Tips for Application Development 
+a)  urlLink to buttonlike(44px height) to tell the user it can be click  (user interface design)
+b)  back button is very important
+

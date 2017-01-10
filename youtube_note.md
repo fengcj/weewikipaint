@@ -71,6 +71,8 @@ http://www.gainlo.co/#!/
 http://cs75.tv/2012/summer/#group,lectures
 https://www.youtube.com/watch?v=g1LC-nbnr34&list=PLhQjrBD2T382VRUw5ZpSxQSFrxMOdFObl&index=12
 https://www.youtube.com/watch?v=bC5djYeF1dk&list=PLmVb1OknmNJuC5POdcDv5oCS7_OUkDgpj&index=2
+https://www.youtube.com/watch?v=D_z-RAweP1k
+https://hackr.io/
 
 question:
 https://www.quora.com/What-are-the-differences-between-an-ISP-and-a-DNS-provider-Which-one-is-more-important-Why
