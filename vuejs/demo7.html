@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo7</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ol>
+			<todo-item v-for='item in groceryList' v-bind:todo_test='item'></todo-item>
+		</ol>
+	</div>
+	<script>
+		Vue.component('todo-item',{
+			props : ['todo_test'],
+			template : '<li>{{ todo_test.text }}</li>'
+		});
+		var app = new Vue({
+			el : '#app',
+			data : {
+				    groceryList: [
+				      { text: 'Vegetables' },
+				      { text: 'Cheese' },
+				      { text: 'Whatever else humans are supposed to eat' }
+				    ]
+			}
+		});
+	</script>
+</body>
+</html>
