@@ -368,8 +368,128 @@ only-of-type selector matches every element that is the only child of its type, 
 http://www.w3schools.com/tags/tryit.asp?filename=tryhtml_blockquote_test
 
 
+15.  css  white-space : nowrap
+
+The white-space property specifies how white-space inside an element is handled.
+
+nowrap  则表示当句子中有white-space分割句子时候不换行显示。
+
+http://www.w3schools.com/cssref/tryit.asp?filename=trycss_text_white-space
+http://www.w3schools.com/cssref/playit.asp?filename=playcss_white-space
+
+16.  css  clip
+
+https://tympanus.net/codrops/2013/01/16/understanding-the-css-clip-property/
+
+the clip property only works on elements with position: absolute or position: fixed. It won’t work with relative or static positioning.
 
 
+What happens if an image is larger than its containing element? - The clip property lets you specify a rectangle to clip an absolutely positioned element. The rectangle is specified as four coordinates, all from the top-left corner of the element to be clipped.
+
+Note: The clip property does not work if "overflow:visible".
+
+
+17. bs   container vs container-fluid
+
+http://stackoverflow.com/questions/22262311/container-fluid-vs-container
+
+当初看源码没看清楚，今天再看了下，发现二者没区别。google了下，关键在于：
+.container has one fixed width for each screen size in bootstrap (xs,sm,md,lg); 
+.container-fluid expands to fill the available width.
+
+
+@media (min-width: 568px) {
+  .container {
+    width: 550px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+Depending on the width of the viewport that the webpage is being viewed on, the container class gives its div a specific fixed width. These lines don't exist in any form for container-fluid, so its width changes every time the viewport width changes.
+
+So for example, say your browser window is 1000px wide. As it's greater than the min-width of 992px, your .container element will have a width of 970px. You then slowly widen your browser window. The width of your .container won't change until you get to 1200px, at which it will jump to 1170px wide and stay that way for any larger browser widths.
+
+Your .container-fluid element, on the other hand, will constantly resize as you make even the smallest changes to your browser width.
+
+// 简单来说，在某个屏幕尺寸下，.container的宽度是固定的，就算改变屏幕大小也不会改变，而 .container-fluid则是顺着屏幕一直在变。
+// 源码看的还是不仔细。也是不会在脑子里YY css效果。
+
+
+18 .  font-end  
+
+//  自己认为前端最主要的价值有2点：
+   1. 展示数据
+   2. 为用户提供交互，输入
+
+  在这2点的基础上，发展出来各种跨平台支持（浏览器兼容），简化交互等。。。
+
+  你觉得前端工程的价值体现在哪
+
+为简化用户使用提供技术支持（交互部分）
+
+为多个浏览器兼容性提供支持
+
+为提高用户浏览速度（浏览器性能）提供支持
+
+为跨平台或者其他基于webkit或其他渲染引擎的应用提供支持
+
+为展示数据提供支持（数据接口）
+
+19.  js  垃圾回收机制
+
+目前基本都是标记-回收 机制， 以前有引用计数，但是存在互相引用的问题，容易发生内存泄漏，如早期的IE。
+
+https://segmentfault.com/a/1190000007616791
+现代编程中，同样要关注内存泄漏问题。
+
+20. bs  .well  box-shadow
+
+.well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+// 关键是box-shasow
+
+其中：
+inset	    Optional. Changes the shadow from an outer shadow (outset) to an inner shadow	
+0 1px 1px   You need at least two values: the first is the horizontal offset ， the second is the vertical offset
+ 			The optional third value defines the blur of the shadow.
+
+gba(0, 0, 0, .05)   color of the shadow
+
+
+21 . bs  dismiss alert
+http://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_alerts_fade&stacked=h
+// 研究下，bs中的执行流程，应该是先remove 了 in 这个class，再删除alert DOM 节点
+
+22.  性能优化问题
+
+分为几个方面：
+  代码层面：避免使用css表达式，避免使用高级选择器，通配选择器。
+
+缓存利用：缓存Ajax，使用CDN，使用外部js和css文件以便缓存，添加Expires头，服务端配置Etag，减少DNS查找等
+
+请求数量：合并样式和脚本，使用css图片精灵，初始首屏之外的图片资源按需加载，静态资源延迟加载。
+
+请求带宽：压缩文件，开启GZIP，
+
+
+23.  Last-Modified 无法解决的一些问题 ？？？
 
 
 
