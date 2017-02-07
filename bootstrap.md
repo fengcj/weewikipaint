@@ -492,6 +492,71 @@ http://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_alerts_fade&stacked=
 23.  Last-Modified 无法解决的一些问题 ？？？
 
 
+24.  bs3 vs bs4 of progressBar
+
+
+bs4 based on flex:
+
+.progress {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-align: center;
+  background-color: #eceeef;
+  border-radius: 0.25rem;
+}
+
+.progress-bar {
+  height: 1rem;
+  color: #fff;
+  background-color: #0275d8;
+}
+
+
+bs3 based on float
+
+.progress {
+  height: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+.progress-bar {
+  float: left;
+  width: 0;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #337ab7;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+  -webkit-transition: width .6s ease;
+       -o-transition: width .6s ease;
+          transition: width .6s ease;
+}
+
+
+25. clearfix
+
+.clearfix::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+
+
+
+
 
 
 
