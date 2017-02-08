@@ -554,8 +554,57 @@ bs3 based on float
 }
 
 
+26. css  inline-block vs float
+
+在看bs3中pager的源码，以为是使用float实现的，但实际上是使用inline-block实现的：
 
 
+.pager {
+  padding-left: 0;
+  margin: 20px 0;
+  text-align: center;
+  list-style: none;
+}
+.pager li {
+  display: inline;
+}
+.pager li > a,
+.pager li > span {
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+}
+
+同时对最边上的两个按钮元素，使用的是float
+
+.pager .next > a,
+.pager .next > span {
+  float: right;
+}
+.pager .previous > a,
+.pager .previous > span {
+  float: left;
+}
+
+
+
+那么问题来了，二者的区别到底在哪呢？都适合那些情景呢？google了下，没有发现特别好的答案：
+http://stackoverflow.com/questions/11805352/floatleft-vs-displayinline-vs-displayinline-block-vs-displaytable-cell
+http://stackoverflow.com/questions/15172520/advantages-of-using-displayinline-block-vs-floatleft-in-css
+https://robertnyman.com/2010/02/24/css-display-inline-block-why-it-rocks-and-why-it-sucks/
+
+27.  defer vs async
+
+http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
+
+defer  是在DOM解析的过程中遇见script tag,接着解析DOM但是同时下载js,会当整个文档解析完后顺序执行js
+async  是在DOM解析的过程中遇见script tag,接着解析DOM但是同时下载js，下载完某个js就会暂停DOM解析而开始执行js，这就会
+       导致js的执行顺序得不到保证，若是各个js之间没有依赖则没有关系。
+
+
+28. 谈谈浮动和清除浮动
 
 
 
