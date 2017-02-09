@@ -607,6 +607,23 @@ async  是在DOM解析的过程中遇见script tag,接着解析DOM但是同时�
 28. 谈谈浮动和清除浮动
 
 
+29.   构造原生Event/ custom Event
+var event = new MouseEvent('click', {
+    'view': window,
+    'bubbles': true,
+    'cancelable': true
+  });
+  var cb = document.getElementById('checkbox'); 
+  var cancelled = !cb.dispatchEvent(event);
+
+======
+
+var event = new Event('build');
+// Listen for the event.
+elem.addEventListener('build', function (e) { ... }, false);
+
+// Dispatch the event.
+elem.dispatchEvent(event);
 
 
 
