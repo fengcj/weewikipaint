@@ -627,5 +627,35 @@ elem.dispatchEvent(event);
 
 
 
+30.   cookie  / localStorage  / sessionStorage
+
+http://jerryzou.com/posts/cookie-and-web-storage/
+
+cookie 大小存在限制，数量存在限制
+
+31.  css  @import
+
+http://stackoverflow.com/questions/10036977/best-way-to-include-css-why-use-import
+
+简而言之，最好不要用。
+
+https://www.qianduan.net/high-performance-web-site-do-not-use-import/
+
+
+32. css float vs position:absolute
+
+https://kilianvalkhof.com/2008/css-html/absolute-positioning-vs-floats/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
