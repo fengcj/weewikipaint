@@ -648,6 +648,37 @@ https://kilianvalkhof.com/2008/css-html/absolute-positioning-vs-floats/
 
 
 
+33. js  for ... in / Object.hasOwnProperty
+记得for in 是会遍历prototype chain上的所有属性的，但是测试：
+var a = {};
+for(var i in a){console.log(i)}  
+结果是空。
+
+查看API文档才知道：
+A for...in loop only iterates over enumerable properties. Objects created from built–in constructors like Array and Object have inherited non–enumerable properties from Object.prototype and String.prototype, such as String's indexOf() method or Object's toString() method. 
+简单来说，只会遍历那些enumerable的属性。
+
+function A(){this.name = "A";}
+B.prototype = new A();
+var b = new B();
+for(var i in b){console.log(i);}  // name
+
+
+34. chrome
+
+http://www.cnblogs.com/AloneSword/p/4546935.html
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
