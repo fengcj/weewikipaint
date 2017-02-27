@@ -668,14 +668,144 @@ for(var i in b){console.log(i);}  // name
 
 http://www.cnblogs.com/AloneSword/p/4546935.html
 
+35. 阿当的  http://www.imooc.com/video/1733
+
+36. BFC规范  
+//  记得以前看过，还总结过，但是基本忘了，回去找找文档。
+BFC，块级格式化上下文，一个创建了新的BFC的盒子是独立布局的，盒子里面的子元素的样式不会影响到外面的元素。在同一个BFC中的两个毗邻的块级盒在垂直方向（和布局方向有关系）的margin会发生折叠。
+
+    （W3C CSS 2.1 规范中的一个概念，它决定了元素如何对其内容进行布局，以及与其他元素的关系和相互作用。
+
+
+35. 
+
+实现双向数据绑定，目前主要有三种方式：脏检查、观察机制、封装属性访问器
+
+脏检查：框架将所有需要监控的属性放在一个序列中，当发生特定事件时，遍历整个序列，对被监控的属性做对比，如果发生变化，则调用相应的处理函数。
+
+观察机制：通过 Object.observe() 「已废弃」方法对对象进行监控，一旦其发生变化，将会执行相应的handler。
+
+封装属性访问器：使用 Object.defineProperty 将对象的属性转换为 getter/setter ，当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新。
+
+
+Vue.js（读音 /vjuː/, 类似于 view）是一个构建数据驱动的 web 界面的库。Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。
+
+Vue.js 拥抱数据驱动的视图概念。通俗地讲，它意味着我们在普通 HTML 模板中使用特殊的语法将 DOM “绑定”到底层数据。一旦创建了绑定，DOM 将与数据保持同步。每当修改了数据，DOM 便相应地更新。
+
+
+36. bs  list-inline
+
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline-item {
+  display: inline-block;
+}
+
+.list-inline-item:not(:last-child) {
+  margin-right: 5px;
+}
+
+// 关键是  .list-inline-item:not(:last-child)
 
 
 
+37. DOM  has not insertAfter API
+
+http://stackoverflow.com/questions/4793604/how-to-do-insert-after-in-javascript-without-using-a-library
+
+
+the key is:
+parentNode
+nextSibling
+insertBefore
+
+
+38. Zepto
+http://www.kancloud.cn/wangfupeng/zepto-design-srouce/173692
+
+
+39. css clear fix  
+给包含浮动元素的父标签添加css属性 overflow:auto; zoom:1; zoom:1用于兼容IE6。  设置overflow为hidden或者auto
+// why ???
+
+40. implement tab only use css3
 
 
 
+41.WEB应用从服务器主动推送Data到客户端有那些方式？
+
+https://www.zhihu.com/question/27498235
+http://www.jikexueyuan.com/course/1329_2.html
+
+42. 页面加载的过程：
+
+    分为4个步骤：
+
+    （1），当发送一个URL请求时，不管这个URL是Web页面的URL还是Web页面上每个资源的URL，浏览器都会开启一个线程来处理这个请求，同时在远程DNS服务器上启动一个DNS查询。这能使浏览器获得请求对应的IP地址。
+
+    （2）， 浏览器与远程`Web`服务器通过`TCP`三次握手协商来建立一个`TCP/IP`连接。该握手包括一个同步报文，一个同步-应答报文和一个应答报文，这三个报文在 浏览器和服务器之间传递。该握手首先由客户端尝试建立起通信，而后服务器应答并接受客户端的请求，最后由客户端发出该请求已经被接受的报文。
+
+    （3），一旦`TCP/IP`连接建立，浏览器会通过该连接向远程服务器发送`HTTP`的`GET`请求。远程服务器找到资源并使用HTTP响应返回该资源，值为200的HTTP响应状态表示一个正确的响应。
+
+    （4），此时，`Web`服务器提供资源服务，客户端开始下载资源。
 
 
+请求返回后，便进入了我们关注的前端模块
+
+简单来说，浏览器会解析`HTML`生成`DOM Tree`，其次会根据CSS生成CSS Rule Tree，而`javascript`又可以根据`DOM API`操作`DOM`
+
+
+//  浏览器解析页面的详细过程
+
+43.  js延迟加载
+
+http://www.cnblogs.com/tiwlin/archive/2011/12/26/2302554.html
+1.异步加载的方案： 动态插入script标签
+
+2.通过ajax去获取js代码，然后通过eval执行
+
+3.script标签上添加defer或者async属性
+
+4.创建并插入iframe，让它异步执行js
+
+5.延迟加载：有些 js 代码并不是页面初始化的时候就立刻需要的，而稍后的某些情况才需要的。
+
+44.   margin : 0 auto vs text-align : center
+http://stackoverflow.com/questions/38337977/div-margin-auto-vs-align-center
+https://teamtreehouse.com/community/text-align-center-margin-auto-which-one-is-better
+// 以前总结过，不过很快就忘了。。。 最无可奈何的事情就是遗忘。
+
+margin: 0 auto; affects the container directly, and when the container is block-level (display: block).
+
+text-align: center affects text, inline, and inline-block level children of a container - not the container itself.
+
+It's important to distinguish between the two:
+
+centering a block-level element: use margin: 0 auto;
+
+centering text, inline, or inline-block level children: use text-align: center;
+
+// 简单来说:
+marign 是作用于block级别的container的；
+text-align 则是作用于处于container中的text,inline,inline-block 。
+
+
+46. 浏览器事件机制：
+
+https://leohxj.gitbooks.io/front-end-database/content/javascript-basic/events.html
+
+事件代理
+
+47. 在vue 中使用的import 和es6的import   // 查
+
+48. Ajax请求的页面历史记录状态问题
+
+可以通过锚点来记录状态，location.hash。让浏览器记录Ajax请求时页面状态的变化。
+
+还可以通过HTML5的history.pushState，来实现浏览器地址栏的无刷新改变
 
 
 
