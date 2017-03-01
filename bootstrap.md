@@ -808,7 +808,14 @@ https://leohxj.gitbooks.io/front-end-database/content/javascript-basic/events.ht
 还可以通过HTML5的history.pushState，来实现浏览器地址栏的无刷新改变
 
 
+49. flex box
 
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties
+
+50. navbar
+
+https://www.w3schools.com/bootstrap/bootstrap_navbar.asp
 
 
 
