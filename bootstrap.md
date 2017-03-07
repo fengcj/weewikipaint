@@ -817,6 +817,30 @@ https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties
 
 https://www.w3schools.com/bootstrap/bootstrap_navbar.asp
 
+51. Promise
+
+var promise = new Promise(function(resolve){
+    resolve(42);
+});
+promise.then(function(value){
+    console.log(value);
+}).catch(function(error){
+    console.error(error);
+});
+
+52. 实现一个函数clone，可以对JavaScript中的5种主要的数据类型（包括Number、String、Object、Array、Boolean）进行值复制
+// 答案有问题，对Number 失效
+
+// 针对string 的for in 循环，是期内字符的索引
+
+53. vue 
+watch vs  computed
+
+
+
+54. HTML tag  <Template>
+https://developer.mozilla.org/en/docs/Web/HTML/Element/template
+
 
 
 
