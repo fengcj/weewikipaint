@@ -8,6 +8,8 @@
 	v-model
 	v-once
 	v-html
+	v-if / v-else / v-show 
+	v-for
 2. arguments in New Vue
 	el
 	data
