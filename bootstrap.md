@@ -842,7 +842,10 @@ watch vs  computed
 https://developer.mozilla.org/en/docs/Web/HTML/Element/template
 
 
-
+55. HTML CSS
+在写html css 时候同样要注意添加必要的注释
+   1）html 在标签结尾处 添加注释，尤其是在div嵌套很多的时候，说明是哪个div
+   2) css  在对应syle 开始处添加注释，比如说某些css是给某个标签用的，某些css是custom的
 
 
 

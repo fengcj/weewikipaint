@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo7</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{title}}</div>
+    <button @click="title = 'Changed!'">Update</button>
+    <button @click="destroy">Destroy</button>
+</div>
+<script>
+
+
+    new Vue({
+        el : "#app",
+        data : {
+            title : "Hello World"
+        },
+        methods : {
+            destroy : function(){
+                this.$destroy();
+            }
+        },
+        beforeCreate : function(){
+            console.log("beforeCreate");
+        },
+        created : function(){
+            console.log("created");
+        },
+        beforeMount : function(){
+            console.log("beforeMount");
+        },
+        mounted : function(){
+            console.log("mounted");
+        },
+        beforeUpdate : function(){
+            console.log("beforeUpdate");
+        },
+        updated : function(){
+            console.log("updated");
+        },
+        beforeDestroy : function(){
+            console.log("beforeDestroy");
+        },
+        destroyed : function(){
+            console.log("destroyed");
+        }
+
+    });
+
+
+
+
+</script>
+</body>
+</html>
