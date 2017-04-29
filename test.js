@@ -88,6 +88,15 @@ var person1 = new Person('Nishant');
     Person.displayName();*/
 
 
+    function letIsNotHositing(){
+
+    	console.log(myLet);  // ReferenceError: myLet is not defined
+    	let myLet = 4;
+
+    }
+    letIsNotHositing();
+
+
 
 
 
