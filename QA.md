@@ -153,3 +153,112 @@ css 属性太多，未发现到底是因为哪个造成的。。。
   25. Great https://github.com/gothinkster/realworld
 
 
+
+26.    当设置parent 的高度在某个确定值后，即使子元素的高度加起来超过该固定高度，parent高度也不会变。
+https://codepen.io/fcj/pen/LyyGpp
+
+27. 
+
+Absolute
+
+The box’s position (and possibly size) is specified with the top, right, bottom, and left properties. These properties specify offsets with respect to the box’s containing block. Absolutely positioned boxes are taken out of the normal flow. This means they have no impact on the layout of later siblings. Though absolutely positioned boxes may have margins, those margins do not collapse with any other margins.
+
+
+28.  margin collapsing    // margin 合并
+
+http://stackoverflow.com/questions/7579000/why-margin-top-of-the-top-div-would-apply-to-body
+
+http://geekplux.com/2014/03/14/collapsing_margins.html
+
+https://codepen.io/fcj/pen/bWWEvx
+
+https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html    BFC
+
+29. du -sh file_path   // get the folder size
+
+30. The for...in statement iterates over the enumerable properties of an object, in original insertion order. 
+//  老是忘记。。。。
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties
+
+
+31. ⌘ + t：新建标签页
+
+
+32. css  border:
+     border-top-style : solid;
+     border-top-width : 1px;
+     border-top-color : #e7e7e7;
+
+
+
+33. play the sound
+
+http://stackoverflow.com/questions/18826147/javascript-audio-play-on-click
+
+34. 单元测试关注的是输入和输出，输入什么，得到的输出是不是想要的。
+而不应该测试具体的逻辑，比如说是否执行了某一个 if 语句之类的，这是因为重构之后这些语句就可能
+变化，而重构则不应该影响测试。
+
+更对的要考虑 user case, 那些是我们必须support的.
+
+某个函数的单元测试中assert通过了，不一定表示该assert一定是执行了，比如说放在try catch 中的catch 中，就不会执行。
+所以，在写测试的时候，最好是先让测试失败，这样能确保其中的assert是一定执行了的，再将其改正过来。
+再想想TDD的流程，也是类似的，先写测试，测试失败，再写对应的函数，测试通过，再重构。
+都有测试失败这个流程在里面。
+
+35. clone an object
+
+var obj = { a: 1 };
+var copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+
+
+36. 还可以监听  transitionend 事件
+key.addEventListener('transitionend', removeTransition));
+
+https://developer.mozilla.org/en-US/docs/Web/Events/transitionend
+
+
+37. css 片段
+
+.keys {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+keys 中元素居中显示（上下/左右）
+
+38. background-size : cover
+Scale the background image to be as large as possible so that the background area is completely covered by the background image. Some parts of the background image may not be in view within the background positioning area
+
+
+https://www.w3schools.com/cssref/playit.asp?filename=playcss_background-size&preval=cover
+
+   background-position : center bottom   // 图片放置的位置，是在中间，底部 
+   										 //  还有 left ,right 可选
+
+
+39.  nodeList has forEach API
+https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
+
+40. addEventListener  this
+
+addEventListener的this总是当前正在处理事件的那个DOM对象。
+addEventListener的事件处理函数中this不一定指向事实上被点击的元素， 但事件处理函数的参数Event对象提供了target和currentTarget属性来区分这当前对象与目标对象。
+
+currentTarget总是和this相同，而target指向事实上被点击的目标DOM对象。
+
+http://harttle.com/2015/08/14/event-and-this.html
+
+41. 
+
+The Element.getElementsByTagName() method returns a live `HTMLCollection` of elements with the given tag name. 
+he returned list is live, meaning that it updates itself with the DOM tree automatically. 
+
+Document.querySelectorAll() , returns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors. The object returned is a `NodeList`.
+
+ 所以，对getElementsByTagName返回的值无法使用forEach，而querySelectorAll则可以。
+
+
