@@ -259,6 +259,33 @@ he returned list is live, meaning that it updates itself with the DOM tree autom
 
 Document.querySelectorAll() , returns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors. The object returned is a `NodeList`.
 
- 所以，对getElementsByTagName返回的值无法使用forEach，而querySelectorAll则可以。
+ 所以，对getElementsByTagName返回的值无法使用forEach，而querySelectorAll则可以。真想对getElementsByTagName后的数据使用forEach，可以
+ 再用Array.from 处理下。
+
+
+42.  css 片段， 背景填充：
+
+html {
+  font-size: 10px;
+  background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+  background-size: cover;
+}
+
+43.   flex : 1 
+
+The flex property specifies the length of the item, relative to the rest of the flexible items inside the same container.
+
+The flex property is a shorthand for the flex-grow, flex-shrink, and the flex-basis properties.
+
+
+Default value:	0 1 auto
+
+https://www.w3schools.com/cssref/css3_pr_flex.asp
+
+
+flex: <positive-number>
+Equivalent to flex: <positive-number> 1 0. 
+Makes the flex item flexible and sets the flex basis to zero, resulting in an item that receives the specified proportion of the free space in the flex container. If all items in the flex container use this pattern, their sizes will be proportional to the specified flex factor.
+Therefore flex:1 it is equivalent to flex: 1 1 0
 
 
