@@ -288,4 +288,46 @@ Equivalent to flex: <positive-number> 1 0.
 Makes the flex item flexible and sets the flex basis to zero, resulting in an item that receives the specified proportion of the free space in the flex container. If all items in the flex container use this pattern, their sizes will be proportional to the specified flex factor.
 Therefore flex:1 it is equivalent to flex: 1 1 0
 
+44. https://astexplorer.net/
+
+
+45.  ES& parameter
+
+
+function destructureWithDefaultParams() {
+  return [
+    computeCircleArea(),
+    computeCircleArea({r: 2}),
+    computeCircleArea({r: 3, x: 8, y: 6}),
+  ]
+  // TODO: Make sure the function takes an object as input
+  // This object, would ideally contain radius (r)
+  // the x-coordinate (x), and y-coordinate(y)
+  // Not all of these fields would always be provided
+  // When not provided, r defaults to 1, while x and y defaults to 0
+  function computeCircleArea( {
+    r = 1.0,
+    x = 0.0,
+    y = 0.0
+  } = {}) {
+    /* Uncomment this to test what you are actually passing to the function*/
+     console.log(arguments);
+
+    // TODO: Remove all references to obj,
+    // using param destructuring
+/*    const radius = obj.r || 1.0
+    const xCoordinate = obj.x || 0.0
+    const yCoordinate = obj.y || 0.0*/
+
+   // const {r , x , y } = obj;
+
+    const area = Math.PI * r * r
+
+    return `Circle at (${x}, ${y}), with radius ${r}, has area = ${area.toFixed(2)}`
+  }
+}
+
+ log(destructureWithDefaultParams())
+
+
 
