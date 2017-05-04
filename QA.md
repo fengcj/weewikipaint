@@ -331,3 +331,88 @@ function destructureWithDefaultParams() {
 
 
 
+46.  div height not work
+
+one way to solve this is add  min-height
+
+
+https://codepen.io/fcj/pen/LyjVZb
+
+
+47.    ...  operator
+
+var b = "abcdefg";
+...b   //  Uncaught SyntaxError: Unexpected token ...
+[...b]  // ["a", "b", "c", "d", "e", "f", "g"]
+
+
+
+48.   util function using for concat Arrays
+
+
+function concatArrays() {
+  // TODO: flatten nested arrays of arbitrary levels of nesting
+  // arr can be typically like this: [8, 9, [6, [5, [7], [45, 34, [2]]]]]
+  // output shold be [8, 9, 6, 5, 7, 45, 34, 2]
+  // use spread operator in place of Array.prototype.concat()
+  const arr = [8, 9, [6, [5, [7], [45, 34, [[[2]]], [[[[[[[[7]]]]], 90]]]]]]]
+  return flatter(arr)
+
+  function flatter(arg) {
+    return arg.reduce((acc, item) => {
+      if (Array.isArray(item)) {
+        return acc.concat(flatter(item))
+      }
+      return acc.concat([item])
+    }, [])
+  }
+}
+
+  const arr = [8, 9, [6, [5, [7], [45, 34, [[[2]]], [[[[[[[[7]]]]], 90]]]]]]]
+  return flatter(arr)
+
+
+49.  Arrow function
+
+//  作者提到，对于 arrow function 的使用也是一个tradeoff, 举出一个例子：
+
+
+
+function curryAdd() {
+
+  const curryAddition = a => () => c => {
+	    throw new Error("Hi");  // 抛出异常，但是在stack log 中，根本无法看出到底哪个函数出了问题, 因为在提示的是 ` Object.<anonymous>` , 所以在使用arrow function 的时候要考虑清楚，作者也说大部分时候是使用 `命名 function?` 
+	    return a + c ;
+  }
+
+  
+  return curryAddition(9)(3)(5)
+
+/*  function curryAddition(a) {
+    return function(b) {
+      return function(c) {
+        return a + b + c
+      }
+    }
+  }*/
+
+
+  //  const curryAddition = a => b => c => a + b + c
+}
+ log(curryAdd())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
