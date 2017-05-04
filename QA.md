@@ -403,16 +403,41 @@ function curryAdd() {
 
 
 
+50.  css transform-origin
+
+Default value:	50% 50% 0
+2D transformations can change the x- and y-axis of an element. 3D transformations can also change the z-axis of an element.
 
 
 
+The transform-origin property allows you to change the position of transformed elements.
+
+51. css transition-timing-function
+
+transition : transition-property  transition-duration transition-timing-function  transition-delay
 
 
+52. https://cssanimation.rocks
 
 
+53.  ES6  arrow function
+
+使用注意点
+箭头函数有几个使用注意点。
+
+（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+
+（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+
+（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。
+
+（4）不可以使用yield命令，因此箭头函数不能用作Generator函数。
+
+上面四点中，第一点尤其值得注意。this对象的指向是可变的，但是在箭头函数中，它是固定的。
 
 
-
+this指向的固定化，并不是因为箭头函数内部有绑定this的机制，
+实际原因是箭头函数根本没有自己的this，导致内部的this就是外层代码块的this。正是因为它没有this，所以也就不能用作构造函数。
 
 
 
