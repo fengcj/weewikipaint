@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+</head>
+<style>
+
+    body {
+        background: #444444;
+        color: white;
+        font: 15px/1.51 system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+        margin:0 auto;
+        max-width:600px;
+        padding:20px;
+    }
+    .item {
+        border:4px solid white;
+        height:120px;
+        width:100%;
+        margin-bottom:50px;
+        background:#333;
+        padding:20px;
+    }
+
+
+
+    .color-1 { border-color: #9BFFBB}
+    .color-2 { border-color: #B9C6FF}
+    .color-3 { border-color: #FFA3D8}
+    .color-4 { border-color: #FF8E9B}
+
+
+
+</style>
+<body>
+    <h1>Infinite scrolling throttled</h1>
+    <div class="item color-1">Block 1</div>
+    <div class="item color-2">Block 2</div>
+    <div class="item color-3">Block 3</div>
+    <div class="item color-4">Block 4</div>
+
+
+    <script>
+
+        // Very simple example.
+        // Probably you would want to use a
+        // full-featured plugin like
+        // https://github.com/infinite-scroll/infinite-scroll/blob/master/jquery.infinitescroll.js
+        $(document).ready(function(){
+
+            // Check every 200ms the scroll position
+            $(document).on('scroll', _.throttle(function(){
+                check_if_needs_more_content();
+            }, 300));
+
+            function check_if_needs_more_content() {
+                pixelsFromWindowBottomToBottom = 0 + $(document).height() - $(window).scrollTop() -$(window).height();
+                console.log($(document).height() === document.documentElement.scrollHeight);
+                console.log($(window).scrollTop() === window.scrollY);
+                console.log($(window).height() === window.innerHeight);
+ /*               var height = $(document);
+                height.height();
+                var _window = $(_window);
+                _window.scrollTop();*/
+
+                // console.log($(document).height());
+                // console.log($(window).scrollTop());
+                // console.log($(window).height());
+                //console.log(pixelsFromWindowBottomToBottom);
+
+
+                if (pixelsFromWindowBottomToBottom < 200){
+                    // Here it would go an ajax request
+                    console.log($(document).height());
+                    console.log($(window).scrollTop());
+                    console.log($(window).height());
+                    $('body').append($('.item').clone());
+
+                }
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+
+
+
+<body>
+	
+<button id="test">Click</button>
+
+
+<script type="text/javascript">
+	
+
+var UI = {
+	setCallBack : function(callback){
+		document.getElementById("test").addEventListener("click",function(){
+			callback();
+		});
+	}
+};
+
+(function(){
+
+	var bus = {
+		publish : function(){
+			console.log('Here');
+		}
+	};
+	var callback = function(){
+		bus.publish();
+	};
+	// callback = callback.bind(bus);
+	UI.setCallBack(callback);
+
+})(UI);
+
+
+
+
+
+
+</script>
+</body>
+</html>
