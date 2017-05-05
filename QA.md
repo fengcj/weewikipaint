@@ -441,3 +441,20 @@ this指向的固定化，并不是因为箭头函数内部有绑定this的机制
 
 
 
+54.  查看2篇关于 js scope/this的文章。
+
+
+55. java 的知识基本忘关了。。。。
+
+
+Overloading occurs when two or more methods in one class have the same method name but different parameters. Overriding means having two methods with the same method name and parameters (i.e., method signature). One of the methods is in the parent class and the other is in the child class.
+
+56. https://placehold.it/
+
+57. img is inline-block
+
+http://stackoverflow.com/questions/2402761/is-img-element-block-level-or-inline-level
+
+The <img> tag is empty, it contains attributes only, and does not have a closing tag.
+
+
