@@ -458,3 +458,95 @@ http://stackoverflow.com/questions/2402761/is-img-element-block-level-or-inline-
 The <img> tag is empty, it contains attributes only, and does not have a closing tag.
 
 
+58. chrome snippets
+
+ES6 workshop  time: 03:56
+
+
+
+59.  remove duplicate elements in array
+
+function removeDuplicates() {
+  // given an array
+  // we have to remove duplicate entries
+  const arr = [6, 8, 3, 9, 6, 5, 8, 2, 3, 9, 7, 7, 2, 1, 0, 8]
+
+  // TODO: use a Set to do this
+  // refactor the following
+  const uniqueArr = arr.filter((elem, index) => arr.indexOf(elem) === index)
+
+  return uniqueArr
+}
+
+
+60.  ES6  weakmap  vs map
+
+最大的区别在垃圾回收的时候，  当发现某个对象只被weakmap 引用的时候，会回收该对象。
+
+
+
+function weakMapInfo() {
+  // what will this return?
+  var obj = {iHaveYouNow: true}
+  const weakMap = new WeakMap([
+    [{iDoNotHaveYouEver: true}, true],
+    [obj, 'saweet'],
+  ])
+  /*obj = null;*/     // 如果去掉注释，则是 objValue: weakMap.get(obj) 的值为 undefined
+  return {
+    size: weakMap.size,
+    objValue: weakMap.get(obj),
+    values: weakMap.values,
+    keys: weakMap.keys,
+    entries: weakMap.entries,
+  }
+}
+ console.log(weakMapInfo())
+
+weakmap 无法取到size，values，keys，entries ，因为无法保证weakmap中的内容在垃圾回收的时候是否会被改变。
+
+
+
+
+61. 看过最好的 promise 文章：
+
+
+https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html
+
+
+62.  可以使用 console.table(array) 来打印 array
+
+
+
+63.  Array.prototype.reduce  
+
+https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce?v=control
+
+
+64. 文章之状态机： https://zhuanlan.zhihu.com/p/26524390
+
+作者观点：
+
+新老前端框架最大的三个区别的点（以致于出现新老交替这种划时代技术浪潮）：
+
+状态机的更优管理方式
+组件局部化的更优编写方式
+响应式思想(实际上也就是 data driven view)
+
+
+对于我参与开发过的 electron 客户端应用其实就是一个 spa 系统，据我所知大部分的 electron 客户端都是 spa 的，所以 spa 系统其实更像是 C/S 架构。
+
+
+
+
+65. ES6 Promise  可视化网站：
+
+https://bevacqua.github.io/promisees/
+
+66. Youtube  :  https://www.youtube.com/watch?v=8aGhZQkoFbQ  (Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014)
+
+
+
+
+
+
