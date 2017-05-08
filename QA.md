@@ -604,3 +604,11 @@ http://davidshariff.com/blog/javascript-scope-chain-and-closures/
 
 
 72.  blog  http://latentflip.com/
+
+
+73.  blog  https://www.chenhuijing.com
+
+
+74.  flex : https://flexbox.io/
+
+
