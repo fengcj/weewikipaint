@@ -523,4 +523,30 @@ https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html
 https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce?v=control
 
 
+64. 文章之状态机： https://zhuanlan.zhihu.com/p/26524390
+
+作者观点：
+
+新老前端框架最大的三个区别的点（以致于出现新老交替这种划时代技术浪潮）：
+
+状态机的更优管理方式
+组件局部化的更优编写方式
+响应式思想(实际上也就是 data driven view)
+
+
+对于我参与开发过的 electron 客户端应用其实就是一个 spa 系统，据我所知大部分的 electron 客户端都是 spa 的，所以 spa 系统其实更像是 C/S 架构。
+
+
+
+
+65. ES6 Promise  可视化网站：
+
+https://bevacqua.github.io/promisees/
+
+66. Youtube  :  https://www.youtube.com/watch?v=8aGhZQkoFbQ  (Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014)
+
+
+
+
+
 

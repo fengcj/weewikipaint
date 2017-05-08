@@ -42,15 +42,37 @@ function executeSequentially(promiseFactories) {
   return result;
 }
 
-/*
-var promiseFactories = [
-	promiseFactory,
-	promiseFactory,
-	promiseFactory
-];
-
-*/
 var promiseFactories = Array(3).fill(promiseFactory);
 
 executeSequentially(promiseFactories);
+
+
+
+
+/*   One promise can has many then to handler the return          */
+
+
+var p1 = timeout(1000);
+p1.then(response => console.log(response));
+p1.then(response => console.log(`another ${response}`))
+
+
+  function timeout(duration = 0, shouldReject = false) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (shouldReject) {
+          reject(`rejected after ${duration}ms`)
+        } else {
+          resolve(`resolved after ${duration}ms`)
+        }
+      }, duration)
+    })
+  }
+
+
+
+
+
+
+
 
