@@ -603,3 +603,4 @@ http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/
 http://davidshariff.com/blog/javascript-scope-chain-and-closures/
 
 
+72.  blog  http://latentflip.com/
