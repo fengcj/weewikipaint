@@ -597,4 +597,9 @@ Chrome 34.0 removed this feature due to performance issues.
 document.documentElement.style.setProperty("name","value");
 
 
+71.  great article
+
+http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/
+http://davidshariff.com/blog/javascript-scope-chain-and-closures/
+
 
