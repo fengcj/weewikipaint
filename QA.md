@@ -546,7 +546,55 @@ https://bevacqua.github.io/promisees/
 66. Youtube  :  https://www.youtube.com/watch?v=8aGhZQkoFbQ  (Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014)
 
 
+67. HTML5  new input type
 
+HTML5 added several new input types:
+
+color
+date
+datetime-local
+email
+month
+number
+range
+search
+tel
+time
+url
+week
+New input types that are not supported by older web browsers, will behave as <input type="text">.
+
+
+68.  change event  vs input event  // still need more investigation
+
+https://www.w3.org/TR/html5/forms.html#event-input-input
+
+The input event fires whenever the user has modified the data of the control. The change event fires when the value is committed, if that makes sense for the control, or else when the control loses focus. 
+In all cases, the input event comes before the corresponding change event (if any).
+
+
+
+
+The oninput is useful if you want to detect when the contents of a textarea, input:text, input:password or input:search element have changed, because the onchange event on these elements fires when the element loses focus, not immediately after the modification. 
+
+// 实例可见：
+http://jsfiddle.net/AtvtZ/
+
+点击进入输入框 ，触发 onfocus
+    case A):没有输入任何数据，直接离开 ， 触发 onblur
+    case B): 输入数据，触发 oninput , 每次输入数据都会触发 oninput
+                 离开，触发 onchange, onblur
+
+69. Css Variable
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables
+
+// 应该是个实验性质的feature，看文档发现：
+Chrome 34.0 removed this feature due to performance issues.
+
+70. 
+
+document.documentElement.style.setProperty("name","value");
 
 
 
