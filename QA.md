@@ -610,5 +610,6 @@ http://davidshariff.com/blog/javascript-scope-chain-and-closures/
 
 
 74.  flex : https://flexbox.io/
+JavaScript30/05 - Flex Panel Gallery
 
 
