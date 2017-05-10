@@ -619,3 +619,54 @@ JavaScript30/05 - Flex Panel Gallery
 76. Babel  https://babeljs.io/learn-es2015/
 
 77. JsConf
+
+78. javascript execution context
+  https://simpleprogrammer.com/2016/06/06/javascript-execution-stack-key-learning-language/ 
+
+Running Your Code: 
+ - The Creation Phase
+ -  The Execution Phase
+
+	Lexical Environment
+ 
+ 
+ can be related with #71
+ 
+ 79.  function expression  vs function declaration
+ 
+ 
+ 80.
+ 
+ case1 :
+ 	var callback = () => {
+			console.log(this);
+			console.log(b);
+		
+	};
+	var a = () => {
+	
+		var b = 1;
+		setTimeout(callback, 1000 );   // Uncaught ReferenceError: b is not defined
+	}
+	
+	a();
+ 
+ case2 :
+	
+	var a = () => {
+	
+		var b = 1;
+		setTimeout(() => {
+			console.log(this);
+			console.log(b);
+		
+		}, 1000 );   // 1 
+	}
+	
+	a();
+ 
+ //  different scope chain/ Lexical Environment 
+ 
+ 
+ 
+ 
