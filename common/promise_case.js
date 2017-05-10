@@ -70,7 +70,38 @@ p1.then(response => console.log(`another ${response}`))
   }
 
 
+/*   async/wait  */
 
+async function go(){
+	const result = await timeout(1000);
+	console.log(result);
+}
+
+let result = go();
+
+
+async function goCatch(){
+	try{
+		const result = await timeout(1000,true);
+		console.log(result);
+	}catch(error){
+		console.error(error);
+	}
+
+}
+
+let catchResult = goCatch();
+
+
+/*  
+
+The executor function is executed immediately by the Promise implementation, 
+passing resolve and reject functions 
+(the executor is called before the Promise constructor even returns the created object). 
+The resolve and reject functions, when called, resolve or reject the promise, respectively.
+   */
+var p1 = new Promise( (resolve,reject) => { console.log("here"); resolve("world")});  
+console.log("guess log first, but not");
 
 
 

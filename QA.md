@@ -613,3 +613,9 @@ http://davidshariff.com/blog/javascript-scope-chain-and-closures/
 JavaScript30/05 - Flex Panel Gallery
 
 
+75.   Event  change keyup
+
+
+76. Babel  https://babeljs.io/learn-es2015/
+
+77. JsConf
