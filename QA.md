@@ -668,5 +668,14 @@ Running Your Code:
  //  different scope chain/ Lexical Environment 
  
  
- 
+ 81. 移动端开发
+     js 原生幻灯片效果/瀑布流效果
+
+
+ 82. spread opread on string
+
+ let a = "heoolo";
+ let [...b] = a;
+
+ 83. node.green
  
