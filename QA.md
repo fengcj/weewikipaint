@@ -1366,3 +1366,35 @@ Running Your Code:
 84. ES6  Generator
 
 Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。不同的是，调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象，也就是上一章介绍的遍历器对象（Iterator Object）。
+
+
+
+85. spread opread on string
+
+ let a = "heoolo";
+ let [...b] = a;
+
+ 83. node.green
+
+
+
+ 86.  mousedown /  mouseup / mousedown / mouseout
+
+
+87. console.log(" %c this is a styled log","background : red ;font-size : 20px");
+ 
+
+
+88.    time log
+	console.time("timing");
+	console.timeEnd("timing");
+
+
+
+89. vertical-align : top
+
+
+
+
+
+
