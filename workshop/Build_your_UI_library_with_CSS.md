@@ -10,3 +10,6 @@
   -  Tab/Nav
   -  Navbar
   -  Banner
+  -  Card
+  -  List
+  -  Dropdown

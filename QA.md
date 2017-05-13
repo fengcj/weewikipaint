@@ -1395,6 +1395,78 @@ Generator 函数的调用方法与普通函数一样，也是在函数名后面�
 
 
 
+90.  offsetX  
+
+The offsetX read-only property of the MouseEvent interface provides the offset in the X coordinate of the mouse pointer between that event and the padding edge of the target node. 
+
+offsetX and offsetY are relative to the parent container, whereas pageX and pageY are relative to the document.
+
+
+91. offsetWidth
+
+The HTMLElement.offsetWidth read-only property returns the layout width of an element. Typically, an element's offsetWidth is a measurement which includes the element borders, the element horizontal padding, the element vertical scrollbar (if present, if rendered) and the element CSS width.
+
+http://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively  (to be read)
+
+
+92. css linear gradient
+
+
+93. css  中 使用 vh， 记得是Browser的高度
+
+94.  span, i 都可以使用bootstrap的 icon 
+
+95.  实现视频中的进度条效果：
+
+.player__controls {
+    display: flex;
+    position: absolute;
+    bottom: 0;   // 先将整个进度条靠在底部
+    width: 100%;
+    transform: translateY(100%) translateY(-5px);  // 再将其整个向下移动本身的高度， 再向上移动5px
+    transition: all .3s;
+    flex-wrap: wrap;
+    background: rgba(0,0,0,0.1);
+}
+
+.player:hover .player__controls {
+  transform: translateY(0);   // 当鼠标放到video上时，恢复到初始位置
+}
+
+.player:hover .progress {
+  height:15px;  // 并将进度条变高
+}
+
+96. flex-wapper  
+
+https://codepen.io/fcj/pen/vmjRVK
+
+
+97. flex-basis
+
+和 width 的区别
+
+https://segmentfault.com/a/1190000005077709
+http://gedd.ski/post/the-difference-between-width-and-flex-basis/
+http://stackoverflow.com/questions/34352140/what-are-the-differences-between-flex-basis-and-width
+
+
+98. 
+
+    function debounce(func, wait = 20, immediate = true) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    };
 
 
 
