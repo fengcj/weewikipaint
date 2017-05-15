@@ -125,7 +125,7 @@ Both elements must have the same parent, but element2 does not have to be immedi
 The element+element selector is used to select elements that is placed immediately after (not inside) the first specified element.
 
 
-19. 
+19.
  letter-spacing: 5px;   // 设置字符之间的空白间距
  z-index  
 
@@ -157,7 +157,7 @@ css 属性太多，未发现到底是因为哪个造成的。。。
 26.    当设置parent 的高度在某个确定值后，即使子元素的高度加起来超过该固定高度，parent高度也不会变。
 https://codepen.io/fcj/pen/LyyGpp
 
-27. 
+27.
 
 Absolute
 
@@ -176,7 +176,7 @@ https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html    BFC
 
 29. du -sh file_path   // get the folder size
 
-30. The for...in statement iterates over the enumerable properties of an object, in original insertion order. 
+30. The for...in statement iterates over the enumerable properties of an object, in original insertion order.
 //  老是忘记。。。。
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties
 
@@ -236,7 +236,7 @@ Scale the background image to be as large as possible so that the background are
 
 https://www.w3schools.com/cssref/playit.asp?filename=playcss_background-size&preval=cover
 
-   background-position : center bottom   // 图片放置的位置，是在中间，底部 
+   background-position : center bottom   // 图片放置的位置，是在中间，底部
                        //  还有 left ,right 可选
 
 
@@ -252,10 +252,10 @@ currentTarget总是和this相同，而target指向事实上被点击的目标DOM
 
 http://harttle.com/2015/08/14/event-and-this.html
 
-41. 
+41.
 
-The Element.getElementsByTagName() method returns a live `HTMLCollection` of elements with the given tag name. 
-he returned list is live, meaning that it updates itself with the DOM tree automatically. 
+The Element.getElementsByTagName() method returns a live `HTMLCollection` of elements with the given tag name.
+he returned list is live, meaning that it updates itself with the DOM tree automatically.
 
 Document.querySelectorAll() , returns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors. The object returned is a `NodeList`.
 
@@ -271,7 +271,7 @@ html {
   background-size: cover;
 }
 
-43.   flex : 1 
+43.   flex : 1
 
 The flex property specifies the length of the item, relative to the rest of the flexible items inside the same container.
 
@@ -284,7 +284,7 @@ https://www.w3schools.com/cssref/css3_pr_flex.asp
 
 
 flex: <positive-number>
-Equivalent to flex: <positive-number> 1 0. 
+Equivalent to flex: <positive-number> 1 0.
 Makes the flex item flexible and sets the flex basis to zero, resulting in an item that receives the specified proportion of the free space in the flex container. If all items in the flex container use this pattern, their sizes will be proportional to the specified flex factor.
 Therefore flex:1 it is equivalent to flex: 1 1 0
 
@@ -381,11 +381,11 @@ function concatArrays() {
 function curryAdd() {
 
   const curryAddition = a => () => c => {
-      throw new Error("Hi");  // 抛出异常，但是在stack log 中，根本无法看出到底哪个函数出了问题, 因为在提示的是 ` Object.<anonymous>` , 所以在使用arrow function 的时候要考虑清楚，作者也说大部分时候是使用 `命名 function?` 
+      throw new Error("Hi");  // 抛出异常，但是在stack log 中，根本无法看出到底哪个函数出了问题, 因为在提示的是 ` Object.<anonymous>` , 所以在使用arrow function 的时候要考虑清楚，作者也说大部分时候是使用 `命名 function?`
       return a + c ;
   }
 
-  
+
   return curryAddition(9)(3)(5)
 
 /*  function curryAddition(a) {
@@ -569,13 +569,13 @@ New input types that are not supported by older web browsers, will behave as <in
 
 https://www.w3.org/TR/html5/forms.html#event-input-input
 
-The input event fires whenever the user has modified the data of the control. The change event fires when the value is committed, if that makes sense for the control, or else when the control loses focus. 
+The input event fires whenever the user has modified the data of the control. The change event fires when the value is committed, if that makes sense for the control, or else when the control loses focus.
 In all cases, the input event comes before the corresponding change event (if any).
 
 
 
 
-The oninput is useful if you want to detect when the contents of a textarea, input:text, input:password or input:search element have changed, because the onchange event on these elements fires when the element loses focus, not immediately after the modification. 
+The oninput is useful if you want to detect when the contents of a textarea, input:text, input:password or input:search element have changed, because the onchange event on these elements fires when the element loses focus, not immediately after the modification.
 
 // 实例可见：
 http://jsfiddle.net/AtvtZ/
@@ -592,7 +592,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables
 // 应该是个实验性质的feature，看文档发现：
 Chrome 34.0 removed this feature due to performance issues.
 
-70. 
+70.
 
 document.documentElement.style.setProperty("name","value");
 
@@ -621,53 +621,53 @@ JavaScript30/05 - Flex Panel Gallery
 77. JsConf
 
 78. javascript execution context
-  https://simpleprogrammer.com/2016/06/06/javascript-execution-stack-key-learning-language/ 
+  https://simpleprogrammer.com/2016/06/06/javascript-execution-stack-key-learning-language/
 
-Running Your Code: 
+Running Your Code:
  - The Creation Phase
  -  The Execution Phase
 
   Lexical Environment
- 
- 
+
+
  can be related with #71
- 
+
  79.  function expression  vs function declaration
- 
- 
+
+
  80.
- 
+
  case1 :
   var callback = () => {
       console.log(this);
       console.log(b);
-    
+
   };
   var a = () => {
-  
+
     var b = 1;
     setTimeout(callback, 1000 );   // Uncaught ReferenceError: b is not defined
   }
-  
+
   a();
- 
+
  case2 :
-  
+
   var a = () => {
-  
+
     var b = 1;
     setTimeout(() => {
       console.log(this);
       console.log(b);
-    
-    }, 1000 );   // 1 
+
+    }, 1000 );   // 1
   }
-  
+
   a();
- 
- //  different scope chain/ Lexical Environment 
- 
- 
+
+ //  different scope chain/ Lexical Environment
+
+
  81. 移动端开发
      js 原生幻灯片效果/瀑布流效果
 
@@ -678,7 +678,7 @@ Running Your Code:
  let [...b] = a;
 
  83. website : node.green
- 
+
 84. ES6  Generator
 
 Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。不同的是，调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象，也就是上一章介绍的遍历器对象（Iterator Object）。
@@ -809,7 +809,7 @@ Both elements must have the same parent, but element2 does not have to be immedi
 The element+element selector is used to select elements that is placed immediately after (not inside) the first specified element.
 
 
-19. 
+19.
  letter-spacing: 5px;   // 设置字符之间的空白间距
  z-index  
 
@@ -841,7 +841,7 @@ css 属性太多，未发现到底是因为哪个造成的。。。
 26.    当设置parent 的高度在某个确定值后，即使子元素的高度加起来超过该固定高度，parent高度也不会变。
 https://codepen.io/fcj/pen/LyyGpp
 
-27. 
+27.
 
 Absolute
 
@@ -860,7 +860,7 @@ https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html    BFC
 
 29. du -sh file_path   // get the folder size
 
-30. The for...in statement iterates over the enumerable properties of an object, in original insertion order. 
+30. The for...in statement iterates over the enumerable properties of an object, in original insertion order.
 //  老是忘记。。。。
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties
 
@@ -920,7 +920,7 @@ Scale the background image to be as large as possible so that the background are
 
 https://www.w3schools.com/cssref/playit.asp?filename=playcss_background-size&preval=cover
 
-   background-position : center bottom   // 图片放置的位置，是在中间，底部 
+   background-position : center bottom   // 图片放置的位置，是在中间，底部
                        //  还有 left ,right 可选
 
 
@@ -936,10 +936,10 @@ currentTarget总是和this相同，而target指向事实上被点击的目标DOM
 
 http://harttle.com/2015/08/14/event-and-this.html
 
-41. 
+41.
 
-The Element.getElementsByTagName() method returns a live `HTMLCollection` of elements with the given tag name. 
-he returned list is live, meaning that it updates itself with the DOM tree automatically. 
+The Element.getElementsByTagName() method returns a live `HTMLCollection` of elements with the given tag name.
+he returned list is live, meaning that it updates itself with the DOM tree automatically.
 
 Document.querySelectorAll() , returns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors. The object returned is a `NodeList`.
 
@@ -955,7 +955,7 @@ html {
   background-size: cover;
 }
 
-43.   flex : 1 
+43.   flex : 1
 
 The flex property specifies the length of the item, relative to the rest of the flexible items inside the same container.
 
@@ -968,7 +968,7 @@ https://www.w3schools.com/cssref/css3_pr_flex.asp
 
 
 flex: <positive-number>
-Equivalent to flex: <positive-number> 1 0. 
+Equivalent to flex: <positive-number> 1 0.
 Makes the flex item flexible and sets the flex basis to zero, resulting in an item that receives the specified proportion of the free space in the flex container. If all items in the flex container use this pattern, their sizes will be proportional to the specified flex factor.
 Therefore flex:1 it is equivalent to flex: 1 1 0
 
@@ -1065,11 +1065,11 @@ function concatArrays() {
 function curryAdd() {
 
   const curryAddition = a => () => c => {
-      throw new Error("Hi");  // 抛出异常，但是在stack log 中，根本无法看出到底哪个函数出了问题, 因为在提示的是 ` Object.<anonymous>` , 所以在使用arrow function 的时候要考虑清楚，作者也说大部分时候是使用 `命名 function?` 
+      throw new Error("Hi");  // 抛出异常，但是在stack log 中，根本无法看出到底哪个函数出了问题, 因为在提示的是 ` Object.<anonymous>` , 所以在使用arrow function 的时候要考虑清楚，作者也说大部分时候是使用 `命名 function?`
       return a + c ;
   }
 
-  
+
   return curryAddition(9)(3)(5)
 
 /*  function curryAddition(a) {
@@ -1253,13 +1253,13 @@ New input types that are not supported by older web browsers, will behave as <in
 
 https://www.w3.org/TR/html5/forms.html#event-input-input
 
-The input event fires whenever the user has modified the data of the control. The change event fires when the value is committed, if that makes sense for the control, or else when the control loses focus. 
+The input event fires whenever the user has modified the data of the control. The change event fires when the value is committed, if that makes sense for the control, or else when the control loses focus.
 In all cases, the input event comes before the corresponding change event (if any).
 
 
 
 
-The oninput is useful if you want to detect when the contents of a textarea, input:text, input:password or input:search element have changed, because the onchange event on these elements fires when the element loses focus, not immediately after the modification. 
+The oninput is useful if you want to detect when the contents of a textarea, input:text, input:password or input:search element have changed, because the onchange event on these elements fires when the element loses focus, not immediately after the modification.
 
 // 实例可见：
 http://jsfiddle.net/AtvtZ/
@@ -1276,7 +1276,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables
 // 应该是个实验性质的feature，看文档发现：
 Chrome 34.0 removed this feature due to performance issues.
 
-70. 
+70.
 
 document.documentElement.style.setProperty("name","value");
 
@@ -1305,53 +1305,53 @@ JavaScript30/05 - Flex Panel Gallery
 77. JsConf
 
 78. javascript execution context
-  https://simpleprogrammer.com/2016/06/06/javascript-execution-stack-key-learning-language/ 
+  https://simpleprogrammer.com/2016/06/06/javascript-execution-stack-key-learning-language/
 
-Running Your Code: 
+Running Your Code:
  - The Creation Phase
  -  The Execution Phase
 
   Lexical Environment
- 
- 
+
+
  can be related with #71
- 
+
  79.  function expression  vs function declaration
- 
- 
+
+
  80.
- 
+
  case1 :
   var callback = () => {
       console.log(this);
       console.log(b);
-    
+
   };
   var a = () => {
-  
+
     var b = 1;
     setTimeout(callback, 1000 );   // Uncaught ReferenceError: b is not defined
   }
-  
+
   a();
- 
+
  case2 :
-  
+
   var a = () => {
-  
+
     var b = 1;
     setTimeout(() => {
       console.log(this);
       console.log(b);
-    
-    }, 1000 );   // 1 
+
+    }, 1000 );   // 1
   }
-  
+
   a();
- 
- //  different scope chain/ Lexical Environment 
- 
- 
+
+ //  different scope chain/ Lexical Environment
+
+
  81. 移动端开发
      js 原生幻灯片效果/瀑布流效果
 
@@ -1362,7 +1362,7 @@ Running Your Code:
  let [...b] = a;
 
  83. website : node.green
- 
+
 84. ES6  Generator
 
 Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。不同的是，调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象，也就是上一章介绍的遍历器对象（Iterator Object）。
@@ -1382,7 +1382,7 @@ Generator 函数的调用方法与普通函数一样，也是在函数名后面�
 
 
 87. console.log(" %c this is a styled log","background : red ;font-size : 20px");
- 
+
 
 
 88.    time log
@@ -1397,7 +1397,7 @@ Generator 函数的调用方法与普通函数一样，也是在函数名后面�
 
 90.  offsetX  
 
-The offsetX read-only property of the MouseEvent interface provides the offset in the X coordinate of the mouse pointer between that event and the padding edge of the target node. 
+The offsetX read-only property of the MouseEvent interface provides the offset in the X coordinate of the mouse pointer between that event and the padding edge of the target node.
 
 offsetX and offsetY are relative to the parent container, whereas pageX and pageY are relative to the document.
 
@@ -1414,7 +1414,7 @@ http://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidt
 
 93. css  中 使用 vh， 记得是Browser的高度
 
-94.  span, i 都可以使用bootstrap的 icon 
+94.  span, i 都可以使用bootstrap的 icon
 
 95.  实现视频中的进度条效果：
 
@@ -1451,7 +1451,7 @@ http://gedd.ski/post/the-difference-between-width-and-flex-basis/
 http://stackoverflow.com/questions/34352140/what-are-the-differences-between-flex-basis-and-width
 
 
-98. 
+98.
 
     function debounce(func, wait = 20, immediate = true) {
       var timeout;
@@ -1510,7 +1510,7 @@ chrome plugin  :  fontface ninja
 104.  jQuery
 
 
- 
+
 $("div.rightMenu span").mouseenter(function(){
   var left = $(this).position().left;
   var top = $(this).position().top;
@@ -1531,3 +1531,24 @@ $("div.rightMenu span").mouseleave(function(){
 
 
 
+
+106.   offsetHeight offsetWidth  offsetLeft  offsetTop
+
+       offsetX  offsetY
+
+
+       The offsetX read-only property of the MouseEvent interface provides the offset in the X coordinate of the mouse pointer between that event and the padding edge of the target node.
+// 关键是如何理解  event and the padding edge of the target node.
+// 并不是直接相对于整个文档的。
+
+http://help.dottoro.com/ljjqvtaf.php
+
+
+
+
+
+
+107. css text-shadow
+
+
+text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit;
