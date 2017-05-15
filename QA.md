@@ -1468,5 +1468,66 @@ http://stackoverflow.com/questions/34352140/what-are-the-differences-between-fle
       };
     };
 
+99. copy an array
+
+var array = [1,2,3,4];
+
+var array2 = array.slice();
+array2 = [].concat(array);
+array2 = [...array];  // ES6
+array2 = Array.from(array);
+
+
+100. using spread on object ?
+
+
+101. form  reset() method
+
+
+102. https://www.producthunt.com
+     https://dribbble.com/
+     http://calltoidea.com/
+     https://uimovement.com/
+     http://goodui.org/
+     https://www.awwwards.com/
+     http://xclient.info/
+     https://coolors.co/
+http://colorhunt.co/
+https://www.flickr.com/
+https://www.pexels.com/
+https://unsplash.com/
+https://unsplash.it/
+https://thenounproject.com/
+https://iconstore.co/
+https://uigradients.com/#Alive
+chrome plugin  :  fontface ninja
+
+
+103. css letter-spacing
+
+
+
+104.  jQuery
+
+
+ 
+$("div.rightMenu span").mouseenter(function(){
+  var left = $(this).position().left;
+  var top = $(this).position().top;
+  var width = $(this).css("width");
+  var destLeft = parseInt(left) + parseInt(width)/2;
+  $("img#catear").css("left",destLeft);
+  $("img#catear").css("top",top-20);
+  $("img#catear").fadeIn(500);
+});
+
+$("div.rightMenu span").mouseleave(function(){
+  $("img#catear").hide();
+});
+
+
+
+105.   13 - Slide In on Scroll   （more about calculate position）
+
 
 
