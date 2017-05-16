@@ -1552,3 +1552,71 @@ http://help.dottoro.com/ljjqvtaf.php
 
 
 text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit;
+
+
+
+
+
+
+
+108. New HTML5 API
+
+avigator.mediaDevices.getUserMedia
+
+
+video.src = window.URL.createObjectURL(localMediaStream);
+video.play();
+
+
+function getVideo() {
+  navigator.mediaDevices.getUserMedia({ video: true, audio: false })               
+    .then(localMediaStream => {
+      console.log(localMediaStream);
+      video.src = window.URL.createObjectURL(localMediaStream);
+      video.play();
+    })
+    .catch(err => {
+      console.error(`OH NO!!!`, err);
+    });
+}
+
+
+const width = video.videoWidth;
+const height = video.videoHeight;
+
+
+Canvas:
+  drawImage
+  getImageData
+  putImageData
+
+setInterval(() => {
+  ctx.drawImage(video, 0, 0, width, height);
+  // take the pixels out
+  let pixels = ctx.getImageData(0, 0, width, height);
+  // mess with them
+  // pixels = redEffect(pixels);
+
+  pixels = rgbSplit(pixels);
+  // ctx.globalAlpha = 0.8;
+
+  // pixels = greenScreen(pixels);
+  // put them back
+  ctx.putImageData(pixels, 0, 0);
+}, 16);
+
+function takePhoto() {
+  // played the sound
+  snap.currentTime = 0;
+  snap.play();
+
+  // take the data out of the canvas
+  const data = canvas.toDataURL('image/jpeg');
+  const link = document.createElement('a');
+  link.href = data;
+  link.setAttribute('download', 'handsome');
+  link.innerHTML = `<img src="${data}" alt="Handsome Man" />`;
+  strip.insertBefore(link, strip.firsChild);
+}
+
+109.  https://segmentfault.com/p/1210000009358832/read  （very useful）
