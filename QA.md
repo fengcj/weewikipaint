@@ -1620,3 +1620,18 @@ function takePhoto() {
 }
 
 109.  https://segmentfault.com/p/1210000009358832/read  （very useful）
+
+
+
+
+110.      navigator.geolocation.watchPosition((data) => {
+      console.log(data);
+      speed.textContent = data.coords.speed;
+      arrow.style.transform = `rotate(${data.coords.heading}deg)`;
+    }, (err) => {
+      console.error(err);
+    });
+
+ navigator.geolocation.watchPosition
+ data.coords.speed
+ data.coords.heading
