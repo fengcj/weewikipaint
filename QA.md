@@ -1635,3 +1635,42 @@ function takePhoto() {
  navigator.geolocation.watchPosition
  data.coords.speed
  data.coords.heading
+
+
+ 111.  mouseover vs mouseenter
+
+ http://stackoverflow.com/questions/1104344/what-is-the-difference-between-the-mouseover-and-mouseenter-events
+
+
+ Mouseenter and mouseleave do not react to event bubbling, while mouseover and mouseout do.
+
+ https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_event_mouseenter_mouseover
+
+
+ 112.  getBoundingClientRect();
+
+
+eg.
+
+ClientRect {top: 3, right: 244.03125, bottom: 60, left: 174, width: 70.0312}
+
+
+
+
+113.  open_source/JavaScript30/23 - Speech Synthesis
+
+
+const msg = new SpeechSynthesisUtterance();
+
+
+
+  speechSynthesis.addEventListener('voiceschanged', populateVoices);
+
+
+  function populateVoices() {
+    voices = this.getVoices();  // API of speechSynthesis
+    voicesDropdown.innerHTML = voices
+      .filter(voice => voice.lang.includes('en'))
+      .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
+      .join('');
+  }
