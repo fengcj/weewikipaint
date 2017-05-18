@@ -1704,3 +1704,20 @@ const msg = new SpeechSynthesisUtterance();
 此时可以增加对应元素的padding之类的属性，占据脱离文档的元素的空间。
 
 google  html 文档 重绘
+
+
+
+115.   Sass
+
+http://sass-lang.com/guide
+
+112. website
+http://developer.telerik.com/category/topics/web-development/
+
+
+
+116. let const (temporal dead zone) in ES6
+
+In ECMAScript 2015, let will hoist the variable declaration to the top of the block, but not the initialization. Referencing the variable in the block before the initialization results in a
+
+117.  Object.assgin()
