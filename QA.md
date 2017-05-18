@@ -1674,3 +1674,33 @@ const msg = new SpeechSynthesisUtterance();
       .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
       .join('');
   }
+
+
+
+114.  open_source/JavaScript30/24 - Sticky Nav
+
+
+这个video 得好好思考下：
+
+1） 当某个元素变动时候，会引起其他元素一起变动（动画等）， 可添加 class 放到共有的parent Element,如
+    body ，再根据css
+       A{
+
+       }
+       B{
+
+       }
+
+       bodyClass A{
+
+       }
+       bodyClass B{
+
+       }
+
+      达到效果
+
+2） 当某个元素脱离普通文档流后，会导致页面回流，导致视觉效果不好，卡顿之类的。
+此时可以增加对应元素的padding之类的属性，占据脱离文档的元素的空间。
+
+google  html 文档 重绘
