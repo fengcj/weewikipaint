@@ -1721,3 +1721,45 @@ http://developer.telerik.com/category/topics/web-development/
 In ECMAScript 2015, let will hoist the variable declaration to the top of the block, but not the initialization. Referencing the variable in the block before the initialization results in a
 
 117.  Object.assgin()
+
+
+
+118.  重绘  重排
+
+https://dancon.gitbooks.io/git-books/content/css/concept/redraw_reflow.html
+
+
+在操作DOM元素的时候，一定要考虑性能问题，重绘和重排一定要时刻记着。
+
+119.  CSS  white-space
+
+其实在平时的开发中，我们使用这个属性时，最常使用的属性值是nowrap, 并配合text-overflow和overflow来实现文本超长不折行，并自动隐藏超出部分，并转换为...
+
+.no-wrap{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+120.  domElement.getBoundingClientRect() vs  window.getComputedStyle()
+
+其中的差别在于getComputedStyle 会获取所有相关的CSS 属性
+而getBoundingClientRect() 则只会获取 宽高，位置信息。
+
+
+bottom
+height
+left
+right
+top
+width
+
+
+121. review es6-workshop
+module grammar :  {}  const
+
+
+122. Object.getPrototypeOf()
+
+//  The Object.getPrototypeOf() method returns the prototype (i.e. the value of the internal [[Prototype]] property) of the specified object.
