@@ -1500,6 +1500,9 @@ https://unsplash.it/
 https://thenounproject.com/
 https://iconstore.co/
 https://uigradients.com/#Alive
+
+
+http://fontawesome.io/
 chrome plugin  :  fontface ninja
 
 
@@ -1763,3 +1766,10 @@ module grammar :  {}  const
 122. Object.getPrototypeOf()
 
 //  The Object.getPrototypeOf() method returns the prototype (i.e. the value of the internal [[Prototype]] property) of the specified object.
+
+
+123.  phoneGap
+
+onDeviceReady
+
+124.  https://bootswatch.com/
