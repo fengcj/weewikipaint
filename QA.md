@@ -1773,3 +1773,114 @@ module grammar :  {}  const
 onDeviceReady
 
 124.  https://bootswatch.com/
+
+
+
+125. Framework7
+
+126. generate random string for div id
+
+
+
+http://stackoverflow.com/questions/6860853/generate-random-string-for-div-id
+
+
+function guidGenerator() {
+    var S4 = function() {
+       return (((1+Math.random()) * 0x10000)|0).toString(16).substring(1);
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
+
+
+
+
+127. webSql
+
+
+看到有人在phoneGap 中使用websql 存储数据，但是网上查过说是一种被deprecated 技术。
+那么想到，可以用的替换技术首先就是 localstroage
+接下来，想到localstroage也可能存在清除缓存的过程中清理掉，
+那更进一步则是使用google 的FireBase
+
+
+
+
+https://softwareengineering.stackexchange.com/questions/220254/why-is-web-sql-database-deprecated
+
+
+http://stackoverflow.com/questions/20653418/why-is-cordova-using-web-sql-api-which-has-been-deprecated
+
+
+
+128. ES6 class define property out of Constructor ???
+
+
+129.  Mock server data
+
+
+https://jsonplaceholder.typicode.com/
+
+
+130.  Flow  static check of JS  (Vue using this)
+
+
+131. ES6
+  Import create immutable Binding
+
+
+暴露文件夹下的所有接口：
+
+index.js 文件中：
+
+  export * from "./folder/moduleA"
+  export * from "./folder/moduleB"
+  export * from "./folder/moduleC"
+
+132.  Implement of Array.prototype.map
+
+
+133.  
+//  Cannot read property 'sum' of undefined
+let adder = {
+  sum : 0,
+  add(numbers){
+    numbers.forEach(function(n){
+      this.sum += n;
+    });
+  }
+}
+console.log(adder.add([1,2,3]));
+
+
+// work with arrow function
+
+let adder = {
+  sum : 0,
+  add(numbers){
+    numbers.forEach( n => this.sum += n);
+  }
+}
+
+adder.add([1,2,3])
+console.log(adder.sum);
+
+
+// compiled
+"use strict";
+
+var adder = {
+  sum: 0,
+  add: function add(numbers) {
+    var self = this;
+    numbers.forEach(function (n) {
+      return self.sum += n;
+    });
+  }
+};
+
+adder.add([1, 2, 3]);
+console.log(adder.sum);
+
+
+134. bradtraversy/loginapp  github
