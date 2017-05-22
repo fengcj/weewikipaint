@@ -1818,7 +1818,7 @@ http://stackoverflow.com/questions/20653418/why-is-cordova-using-web-sql-api-whi
 
 129.  Mock server data
 
-
+d
 https://jsonplaceholder.typicode.com/
 
 
@@ -1887,3 +1887,47 @@ console.log(adder.sum);
 
 
 135. https://ponyfoo.com/articles/understanding-javascript-async-await
+
+
+136. Margin Collapse
+
+
+op and bottom margins of elements are sometimes collapsed into a single margin that is equal to the largest of the two margins.
+
+This does not happen on left and right margins! Only top and bottom margins!
+
+
+margin : 0 auto
+
+it also won’t work with floated and inline elements and by itself, it also cannot work in absolute and fixed positioned elements (we will however see how to make those work).
+
+
+137.  CSS background-size
+
+https://css-tricks.com/almanac/properties/b/background-size/
+
+
+138. multi checkBox
+
+http://www.wastedpotential.com/html-multi-checkbox-set-the-correct-way-to-group-checkboxes/
+
+
+<input type="checkbox" name="chk_group[]" value="value1" />Value 1<br />
+<input type="checkbox" name="chk_group[]" value="value2" />Value 2<br />
+<input type="checkbox" name="chk_group[]" value="value3" />Value 3<br />
+
+
+
+139.  Parallel  vs Async  vs Concurrency  (not solved)
+
+
+
+140.  JS  callback
+作者提供了一个很好的视角，callback 的缺点，
+当使用第三方库的时候，传入callback， 无法确认Lib是如何使用这个callback的，是不是自己所期望的。
+
+
+141.  http://latentflip.com/loupe/
+
+
+142.  https://dev.to/sanjsanj/optimising-the-front-end-for-thebrowser?utm_content=buffer78be3&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
