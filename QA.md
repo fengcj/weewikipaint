@@ -1931,3 +1931,31 @@ http://www.wastedpotential.com/html-multi-checkbox-set-the-correct-way-to-group-
 
 
 142.  https://dev.to/sanjsanj/optimising-the-front-end-for-thebrowser?utm_content=buffer78be3&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+
+143.
+<meta http-equiv="Content-Security-Policy">
+
+
+
+144. phoneGap
+a) 使用Framework7 作为基础框架
+b) 注释
+<!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+c) 对应页面
+
+html file name : "get-city.html"
+in html file : <div data-page="get-city" class="page">
+in js file :
+myApp.onPageInit("get-city",function(){
+
+  })
+
+
+145.  大纲
+
+HTML&CSS：  对Web标准的理解、浏览器内核差异、兼容性、hack、CSS基本功：布局、盒子模型、选择器优先级及使用、HTML5、CSS3、移动端适应。
+
+JavaScript：   数据类型、面向对象、继承、闭包、插件、作用域、跨域、原型链、模块化、自定义事件、内存泄漏、事件机制、异步装载回调、模板引擎、Nodejs、JSON、ajax等。
+
+其他：  HTTP、安全、正则、优化、重构、响应式、移动端、团队协作、可维护、SEO、UED、架构、职业生涯
