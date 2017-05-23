@@ -1959,3 +1959,40 @@ HTML&CSS：  对Web标准的理解、浏览器内核差异、兼容性、hack、
 JavaScript：   数据类型、面向对象、继承、闭包、插件、作用域、跨域、原型链、模块化、自定义事件、内存泄漏、事件机制、异步装载回调、模板引擎、Nodejs、JSON、ajax等。
 
 其他：  HTTP、安全、正则、优化、重构、响应式、移动端、团队协作、可维护、SEO、UED、架构、职业生涯
+
+
+146.  https://www.ecma-international.org/ecma-262/6.0/
+
+
+147. chrome 技巧
+
+https://www.youtube.com/watch?v=UURZFzk92bU
+a) 选中某个元素，在console 中输入 $0 , 得到对应的选中元素。
+b) PageSpeed to Analyse the website
+3) Local map
+4) Async // great
+5) debug(lib.function);
+6) monitor()   // test not work
+   monitorEvents(window,"resize")
+7) Elements Panel : scroll into view
+8) Elements Panel : select an element, then press `h` on keyboadr,
+    the element will be hidden
+9) Elements Panel : select "Computed" to get css which is really work,
+   then click the css property to go to the css line
+10)Network Panel : shift + click to check the relate
+
+148.  ES6
+
+  function computeCircleArea({r = 1, x = 0, y = 0} = {}) {
+    console.log(arguments);
+  }
+  computeCircleArea();
+  computeCircleArea({r: 2});
+  computeCircleArea({r: 3, x: 8, y: 6});
+
+
+149.  CSS  will-change
+
+http://tobiasahlin.com/
+
+http://tobiasahlin.com/blog/
