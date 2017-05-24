@@ -2003,3 +2003,22 @@ http://tobiasahlin.com/blog/
 
 
 151. offsetLeft   scrollLeft
+
+152. Chrome Dev Tools
+
+https://www.youtube.com/watch?v=x8u0n4dT-WI
+
+a lot of not know before
+
+1) must enable Developer Tools experiments
+2) CMD + Shift + P  // inspire from sublime
+
+
+
+
+
+
+
+
+
+end
