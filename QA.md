@@ -1996,3 +1996,10 @@ b) PageSpeed to Analyse the website
 http://tobiasahlin.com/
 
 http://tobiasahlin.com/blog/
+
+
+150. git reset
+   git remote set-url origin git://new.url.here
+
+
+151. offsetLeft   scrollLeft
