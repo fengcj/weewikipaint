@@ -2026,8 +2026,23 @@ a lot of not know before
 https://github.com/amfe/article
 
 
+155. Progressive Web APP
+1) Service Worker  (HTTPS)
+  chrome://serviceworker-internals/
+2) Web App Manifest File
+3) App shell
 
 
+156. https://www.webpagetest.org/
+
+157. HTML cloneNode
+The Node.cloneNode() method returns a duplicate of the node on which this method was called.
+
+
+
+158.  website
+
+http://caniuse.com/   // web browser 兼容性
 
 
 
