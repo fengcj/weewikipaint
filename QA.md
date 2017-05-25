@@ -2046,4 +2046,28 @@ http://caniuse.com/   // web browser 兼容性
 
 
 
+159. flex
+
+ display : flex
+ display : inline-flex
+
+
+160. video about PWA
+
+https://www.youtube.com/watch?v=aCMbSyngXB4
+
+a)https://hnpwa.com/   // all the demo PWA using different framework
+b) <link rel="dns-prefetch" href="//api.twitter.com">
+c) <link rel="preload" as="script" crossorigin="anonymous" href="balabala.js">
+d) https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3
+   https://developers.google.com/web/showcase/2017/twitter
+e) https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback
+f) https://github.com/facebookincubator/create-react-app
+g) example using PWA:  https://www.treebo.com/
+h) preact and cli
+i) https://github.com/developit/preact
+j) https://medium.com/elemefe/upgrading-ele-me-to-progressive-web-app-2a446832e509
+k) vue init pwa
+l) https://houssein.me/progressive-angular-applications
+m) do it, do it right, do it better
 end
