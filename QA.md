@@ -288,6 +288,13 @@ Equivalent to flex: <positive-number> 1 0.
 Makes the flex item flexible and sets the flex basis to zero, resulting in an item that receives the specified proportion of the free space in the flex container. If all items in the flex container use this pattern, their sizes will be proportional to the specified flex factor.
 Therefore flex:1 it is equivalent to flex: 1 1 0
 
+http://zhoon.github.io/css3/2014/08/23/flex.html
+https://css-tricks.com/flex-grow-is-weird/
+https://css-tricks.com/almanac/properties/f/flex-shrink/
+https://www.youtube.com/watch?v=CFgeJq4l1YM
+
+
+
 44. https://astexplorer.net/
 
 
@@ -2014,6 +2021,9 @@ a lot of not know before
 2) CMD + Shift + P  // inspire from sublime
 
 
+153. Article
+
+https://github.com/amfe/article
 
 
 
