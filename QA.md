@@ -2051,6 +2051,12 @@ http://caniuse.com/   // web browser 兼容性
  display : flex
  display : inline-flex
 
+ flex-directoin : row/column
+
+ flex-wrap : nowrap/ wrap
+
+ order : 1    // default is 0, also could be nagative
+
 
 160. video about PWA
 
@@ -2070,4 +2076,11 @@ j) https://medium.com/elemefe/upgrading-ele-me-to-progressive-web-app-2a446832e5
 k) vue init pwa
 l) https://houssein.me/progressive-angular-applications
 m) do it, do it right, do it better
+
+
+
+161.  Cordova
+https://cordova.apache.org/docs/en/latest/guide/overview/index.html
+
+
 end
