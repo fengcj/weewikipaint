@@ -2083,4 +2083,33 @@ m) do it, do it right, do it better
 https://cordova.apache.org/docs/en/latest/guide/overview/index.html
 
 
+162. Input  
+https://developers.google.com/web/fundamentals/design-and-ui/input/forms/#choose_the_best_input_type
+
+https://developers.google.com/web/fundamentals/design-and-ui/?hl=en
+
+https://www.slideshare.net/greenido/web-forms-the-right-way
+
+
+datalist
+
+
+<form action="/action_page.php" method="get">
+  <input list="browsers" name="browser">
+  <datalist id="browsers">
+    <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+  <input type="submit">
+</form>
+
+https://www.html5rocks.com/en/tutorials/geolocation/trip_meter/
+
+label  placeholder
+
+
+
 end
