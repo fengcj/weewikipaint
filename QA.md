@@ -2116,4 +2116,212 @@ label  placeholder
 
 
 
+164. form
+就应该简单粗暴，要一直去做减法，减少到不能再少的输入。
+form 扮演的应该是对话的角色。
+
+一个手机号，一个验证码完成一次登录，一次购物。。。。
+
+
+Mobile  First
+
+
+165. geolocation
+
+if ("geolocation" in navigator) {
+  // geolocation is available
+} else {
+  // geolocation IS NOT available
+}
+
+
+165. https://www.polymer-project.org/
+
+https://www.upwork.com/hiring/development/polymer-vs-react/
+
+
+167.  Form 组件 Vue, React
+
+
+
+168.  Mobile Touch Event
+
+DOM element change its status
+
+https://developers.google.com/web
+
+https://developers.google.com/web/fundamentals/design-and-ui/input/touch/?hl=en#stateful-elements-respond-to-touch
+
+
+https://www.youtube.com/watch?v=Rwc4fHUnGuU&feature=youtu.be
+
+
+1)  :active / :foucs pseudo class
+
+当设计的时候，考虑元素的 default/active/focus 时候的style
+
+
+2)  Touch Event
+
+Life cycle of a gesture:
+touchstart -> touchmove -> touchend/touchcancel
+
+3) Best Practices
+
+ a)binding low : bind the element user touch not the entrie document
+
+
+ to touch rather than the entire document. The reason for this is that it helps the browser's performance, since the browser will only hop on to the main thread and execute JavaScript when a touch falls in an element with a listener, so the one you care about.
+
+ Otherwise if you add the touch event listeners to the document body, we're always going to execute JavaScript on the main thread, even though the touch may occur on an element we just simply don't care about. So binding low means binding to the element itself.
+
+
+ b) binding late  
+
+ Binding late is referring to binding the touchmove, touchend, and touchcancel event to the element as late as possible.
+
+ele.addEventListener("touchstart",function(e){
+    ele.addEventListener("touchmove", ...)
+    ele.addEventListener("touchend", ...)
+    ele.addEventListener("touchcancel", ...)
+  });
+
+
+// 可以使用chrome dev tool 中 rendering 来查看
+如勾选 Scrolling Performance Issues
+
+
+c) doing little thing in callback
+
+Because a callback is going to be running on the main thread.
+
+So if you do lots of work inside of it you can really hurt your site's frame rate, which nobody wants. So always try to be as quick as possible inside the callback.
+
+But this raises the question of, if I get the touch's x- and y-coordinates inside the event, how can I do anything with those values
+
+without blocking the main thread? And that's where requestAnimationFrame comes in.
+
+  ele.addEventListener("touchmove", function(e){
+      window.requestAnimationFrame(onAimaFrame_callback);
+    })
+
+
+
+4) using  requestAnimateFrames
+
+requestAnimationFrame is a technique of batching changes you want to make to the UI at a time that works with the browser rather than against it.
+You would call requestAnimationFrame
+and pass in a function which basically asks the browser to execute that function at a suitable point in its render
+When the animation frame call back is executed you can update the UI based on the last known touch event.
+
+
+
+So the overall flow is you request an animation frame,
+
+you wait while touchmove events fire, and then when the browser's ready it will call your method and you can alter the UI. The important thing with this is that rather than change the element styles for every touch move, where you might see multiple events fire between render frames, you make changes based on the last known touch move, which is really the only important bit of work that needs to happen.
+
+
+
+
+
+
+
+API:
+
+The window.requestAnimationFrame() method tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint. The method takes as an argument a callback to be invoked before the repaint.
+
+
+
+
+https://www.html5rocks.com/en/mobile/touch/
+https://developer.mozilla.org/en-US/docs/Web/API/Touch_events
+
+
+
+
+169. Build Tools
+对于Build Tool， 自己的态度是够用就好，最好是code 而不是confifuration.
+某种意义上都是黑盒，给输入（entry）, build后输出(dist)
+
+
+至于不同build tool各自的feature,对于自己的项目够用就好。
+难道一个build 花费5s,一个花费8s,就一定要换么？当然如果是前端页面因为framework有这么大的差别，打死也要换。
+
+https://jaysoo.ca/2014/01/27/gruntjs-vs-gulpjs/
+
+
+watch 的基本工作原理：
+
+watch 某个文件夹，当有改动时候，执行某个任务（提前定义好）。
+
+
+browsersync
+
+var browserSync = require('browser-sync').create();
+ browserSync.init({
+     server: "./"
+ });
+ browserSync.stream();
+
+
+gulp is a task runner, what this means is that it can define tasks which can easily be run just by calling with a name.
+
+
+Webpack does not have this concept baked in mainly because it is not a task runner, but a module bundler. To make up for it, you can use npm scripts in conjunction with node to have the same effect.
+
+
+170. Number.prototype.toFixed
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+
+var numObj = 12345.6789;
+
+numObj.toFixed();       // Returns '12346': note rounding, no fractional part
+numObj.toFixed(1);      // Returns '12345.7': note rounding
+numObj.toFixed(6);      // Returns '12345.678900': note added zeros
+(1.23e+20).toFixed(2);  // Returns '123000000000000000000.00'
+(1.23e-10).toFixed(2);  // Returns '0.00'
+2.34.toFixed(1);        // Returns '2.3'
+2.35.toFixed(1);        // Returns '2.4'. Note that it rounds up in this case.
+-2.34.toFixed(1);       // Returns -2.3 (due to operator precedence, negative number literals don't return a string...)
+(-2.34).toFixed(1);     // Returns '-2.3' (...unless you use parentheses)
+
+
+171. Devops
+也一直在思考什么是Devops？
+课程中的提了一个很好的例子：
+当我们举行一个会议，会用到google calendar,通知与会人员。
+但是定制这个calendar,并不能保证所有人都会参加会议。
+
+
+Google Calendar is a great tool for helping you get to meetings on time.
+
+But putting your meetings on a calendar doesn't make you show up on time.
+ And it doesn't cause you to want to show up on time, either.
+ If you're like me, you'll want to show up to meetings on time because you respect your coworkers and you want to get things done with them. And if you had a meeting conflict, or show up late because you forgot about a meeting, you'd feel like you failed to meet up to that.
+
+ But using a calendar program is a tool to help you accomplish a goal you already had.
+
+
+
+ So DevOps is kind of like showing up to meetings on time.
+
+
+It's not a matter of using particular tools, even though tools can help you do it. It's an organizational change that's supported by those tools.
+
+But, at the same time, it would be basically impossible to organize large meetings without some sort of calendar. And likewise, it's not practical to scale software deployment without some tools to do that.
+
+
+
+
+某种意义上说，它是一个文化，一种手段。
+
+
+
+
+
+ services is not just server
+
+ // 其实对监控(mointer) ，收集各种数据，在现实里，组里做的都很少，更没有分析出有效的东西出来。
+
 end
