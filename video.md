@@ -18,6 +18,9 @@ https://www.udacity.com/course/how-to-use-git-and-github--ud775
 https://www.udacity.com/course/javascript-testing--ud549
 https://www.udacity.com/course/intro-to-devops--ud611
 
+
+js pattern  more than once
+
 6. google  
 
 https://developers.google.com/web

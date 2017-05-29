@@ -2324,4 +2324,46 @@ But, at the same time, it would be basically impossible to organize large meetin
 
  // 其实对监控(mointer) ，收集各种数据，在现实里，组里做的都很少，更没有分析出有效的东西出来。
 
+
+
+
+
+ What is Packer?
+
+ Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration. Packer is lightweight, runs on every major operating system, and is highly performant, creating machine images for multiple platforms in parallel. Packer does not replace configuration management like Chef or Puppet. In fact, when building images, Packer is able to use tools like Chef or Puppet to install software onto the image.
+
+ A machine image is a single static unit that contains a pre-configured operating system and installed software which is used to quickly create new running machines. Machine image formats change for each platform. Some examples include AMIs for EC2, VMDK/VMX files for VMware, OVF exports for VirtualBox, etc.
+
+
+
+// Import Note
+Packer does not replace configuration management like Chef or Puppet. In fact, when building images, Packer is able to use tools like Chef or Puppet to install software onto the image.
+
+
+
+
+
+Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the "works on my machine" excuse a relic of the past.
+
+
+
+
+172. git
+
+
+git log
+  git log --stat
+
+git diff  id1  id2
+
+  eg:
+    git diff  4139bf8452eff0e13e17283cee99a9f9c949f224   4574f043f48a2d5e47c47fe3247e58fd77453d14
+
+git diff --staged   // compare stage area with remote
+
+
+
+
+
+
 end
