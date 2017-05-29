@@ -2354,6 +2354,10 @@ Vagrant is a tool for building and managing virtual machine environments in a si
 git log
   git log --stat
 
+  git log --graph --oneline master
+
+
+
 git diff  id1  id2
 
   eg:
@@ -2366,7 +2370,20 @@ git diff --staged   // compare stage area with repostory(after run git add)
 
 
 
-// this is test for "git reset --hard"
+git reset --hard   // revert uncommited change
+git reset --hard  id  // revert to a special commit
+
+
+
+
+git branch newBranch
+git checkout newBranch
+
+
+git checkout id   // back to a special commit, maybe use for create a new branch
+
+"git reset" vs "git checkout"
+https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
 
 
 end
