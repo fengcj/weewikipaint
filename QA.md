@@ -2359,7 +2359,10 @@ git diff  id1  id2
   eg:
     git diff  4139bf8452eff0e13e17283cee99a9f9c949f224   4574f043f48a2d5e47c47fe3247e58fd77453d14
 
-git diff --staged   // compare stage area with remote
+
+git diff  // compare workspace and stage area
+
+git diff --staged   // compare stage area with repostory(after run git add)
 
 
 
