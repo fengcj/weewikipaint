@@ -2386,4 +2386,10 @@ git checkout id   // back to a special commit, maybe use for create a new branch
 https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
 
 
+
+
+
+
+
+
 end
