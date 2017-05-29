@@ -15,9 +15,15 @@ https://www.youtube.com/user/Udacity/playlists
 https://github.com/mikesprague/udacity-nanodegrees
 
 https://www.udacity.com/course/how-to-use-git-and-github--ud775
-https://www.udacity.com/course/javascript-testing--ud549
-https://www.udacity.com/course/intro-to-devops--ud611
+https://www.udacity.com/course/javascript-testing--ud549   (need more check)
+https://www.udacity.com/course/intro-to-devops--ud611  (done)
 
+https://classroom.udacity.com/courses/ud595/ (Linux command)
+
+https://www.udacity.com/course/object-oriented-javascript--ud015
+
+
+https://www.udacity.com/course/learn-backbonejs--ud990
 
 js pattern  more than once
 
