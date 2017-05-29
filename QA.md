@@ -2366,7 +2366,7 @@ git diff --staged   // compare stage area with repostory(after run git add)
 
 
 
-
+// this is test for "git reset --hard"
 
 
 end
