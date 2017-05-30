@@ -2379,11 +2379,25 @@ git reset --hard  id  // revert to a special commit
 git branch newBranch
 git checkout newBranch
 
+git branch -d deleteBranch  // delete a branch
 
 git checkout id   // back to a special commit, maybe use for create a new branch
 
+
+
+
 "git reset" vs "git checkout"
 https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
+
+
+git merge master anotherBranch  // merge anotherBranch to master branch
+
+
+
+
+git show commitId  // show the diff of the commit and its parent
+
+
 
 
 
@@ -2391,6 +2405,11 @@ https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting
 
 https://addyosmani.com/blog/understanding-mvc-and-mvp-for-javascript-and-backbone-developers/
 
+
+
+174. REg
+https://regex101.com/
+http://regexr.com/
 
 
 
