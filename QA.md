@@ -2356,7 +2356,7 @@ git log
 
   git log --graph --oneline master
 
-
+  git log -n 1  // show only one commit log
 
 git diff  id1  id2
 
@@ -2410,6 +2410,45 @@ https://addyosmani.com/blog/understanding-mvc-and-mvp-for-javascript-and-backbon
 174. REg
 https://regex101.com/
 http://regexr.com/
+
+
+175. HTML  Custom Events
+
+// create the custom `partyTime` event
+var myCustomEvent= new CustomEvent( 'partyTime', {timeToParty: true, partyYear: 1999} );
+
+// listen to the `document` for the `partyTime` event
+document.addEventListener('partyTime', function(evt) {
+    if (evt.partyYear) {
+        console.log( "Partying like it's " + evt.partyYear + "!");
+    }
+
+    document.body.style.backgroundImage = 'linear-gradient(90deg, orange, blue)';
+});
+
+// trigger the custom event
+document.dispatchEvent( myCustomEvent );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
