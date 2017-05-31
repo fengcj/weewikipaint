@@ -2432,7 +2432,42 @@ document.dispatchEvent( myCustomEvent );
 
 
 
+176.  css flex
 
+align-items default value  is stretch  cross axis
+
+align-content , It only applies if flex-wrap: wrap is present, and if there are multiple lines of flexbox items.  cross axis
+
+
+177. autocomplete
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autocomplete
+
+178. input pattern
+
+<form action="/action_page.php">
+Country code: <input type="text" name="country_code"
+pattern="[A-Za-z]{3}" title="Three letter country code">
+<input type="submit">
+</form>
+
+179. input required
+
+<form action="/action_page.php">
+  Username: <input type="text" name="usrname" required>
+  <input type="submit">
+</form>
+
+
+180. 表单check的组件
+a) 接口如何设计，传入哪些参数？
+b) error message 的显示？
+
+https://classroom.udacity.com/courses/ud890/lessons/5247541854/concepts/53883552300923
+
+
+
+end
 
 
 
