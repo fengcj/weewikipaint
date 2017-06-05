@@ -2481,6 +2481,97 @@ http://fontawesome.io/icons/
 
 https://www.youtube.com/watch?v=GUTHPn3p_s8
 
+click/mousedown/mouseup event is work on PC browser,
+
+touchstart/touchmove/touchend/touchend event is work on mobile,
+The touch event contains an array of all touchsf as well as scale and rotation values.
+
+
+184. ES6 In Node
+
+
+1) Node v6 full support ES6
+
+2) node.green
+
+3) Arrow Functoin  
+    -  this
+
+4) default value of param
+
+5) ...  operator
+
+6) class
+
+7) let/const is block-scoped, var is not block-scoped
+
+8) destructuring, worked on object ({}) and array ([])
+
+9) es6-shortended object properties
+
+  let a = 1;
+  let b = 2;
+  let c = 3;
+  let obj = {
+    a,
+    b,
+    c,
+    fun(){
+
+    }
+  };
+
+10) computed property Name
+
+ let key = "key1";
+ let obj = {
+   [key] : value
+ }
+
+
+11) Template String  ``
+
+
+12) Promise  
+
+var promise = new Promise( (resovle, reject) => {
+    console.log("in promise");
+    let result = "this is the result";
+    resovle(result);
+});
+
+var handler = result => {   
+    console.log("in handler");
+    console.log(result)
+}
+
+promise.then(handler);
+
+console.log("end of the program");
+
+
+// result is:
+
+in promise
+end of the program
+in handler
+this is the result
+
+13) Set  Map
+
+set can be conver to an array
+
+let pizzaSet = new Set();
+
+const pizzaArray = [...pizzaSet];
+
+
+14) for of  
+
+15) Generator
+
+
+
 end
 
 
