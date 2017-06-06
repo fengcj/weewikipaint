@@ -2575,14 +2575,35 @@ const pizzaArray = [...pizzaSet];
 end
 
 
+185. http://webanimationweekly.com/
+
+
+186. CSS transation
+
+1)写transation 的best pratice 就是，先写好transation完成后的效果，再写初始时的效果
+2)最好不要使用 transation : all 这种，对performance不好。
+3）250ms~300ms 最佳动画时间
+
+
+187. CSS
+
+1）void/self-closing element
+
+  input
+  hr
+  img
+  meta
 
 
 
+2）canvas 获取事件
 
 
+3) https://tympanus.net/codrops/css_reference/
 
+https://tympanus.net/codrops/
 
-
+188. fixture vs mock
 
 
 
