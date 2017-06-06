@@ -2571,6 +2571,58 @@ const pizzaArray = [...pizzaSet];
 15) Generator
 
 
+function* generator(){
+
+    var count = 1;
+    yield;
+    console.log(count);
+
+    count++;
+    yield;
+    console.log(count);
+
+    count++;
+    console.log(count);
+
+}
+
+var iter = generator();
+iter.next(); // nothing print
+
+iter.next(); // 1
+
+iter.next(); // 2 , 3
+
+
+
+function* generator2(){
+
+    var obj =  {
+        "name" : yield,
+        "age" : yield,
+        "address" : yield
+    };
+
+    return obj;
+}
+
+var iter2 = generator2();
+console.log(iter2.next());    //   { value: undefined, done: false }
+console.log(iter2.next("igt"));  //  { value: undefined, done: false }
+console.log(iter2.next(37));  //  { value: undefined, done: false }
+console.log(iter2.next("USA"));  //   { value: { name: 'igt', age: 37, address: 'USA' }, done: true }
+
+
+16) async / wait
+
+async function asyncLog(){
+    var result = await Promise.resolve("this is the value return from promise");
+    console.log(result);
+}
+
+asyncLog();
+
+console.log("can this be print first??");
 
 end
 
@@ -2609,8 +2661,25 @@ https://tympanus.net/codrops/
 
 
 
+188) HTML  
+    document.createDocumentFragment();
 
 
+// 当获取到某段html文档后，想将其放到fragment中，则是：
+// 其中自己从来不知道的是，当将某个节点取到，并放到fragment中后，该
+// 节点则不会再保存在原来的父节点中。
+
+node2Fragment: function(el) {
+    var fragment = document.createDocumentFragment(),
+        child;
+
+    // 将原生节点拷贝到fragment
+    while (child = el.firstChild) {  
+        fragment.appendChild(child);
+    }
+
+    return fragment;
+},
 
 
 end
