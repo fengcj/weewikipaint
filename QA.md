@@ -2682,4 +2682,45 @@ node2Fragment: function(el) {
 },
 
 
+189） CSS selector
+
+从右往左起作用的
+
+input:focus{
+  outeline : solid 1px blue;
+}
+
+有人喜欢将id只用在page link上（页面内跳转）
+
+
+http://colours.neilorangepeel.com/  (css color resource)
+https://coolors.co/
+https://randoma11y.com/#/?_k=ew6fii
+http://cssspecificity.com/
+https://specificity.keegan.st/
+http://www.cssfontstack.com/
+https://typekit.com/
+
+@font-face{
+  font-family: "Mouseo Sans";
+  src: url(../fonts/museo-sans.ttf)
+}
+
+body{
+  font-family: "Mouseo Sans"
+}
+
+
+font size : px em rem
+
+font-weight font-style
+
+
+
+
+
+190） _.assign  deep and more than one args
+
+
+
 end
