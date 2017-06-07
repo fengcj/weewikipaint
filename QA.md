@@ -2719,7 +2719,76 @@ font-weight font-style
 
 
 
-190） _.assign  deep and more than one args
+190） underscore.assign  deep and more than one args
+
+
+191) CSS transation
+
+ css transation will not change the document flow;
+
+ transform is relative to the element its self, not its parent.
+
+ transform : translateX(100%);  // relative to its own width
+
+ // transform 的各种函数: scale(), rotate(), skew() 顺序不同，效果也不同。它们是依次叠加的。
+
+ rotateY  效果：
+  https://codepen.io/fcj/pen/OgVZZe
+
+
+192) CSS animation
+
+  @keyframes slide {
+
+    from {
+      transform : translateX(0);
+    }
+
+    to {
+      transform : translateX(100px);
+    }
+
+  }
+
+  https://codepen.io/fcj/pen/WOvJqw
+
+
+以前没有注意的一个属性：
+  animation-fill-mode  // 也就是动画开始前，结束后，element的位置。
+
+
+Value	Description
+  none ：	Default value. The animation will not apply any styles to the target element before or after it is executing
+
+  forwards ：	After the animation ends (determined by animation-iteration-count), the animation will apply the property values for the time the animation ended
+
+  backwards ：	The animation will apply the property values defined in the keyframe that will start the first iteration of the animation, during the period defined by animation-delay. These are either the values of the from keyframe (when animation-direction is "normal" or "alternate") or those of the to keyframe (when animation-direction is "reverse" or "alternate-reverse")
+
+  both：	The animation will follow the rules for both forwards and backwards. That is, it will extend the animation properties in both directions
+
+
+
+
+http://cubic-bezier.com/#.17,.67,.83,.67
+
+
+193) Node microservices
+
+a)  websocket vs http2.0
+
+
+194) HTML  nodetype
+
+isElementNode: function(node) {
+    return node.nodeType == 1;
+},
+
+isTextNode: function(node) {
+    return node.nodeType == 3;
+}
+
+
+
 
 
 
