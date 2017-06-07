@@ -2715,8 +2715,16 @@ font size : px em rem
 
 font-weight font-style
 
+https://codepen.io/fcj/pen/PjqrbK  // inline element 只有水平轴上的margin
+
+https://codepen.io/fcj/pen/awvoEQ  // inline element 的 overlapping
+
+https://codepen.io/fcj/pen/vZOoBp  // max-width
+
+h1~h6 是有default style， 尤其是margin属性 // https://www.w3schools.com/tags/tag_hn.asp  https://codepen.io/fcj/pen/qjdeop
 
 
+css float  clearfix
 
 
 190） underscore.assign  deep and more than one args
