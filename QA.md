@@ -2780,9 +2780,63 @@ Value	Description
 http://cubic-bezier.com/#.17,.67,.83,.67
 
 
+
+
+section {
+  animation: slideIn .8s linear, fadeIn .2s ease-in;  // 不同动画分别专注不同的属性(transform,opacity)
+}
+// 每个节点单独使用animation-timing-function
+@keyframes slideIn {
+  0% {
+    transform: translateY(400px);
+    animation-timing-function: ease-out;
+  }
+  60% {
+    transform: translateY(-50px);
+    animation-timing-function: ease-in;
+  }
+  80% {
+    transform: translateY(10px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity: 1;}
+}
+
+
+
+
+
+css rotate:
+https://www.impressivewebs.com/alternative-units-css3-rotate-transforms/
+https://developer.mozilla.org/en-US/docs/Web/CSS/angle
+
+
+
+
+
+
+animation-play-state   // https://codepen.io/fcj/pen/xrwXPy
+
+
+transform-origin
+  transform-origin : 50% 50%
+
+
 193) Node microservices
 
 a)  websocket vs http2.0
+
+// 各个service 之间如何处理共享数据？也做成service?
+
+
 
 
 194) HTML  nodetype
@@ -2795,6 +2849,21 @@ isTextNode: function(node) {
     return node.nodeType == 3;
 }
 
+
+195)  Node util.inherit
+
+
+function A(){
+
+}
+
+function B(){
+
+}
+
+Object.setPrototypeOf(A.prototype,B.prototype);
+
+console.log(A.prototype.__proto__ === B.prototype);
 
 
 
