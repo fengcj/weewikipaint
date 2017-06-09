@@ -2724,7 +2724,16 @@ https://codepen.io/fcj/pen/vZOoBp  // max-width
 h1~h6 是有default style， 尤其是margin属性 // https://www.w3schools.com/tags/tag_hn.asp  https://codepen.io/fcj/pen/qjdeop
 
 
-css float  clearfix
+css float  clearfix   // https://codepen.io/fcj/pen/JJYmwx
+https://codepen.io/fcj/pen/QgjJjO
+
+
+min-height
+
+tools:
+https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
+https://www.browserstack.com/
+https://crossbrowsertesting.com/
 
 
 190） underscore.assign  deep and more than one args
