@@ -2836,7 +2836,17 @@ animation-play-state   // https://codepen.io/fcj/pen/xrwXPy
 
 
 transform-origin
-  transform-origin : 50% 50%
+  transform-origin : 50% 50%  // default
+https://codepen.io/fcj/pen/VWeaZB
+
+step animation:
+ i) animation-timing-function : step(4);
+
+
+https://www.smashingmagazine.com/2014/04/understanding-css-timing-functions/#introducing-the-steps-timing-function
+
+
+使用animation-delay属性将多个animation组合起来。关键在于上一个动画的结束属性和下一个动画的起始属性要保持一致。
 
 
 193) Node microservices
@@ -2873,6 +2883,29 @@ function B(){
 Object.setPrototypeOf(A.prototype,B.prototype);
 
 console.log(A.prototype.__proto__ === B.prototype);
+
+
+
+function C(){
+
+}
+
+function D(){
+
+}
+
+D.prototype = Object.create(C.prototype);
+console.log(D.prototype.__proto__ === C.prototype);
+
+
+
+196)  Node http
+
+https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+
+
+
+
 
 
 
