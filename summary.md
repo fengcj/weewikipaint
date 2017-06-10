@@ -86,11 +86,27 @@ g)  Event
 
  b) es6
 
+ review Map Set WeakMap ...  ???
+
+
+ e) for ... of
+ 具有iterable类型的集合可以通过新的for ... of循环来遍历。
+
+ for ... of循环和for ... in循环有何区别？
+ for ... in循环由于历史遗留问题，它遍历的实际上是对象的属性名称。一个Array数组实际上也是一个对象，它的每个元素的索引被视为一个属性。
+
+
+f) variable hoisting
+   temporal dead zone ? let/const
 
 
 2.  AMD requireJS  API
 
 
+
+
+3.CSS
+a)增加inline element 的padding,并不会改变父元素的宽高，这是default behave
 
 
 end

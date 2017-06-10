@@ -2849,6 +2849,44 @@ https://www.smashingmagazine.com/2014/04/understanding-css-timing-functions/#int
 使用animation-delay属性将多个animation组合起来。关键在于上一个动画的结束属性和下一个动画的起始属性要保持一致。
 
 
+
+
+css selector:
+  [attribute]
+    eg: [type]
+  [attribute=value]
+    eg: [type="input"]
+
+
+css selector : https://codepen.io/fcj/pen/PjZLGz
+
+:first-child/ :last-child  https://codepen.io/fcj/pen/ZyQPeR  
+:first-of-type/ :last-of-type https://codepen.io/fcj/pen/JJGzWV
+
+
+
+https://unicode-table.com/en/
+
+
+
+text-transform : uppercase
+
+
+box-sizing : border-box
+
+
+默认浏览器显示一个空格(?)  //  https://codepen.io/fcj/pen/OgMqYx
+
+
+当element改为float，browser默认将其display属性变成block。当设置其宽度时，是相对于父元素。
+overflow : hidden
+https://codepen.io/fcj/pen/MoKMGB
+
+
+
+使用z-index  时候position 不能为static，设置成relative.
+
+
 193) Node microservices
 
 a)  websocket vs http2.0
@@ -2905,7 +2943,7 @@ https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
 
 
 
-
+Remember, the request object is a ReadableStream and the response object is a WritableStream
 
 
 
