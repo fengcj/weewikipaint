@@ -2734,7 +2734,7 @@ tools:
 https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
 https://www.browserstack.com/
 https://crossbrowsertesting.com/
-
+http://wave.webaim.org/
 
 190） underscore.assign  deep and more than one args
 
@@ -2836,55 +2836,7 @@ animation-play-state   // https://codepen.io/fcj/pen/xrwXPy
 
 
 transform-origin
-  transform-origin : 50% 50%  // default
-https://codepen.io/fcj/pen/VWeaZB
-
-step animation:
- i) animation-timing-function : step(4);
-
-
-https://www.smashingmagazine.com/2014/04/understanding-css-timing-functions/#introducing-the-steps-timing-function
-
-
-使用animation-delay属性将多个animation组合起来。关键在于上一个动画的结束属性和下一个动画的起始属性要保持一致。
-
-
-
-
-css selector:
-  [attribute]
-    eg: [type]
-  [attribute=value]
-    eg: [type="input"]
-
-
-css selector : https://codepen.io/fcj/pen/PjZLGz
-
-:first-child/ :last-child  https://codepen.io/fcj/pen/ZyQPeR  
-:first-of-type/ :last-of-type https://codepen.io/fcj/pen/JJGzWV
-
-
-
-https://unicode-table.com/en/
-
-
-
-text-transform : uppercase
-
-
-box-sizing : border-box
-
-
-默认浏览器显示一个空格(?)  //  https://codepen.io/fcj/pen/OgMqYx
-
-
-当element改为float，browser默认将其display属性变成block。当设置其宽度时，是相对于父元素。
-overflow : hidden
-https://codepen.io/fcj/pen/MoKMGB
-
-
-
-使用z-index  时候position 不能为static，设置成relative.
+  transform-origin : 50% 50%
 
 
 193) Node microservices
@@ -2923,29 +2875,48 @@ Object.setPrototypeOf(A.prototype,B.prototype);
 console.log(A.prototype.__proto__ === B.prototype);
 
 
+196） Bootstrap4
 
-function C(){
-
-}
-
-function D(){
-
-}
-
-D.prototype = Object.create(C.prototype);
-console.log(D.prototype.__proto__ === C.prototype);
+ a) https://css-tricks.com/rems-ems/
 
 
+197) Docker
 
-196)  Node http
+  build ship run
 
-https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+  docker container run -it jboss/wildfly
+  docker container run -it --name web jboss/wildfly bash
+
+  docker container run -d jboss/wildfly
+  docker container run -d --name web jboss/wildfly
+  docker container ls
+  docker container stop NAME
+  docker container rm   NAME
 
 
 
-Remember, the request object is a ReadableStream and the response object is a WritableStream
 
 
+  docker container run -d -P --name web jboss/wildfly
+
+  docker container run -d --name web -p8080:8080 jboss/wildfly
+
+
+  docker container run -d --name web -p 8080:8080 -v `pwd`/webapp.war:/opt/jboss/wildfly/standalone/deployments/webapp.war jboss/wildfly
+
+
+  Docker Image:
+    Dockerfile
+
+
+198） JS
+   NaN === NaN // false
+   NaN !== NaN // true
+   isNaN(NaN)  // true
+
+199)  Node
+
+  http://fem-node-api.netlify.com/
 
 
 
