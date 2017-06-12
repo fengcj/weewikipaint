@@ -2908,6 +2908,26 @@ console.log(A.prototype.__proto__ === B.prototype);
   Docker Image:
     Dockerfile
 
+    docker image build -t hellojava:2 .
+    docker container run hellojava:2
+
+
+  COPY
+
+  ADD
+    COPY
+    tar auto-extraction
+    Download from remote (curl/wget)
+
+  only one CMD is effect
+
+
+  FROM openjdk:jdk-alpine
+
+  COPY myapp/target/myapp-1.0-SNAPSHOT.jar /deployments/
+
+  CMD java -jar /deployments/myapp-1.0-SNAPSHOT.jar
+
 
 198） JS
    NaN === NaN // false
