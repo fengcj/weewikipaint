@@ -2919,5 +2919,48 @@ console.log(A.prototype.__proto__ === B.prototype);
   http://fem-node-api.netlify.com/
 
 
+200)  JS ES6
+
+ a) Arrow functions
+  make the code more  readable and debug is more important than write the code;
+  // 当写code的时候，时刻要问自己，过一个礼拜后，自己还能看得懂么？一个月后呢？
+  // team 的人能在review的时候看懂么？是不是更便于debug
+
+  // 对于简单的几行code就能完成功能的，自己倾向于使用arrow function,但是对于nested在一起的
+  // 复杂logic,自己更喜欢使用normal function。
+
+
+  do not code today what you can not debug tomorrow
+
+  var bar = () => ({ x : 2});   // return object must have ()
+
+  // debug 的时候，named function 更方便
+
+  p.then( v => v.id);
+  p.then(function extractID(v){return v.id});
+
+
+  // 使用arrow function, 考虑其scope，也就是this
+
+
+https://stackoverflow.com/questions/336859/var-functionname-function-vs-function-functionname
+
+
+function expression :   var a = function(){}
+function declaration :  function a(){}   // function hoisting
+
+
+  b)  let
+
+  // 对于let的使用，并不是简单的var的替换，也不要极端的全部使用var;
+  //  目前，仅仅使用let，告诉compile，该变量只是在当前block生效。
+
+  // 大部分时候还是会使用var，表示自己知道在干什么，告诉其他人会将该
+  // 变量全局使用(function scope)
+
+  // let 不会被hoisting
+
+
+
 
 end
