@@ -2980,8 +2980,18 @@ function declaration :  function a(){}   // function hoisting
 
   // let 不会被hoisting
 
+ e) const 也是 block scope
+  // 什么时候使用const，作者认为很多人再滥用， 如
+    const a = [1,2,3,4];
+  // const的根本意思是说，不再对变量名字重新赋值，并不关心值是什么。
+  // 最佳的使用场景是 ，如
+    const PI = 3.14  
+
 
 
 201)  refactor Node fs readFile to promise
+
+202) Mobile Web
+http://am-team.github.io/amg/dev-exp-doc.html
 
 end
