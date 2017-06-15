@@ -2928,6 +2928,23 @@ console.log(A.prototype.__proto__ === B.prototype);
 
   CMD java -jar /deployments/myapp-1.0-SNAPSHOT.jar
 
+  RUN  // used for isntalling software package
+    RUN apt-get update && apt-get install
+  CMD  // default for executing container; can be overrided from CLI
+    CMD ["/opt/jboss/wildfly/bin/standalone.sh","-b","0.0.0.0","-bmanagement","0.0.0.0"]
+    docker run mywildfly bash
+
+  EXPOSE // network prots on which container is listening
+    EXPOSE 9990
+
+  VOLUME  // create a mount point which the specified name
+    VOLUME /opt/couchbase/var
+    docker container run ... -v ~/data:/opt/couchbase/var
+
+
+
+  docker image rm -f $(docker image ls -qa)
+  docker container rm -f $(docker container ls -aq)
 
 198） JS
    NaN === NaN // false
