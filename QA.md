@@ -3004,7 +3004,8 @@ function declaration :  function a(){}   // function hoisting
   // 最佳的使用场景是 ，如
     const PI = 3.14  
 
-
+ f) default params
+  // ver useful in some case for default value
 
 201)  refactor Node fs readFile to promise
 
