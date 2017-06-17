@@ -3007,15 +3007,96 @@ function declaration :  function a(){}   // function hoisting
  f) default params
   // ver useful in some case for default value
 
+ g) ... operator
+  // 在使用ES6的时候，想到的是这个feature能做什么？能提高什么？能更好的communicate to reader?
+  // 在使用新的framework,lib也应该是这种思维。
+
+  ... 实际上是操作的Iterator, string/array 都是。
+
 201)  refactor Node fs readFile to promise
 
 202) Mobile Web
 http://am-team.github.io/amg/dev-exp-doc.html
+
+  onscroll 事件
+
 
 
 203) front-end-frameworks collection
 
 https://usablica.github.io/front-end-frameworks/
 
+204) You do not know JS
+
+注意： 唯一比不知道为什么代码不好用更糟糕的是，从一开始就不知道为什么代码好用！这是一种经典的“纸牌屋”心理：“它好用，但不知为什，所以大家都别碰！”你可能听说过，“他人即地狱”（萨特），而程序员们模仿这种说法，“他人的代码即地狱”。我相信：“不明白我自己的代码才是地狱。”而回调正是肇事者之一。
+
+
+
+205) ES6 browser support
+https://kangax.github.io/compat-table/es6/
+
+206) Make a game
+   a) canvas
+   b) createjs (module)
+   c) handler event
+      http://jsfiddle.net/BmeKr/
+      https://stackoverflow.com/questions/9880279/how-do-i-add-a-simple-onclick-event-handler-to-a-canvas-element
+
+      There are many libraries that keep track of the position of your objects that were drawn on canvas and handle all of the complexities of handling mouse interactions. See EaselJS, KineticJS, Paper.js or Fabric.js and this comparison of canvas libraries for more.
+   e) device
+
+   retinalize() {
+     this.stage.width = this.canvas.width;
+     this.stage.height = this.canvas.height;
+
+     let ratio = window.devicePixelRatio;
+     if (ratio === undefined) {
+       return;
+     }
+
+     this.canvas.setAttribute('width', Math.round( this.stage.width * ratio ));
+     this.canvas.setAttribute('height', Math.round( this.stage.height * ratio ));
+
+     this.stage.scaleX = this.stage.scaleY = ratio;
+
+     // Set CSS style
+     this.canvas.style.width = this.stage.width + "px";
+     this.canvas.style.height = this.stage.height + "px";
+    }
+
+
+
+
+207)  Node on production
+  a) Sequelize:
+    Sequelize is a promise-based ORM for Node.js v4 and up. It supports the dialects PostgreSQL, MySQL, SQLite and MSSQL and features solid transaction support, relations, read replication and more.
+
+
+208)  Mobile design
+
+  https://modernweb.design/courses/mobile-web-design/
+
+  a)  The first step is not make your website fit in mobile. The first thing you should do is make your content fits in the mobile device.
+
+  Remember, people don’t consume website. They consume content.
+
+  <section>  <article>
+
+  b)  Mobile first approach
+
+We talk about mobile first. Mobile first means that during our website planning, we plan the content and layout for the mobile first.
+
+Planning for mobile first ensures us to consider the most important thing of our website.
+
+A screenshot showing how mobile-friendly web makes use of large buttons and list view.
+
+
+Mobile devices are often in narrow size and most of the users hold the device in portrait. So when we provides information or options for mobile device, we may use list view. In iOS, it's called table view. 
+
+
+
+  c) Yoga
+  https://github.com/facebook/yoga
+  oga is a cross-platform layout engine which implements Flexbox.
 
 end
