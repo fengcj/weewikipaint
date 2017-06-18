@@ -3012,6 +3012,36 @@ function declaration :  function a(){}   // function hoisting
   // 在使用新的framework,lib也应该是这种思维。
 
   ... 实际上是操作的Iterator, string/array 都是。
+  array destructuring, object destructuring 都是一种pattern,赋值的左边 明确想要的是什么样的结构。
+ h)  New Data Type in js   ---> Symbol
+
+ i)  for of  操作是Iterator
+     for in  操作是Key
+
+     var str1 = "hello";
+      for(let key in str1){
+          console.log(key,str1[key]);
+      }
+      for(let value of str1){
+          console.log(value);
+      }
+
+          var numbers = {
+          *[Symbol.iterator](star = 0,end=100){
+              for(let i= star; i < end; i++){
+                  yield i;
+              }
+          }
+      };
+
+      for(let num of numbers){
+          console.log(num);
+      }
+
+      for(let num of numbers[Symbol.iterator](30,60)){
+          console.log(num);
+      }
+
 
 201)  refactor Node fs readFile to promise
 
@@ -3091,12 +3121,31 @@ Planning for mobile first ensures us to consider the most important thing of our
 A screenshot showing how mobile-friendly web makes use of large buttons and list view.
 
 
-Mobile devices are often in narrow size and most of the users hold the device in portrait. So when we provides information or options for mobile device, we may use list view. In iOS, it's called table view. 
+Mobile devices are often in narrow size and most of the users hold the device in portrait. So when we provides information or options for mobile device, we may use list view. In iOS, it's called table view.
 
 
 
   c) Yoga
   https://github.com/facebook/yoga
   oga is a cross-platform layout engine which implements Flexbox.
+
+
+209)   Object.keys()  vs Object.getOwnpropertiesName()
+
+https://stackoverflow.com/questions/22658488/object-getownpropertynames-vs-object-keys
+
+There is a little difference. Object.getOwnPropertyNames(a) returns all own properties of the object a. Object.keys(a) returns all enumerable own properties.
+
+210)  Grunt  Glup Webpack
+Grunt  Glup 都是task runner
+Webpack 能做的更多？
+
+
+211)  HTML5  Facades
+// 直接使用canvas,localstroage 的API 可能会导致问题，比如说某些browser更新了API之类的，
+// 最好在其上添加一层Facades
+
+session stroage based on tab session
+
 
 end
