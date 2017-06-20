@@ -38,9 +38,10 @@
       对DB，release，monitor  了解的很少
 
 
+3.  在编译的时候将对应的依赖module编入kernel
+define('kernel/messagebus/MessageBus',['require','postal','postal.federation','xframe','request-response','promise'],function(require){}   // 编译脚本？？
 
-
-
+game 是如何将bet controller 注册给console的？？？
 
 3.  概念性的东西一定要弄得清楚。
 
