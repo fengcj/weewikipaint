@@ -3158,5 +3158,49 @@ grid system
 223) HTML5 Game Engine
 https://html5gameengine.com/
 
+224) jQuery
+
+https://stackoverflow.com/questions/236073/why-split-the-script-tag-when-writing-it-with-document-write
+
+document.write('<script src="jquery-3.0.0.min.js"><\/script>')
+
+
+https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/
+$( "#foo" )[ 0 ]; // Equivalent to document.getElementById( "foo" )
+$( "#foo" ).get( 0 ); // Identical to above, only slower.
+
+
+Select and style every <p> element that are placed immediately after <div> elements:
+div + p { 
+    background-color: yellow;
+}
+
+
+http://api.jquery.com/Types/#jQuery
+
+The jQuery function always returns a jQuery object (that is based on an array), even if there are no elements that matches the selector.
+
+That way you can always call a method that is supposed to affect the elements found, even if there are no elements that matched. If the jQuery object contains no elements, it will simply do nothing.
+
+If you need to know if a jQuery object contains any elements, you can use the length property.
+
+
+innerHTML vs outerHTML  //  outerHTML 会带上tag
+
+
+225)  Webview
+
+Content Security Policy 使用
+
+
+226)  Viewport
+https://stackoverflow.com/questions/22777734/what-is-initial-scale-user-scalable-minimum-scale-maximum-scale-attribute-in
+
+227) Node debug
+https://www.alexkras.com/simple-guide-to-finding-a-javascript-memory-leak-in-node-js/
+
+
+
+
 
 end
