@@ -3191,7 +3191,13 @@ innerHTML vs outerHTML  //  outerHTML 会带上tag
 225)  Webview
 
 Content Security Policy 使用
+img 的使用，不同手机分辨率上。
+#perfmatters twitter
 
+// 当GC时候，会停止Javascript and render
+
+// 如何处理mobile click delay 
+https://www.polymer-project.org/2.0/docs/devguide/feature-overview
 
 226)  Viewport
 https://stackoverflow.com/questions/22777734/what-is-initial-scale-user-scalable-minimum-scale-maximum-scale-attribute-in
@@ -3200,6 +3206,8 @@ https://stackoverflow.com/questions/22777734/what-is-initial-scale-user-scalable
 https://www.alexkras.com/simple-guide-to-finding-a-javascript-memory-leak-in-node-js/
 
 
+228) Favicon
+http://www.favicomatic.com/
 
 
 
