@@ -3209,6 +3209,31 @@ https://www.alexkras.com/simple-guide-to-finding-a-javascript-memory-leak-in-nod
 228) Favicon
 http://www.favicomatic.com/
 
+229) CSS  gradient
+
+http://www.colorzilla.com/gradient-editor/
+http://www.cssmatic.com/
+
+230) HTML figure
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure
+
+231) Vue 
+
+放在 v-bind等指令中的都是视为js code ,可执行语句。
+
+
+232) HTML label tag
+
+label 的使用方式：
+a)  <label>Click me <input type="text"></label>  // more like this way
+
+b) 
+<label for="username">Click me</label>
+<input type="text" id="username">
+
+
+233) Data structures
+https://medium.freecodecamp.org/10-common-data-structures-explained-with-videos-exercises-aaff6c06fb2b
 
 
 end
