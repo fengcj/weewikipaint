@@ -3171,7 +3171,7 @@ $( "#foo" ).get( 0 ); // Identical to above, only slower.
 
 
 Select and style every <p> element that are placed immediately after <div> elements:
-div + p { 
+div + p {
     background-color: yellow;
 }
 
@@ -3196,7 +3196,7 @@ img 的使用，不同手机分辨率上。
 
 // 当GC时候，会停止Javascript and render
 
-// 如何处理mobile click delay 
+// 如何处理mobile click delay
 https://www.polymer-project.org/2.0/docs/devguide/feature-overview
 
 226)  Viewport
@@ -3217,7 +3217,7 @@ http://www.cssmatic.com/
 230) HTML figure
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure
 
-231) Vue 
+231) Vue
 
 放在 v-bind等指令中的都是视为js code ,可执行语句。
 
@@ -3227,7 +3227,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure
 label 的使用方式：
 a)  <label>Click me <input type="text"></label>  // more like this way
 
-b) 
+b)
 <label for="username">Click me</label>
 <input type="text" id="username">
 
@@ -3247,6 +3247,33 @@ Negative top and left margins move the element up and left while negative right 
 236)  https://medium.freecodecamp.org/my-giant-javascript-basics-course-is-now-live-on-youtube-and-its-100-free-9020a21bbc27
 
 Many things can be learn from.
+
+
+
+236) check css grid system
+
+237) css
+    对于伪元素，某些属性是不能使用的。比如说
+    a:hover{
+      background : #fff; // 不能使用RGBA
+    }  
+
+238) HTML tag  
+
+<blockquote>
+
+239) Viewport
+
+Instead of using em or px to size text, you can use viewport units for responsive typography. Viewport units, like percentages, are relative units, but they are based off different items. Viewport units are relative to the viewport dimensions (width or height) of a device, and percentages are relative to the size of the parent container element.
+
+The four different viewport units are:
+
+vw: 10vw would be 10% of the viewport's width.
+vh: 3vh would be 3% of the viewport's height.
+vmin: 70vmin would be 70% of the viewport's smaller dimension (height vs. width).
+vmax: 100vmax would be 100% of the viewport's bigger dimension (height vs. width).
+
+
 
 
 end
