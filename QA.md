@@ -3238,5 +3238,15 @@ https://medium.freecodecamp.org/10-common-data-structures-explained-with-videos-
 234) freecodecamp
 https://beta.freecodecamp.com/en/map
 
+235)  CSS margin nagative value
+https://www.smashingmagazine.com/2009/07/the-definitive-guide-to-using-negative-margins/
+http://css-101.org/negative-margin/index.php
+
+Negative top and left margins move the element up and left while negative right and bottom margins make following siblings move left and up.
+
+236)  https://medium.freecodecamp.org/my-giant-javascript-basics-course-is-now-live-on-youtube-and-its-100-free-9020a21bbc27
+
+Many things can be learn from.
+
 
 end
