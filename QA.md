@@ -3277,5 +3277,10 @@ vmax: 100vmax would be 100% of the viewport's bigger dimension (height vs. width
 http://andrewhfarmer.com/getting-started-tutorials/
 https://app.pluralsight.com/library/courses/react-js-getting-started/table-of-contents
 
+241)  Design pattern
+https://app.pluralsight.com/player?course=javascript-practical-design-patterns
+
+242) Node Advance
+https://app.pluralsight.com/player?course=nodejs-advanced
 
 end
