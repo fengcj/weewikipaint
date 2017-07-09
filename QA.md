@@ -3283,4 +3283,10 @@ https://app.pluralsight.com/player?course=javascript-practical-design-patterns
 242) Node Advance
 https://app.pluralsight.com/player?course=nodejs-advanced
 
+
+243)  为何ES6中不能
+    export  {
+        object.method
+    }
+
 end
