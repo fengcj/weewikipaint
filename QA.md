@@ -3295,4 +3295,8 @@ https://reactarmory.com/guides/learn-react-in-browser-with-animated-fractal/intr
 https://reactarmory.com/guides/learn-react-in-browser-with-animated-fractal/introducing-react
 
 
+245)  Vue
+https://egghead.io/lessons/vue-update-attributes-classes-and-styles-in-vue-js-with-v-bind
+
+
 end
