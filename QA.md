@@ -3299,4 +3299,15 @@ https://reactarmory.com/guides/learn-react-in-browser-with-animated-fractal/intr
 https://egghead.io/lessons/vue-update-attributes-classes-and-styles-in-vue-js-with-v-bind
 
 
+246) 
+
+https://www.reddit.com/r/dailyprogrammer/
+
+
+247) 
+
+https://www.youtube.com/watch?v=oxoFVqetl1E
+https://www.youtube.com/watch?v=0fFYacBQPbA
+
+
 end
