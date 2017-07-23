@@ -3299,15 +3299,48 @@ https://reactarmory.com/guides/learn-react-in-browser-with-animated-fractal/intr
 https://egghead.io/lessons/vue-update-attributes-classes-and-styles-in-vue-js-with-v-bind
 
 
-246) 
+review:
+  <template>
+  v-on:submit:prevent
+  select v-model
+  v-bind:is  keep-alive
+  <router-view>  <router-link>
+
+246)
 
 https://www.reddit.com/r/dailyprogrammer/
 
 
-247) 
+247)
 
 https://www.youtube.com/watch?v=oxoFVqetl1E
 https://www.youtube.com/watch?v=0fFYacBQPbA
+
+
+
+248） React Native
+
+https://github.com/facebook/react-native/issues/14461
+
+
+static defaultProps
+
+
+249)  HTML5 interview  react/vue/angular
+
+  DOM
+  this key word
+  closure  缺点。 内存泄漏
+  event loop
+  prototype chain
+  event bubbling
+  Mobile
+
+  HTTP/S  状态码，get,post
+  auth
+  "use strict" not global / this
+  isNaN()
+  nodejs handler child thread???
 
 
 end
