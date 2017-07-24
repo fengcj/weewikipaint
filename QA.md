@@ -3352,4 +3352,13 @@ https://hpbn.co/
 https://www.youtube.com/watch?v=Ogjb60Fg10A
 
 
+
+252) https://bytesized.tv/
+
+docker run -i -t --name nodejs ubuntu:latest /bin/bash
+
+docker commit -m "install nodejs" b489081de36e nodejs
+
+docker start nodejs
+
 end
