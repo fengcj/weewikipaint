@@ -3367,4 +3367,11 @@ docker start nodejs
 https://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html
 
 
+254) DOM  Node.insertBefore
+
+var insertedNode = parentNode.insertBefore(newNode, referenceNode);
+If referenceNode is null, the newNode is inserted at the end of the list of child nodes.
+
+Note that referenceNode is not an optional parameter -- you must explicitly pass a Node or null. Failing to provide it or passing invalid values may behave differently in different browser versions.
+
 end
