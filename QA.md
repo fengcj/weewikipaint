@@ -3382,4 +3382,17 @@ http://int3.github.io/metajs/
 256)  Web site performance
 https://www.youtube.com/watch?v=GSLTbV9D0vg&list=PLAwxTw4SYaPmKmNX-INgcxQWf30KuWa_A&index=18
 
+
+257） CSS
+https://codeburst.io/clearing-your-front-end-job-interview-css-95bdd82871f2
+
+258) JS
+
+https://github.com/denysdovhan/wtfjs
+
+https://www.youtube.com/watch?v=nX0ajFKB2E0
+https://www.youtube.com/watch?v=Fg7niTmNNLg
+https://www.youtube.com/watch?v=n1cKlKM3jYI
+https://www.youtube.com/watch?v=zRZNb4GDOPI
+https://www.youtube.com/watch?v=F_BYg2QGsC0
 end
