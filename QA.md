@@ -3423,4 +3423,11 @@ Object.defineProperty()
 261)  Vue 源码分析
 http://hcysun.me/2017/03/03/Vue%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/
 
+
+262)  VueX 源码分析
+https://zhuanlan.zhihu.com/p/24104410
+
+Vue.util.defineReactive
+
+
 end
