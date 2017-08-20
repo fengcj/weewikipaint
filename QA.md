@@ -3430,4 +3430,21 @@ https://zhuanlan.zhihu.com/p/24104410
 Vue.util.defineReactive
 
 
+https://www.monterail.com/blog/2016/how-to-build-a-reactive-engine-in-javascript-part-1-observable-objects
+
+
+https://defed.github.io/categories/Vue/page/2/
+
+
+263) Vue
+
+ {{  $data | json  }}
+
+ this.todos.$remove(todo)
+
+
+
+https://stackoverflow.com/questions/43277705/vuejs-difference-between-computed-and-watched-properties
+
+
 end
