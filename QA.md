@@ -3457,4 +3457,7 @@ http://yuezaixz.logdown.com/posts/196640-spring-framework-core-source-code-analy
 http://syaning.com/archives/
 
 
+265) Java GC
+https://www.youtube.com/watch?v=we_enrM7TSY
+
 end
