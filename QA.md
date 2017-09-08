@@ -3457,7 +3457,11 @@ http://yuezaixz.logdown.com/posts/196640-spring-framework-core-source-code-analy
 http://syaning.com/archives/
 
 
-265) Java GC
+266) Java GC
 https://www.youtube.com/watch?v=we_enrM7TSY
+
+267) Java Volative
+http://tutorials.jenkov.com/java-concurrency/volatile.html
+
 
 end
