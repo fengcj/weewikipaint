@@ -3463,5 +3463,12 @@ https://www.youtube.com/watch?v=we_enrM7TSY
 267) Java Volative
 http://tutorials.jenkov.com/java-concurrency/volatile.html
 
+268) HTML  局部滚动
+http://www.cnblogs.com/PeunZhang/p/3553020.html
+https://isux.tencent.com/inner-scroll-layout.html
+
+269)  java.util.function
+
+
 
 end
