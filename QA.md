@@ -3470,7 +3470,58 @@ https://isux.tencent.com/inner-scroll-layout.html
 269)  java.util.function
 
 
-270) ScrollY
+
+270) JS  FastClick
+
+https://www.mxgw.info/t/fastclick.html
+解决手机浏览器300ms延迟问题，关键在于监听touchend事件，并阻止原生事件，派发自己生成的事件。
+
+FastClick在touchEnd的时候，在符合条件的情况下，主动触发了click事件，这样避免了浏览器默认的300毫秒等待判断。为了防止原生的click被触发，这里还通过event.preventDefault()屏蔽了原生的click事件。
+
+
+FastClick.prototype.onTouchEnd = function(event){
+
+  // 一些状态监测代码 
+
+  // 从这里开始，
+  if (!this.needsClick(targetElement)) {
+    // 如果这不是一个需要使用原生click的元素，则屏蔽原生事件，避免触发两次click
+    event.preventDefault(); 
+    // 触发一次模拟的click
+    this.sendClick(targetElement, event);
+  }
+}
+
+FastClick.prototype.sendClick = function(targetElement, event) {
+
+  // 这里是一些状态检查逻辑
+
+  // 创建一个鼠标事件
+  clickEvent = document.createEvent('MouseEvents');
+  // 初始化鼠标事件为click事件
+  clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
+
+  clickEvent.forwardedTouchEvent = true;
+
+  // 在目标元素上触发该鼠标事件，
+  targetElement.dispatchEvent(clickEvent);
+};
+
+
+
+271）  Vue lazy-loader
+现在图片懒加载是标配。
+
+ 图片懒加载的原理很简单，就是我们先设置图片的data-set属性（当然也可以是其他任意的，只要不会发送http请求就行了，作用就是为了存取值）值为其图片路径，由于不是src，所以不会发送http请求。 然后我们计算出页面scrollTop的高度和浏览器的高度之和， 如果图片举例页面顶端的坐标Y（相对于整个页面，而不是浏览器窗口）小于前两者之和，就说明图片就要显示出来了（合适的时机，当然也可以是其他情况），这时候我们再将 data-set 属性替换为 src 属性即可。
+
+http://www.cnblogs.com/zhuzhenwei918/p/6943156.html
+
+
+http://
+
+
+
+272) ScrollY
 
 https://juejin.im/entry/58b39fe9128fe1006ce4b863
 http://zccst.iteye.com/blog/2197139
@@ -3478,6 +3529,74 @@ http://www.cnblogs.com/woohblog/archive/2012/11/15/2771481.html
 http://xuyuan923.github.io/2014/10/16/chrome-debug-tool/
 http://www.cnblogs.com/woohblog/archive/2012/11/15/2771481.html
 
+
+
+273)  scrollHegiht
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight
+
+Demo:
+https://codepen.io/fcj/pen/BwobQo
+
+274)  clientHeight
+
+https://developer.mozilla.org/en-US/docs/Web/API/Element/clientHeight
+
+The Element.clientHeight read-only property is zero for elements with no CSS or inline layout boxes, 
+otherwise it's  the inner height of an element in pixels, 
+including padding but not the horizontal scrollbar height, border, or margin.
+
+clientHeight can be calculated as CSS height + CSS padding - height of horizontal scrollbar (if present).
+
+275) offsetHeight offsetParent
+
+http://www.cnblogs.com/xiaohuochai/p/5828369.html
+
+276) clientLeft
+
+The clientLeft property returns the width of the left border of an element, in pixels.
+
+This property does not include the element's left padding or the left margin.
+
+277)  window.innerHeight  and window.innerWidth
+
+获取页面的宽高：
+<body style="overflow:scroll">
+<script>
+//1903(1920-17)
+console.log(document.documentElement.clientWidth);
+//930(947-17)
+console.log(document.documentElement.clientHeight);
+</script>
+
+
+另一个对常用的表示页面大小的属性是window.innerHeight和innerWidth属性(包含滚动条宽度)
+
+　　innerHeight和innerWidth表示的是浏览器窗口大小减去菜单栏、地址栏等剩余的页面尺寸，
+由于滚动条是属于页面的，所以包含滚动条
+
+
+document.documentElement.clientHeight
+930
+window.innerHeight
+930
+document.documentElement.scrollHeight
+7485
+
+
+278） scrollTop
+
+　与scrollHeight和scrollWidth属性不同的是，scrollLeft和scrollTop是可写的
+
+279) pageXOffset /  pageYOffset
+
+pageXOffset
+
+　　pageXOffset表示水平方向上页面滚动的像素值
+
+pageYOffset
+
+　　pageYOffset表示垂直方向上页面滚动的像素值
 
 
 end
