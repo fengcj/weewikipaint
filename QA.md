@@ -3481,12 +3481,12 @@ FastClick在touchEnd的时候，在符合条件的情况下，主动触发了cli
 
 FastClick.prototype.onTouchEnd = function(event){
 
-  // 一些状态监测代码 
+  // 一些状态监测代码
 
   // 从这里开始，
   if (!this.needsClick(targetElement)) {
     // 如果这不是一个需要使用原生click的元素，则屏蔽原生事件，避免触发两次click
-    event.preventDefault(); 
+    event.preventDefault();
     // 触发一次模拟的click
     this.sendClick(targetElement, event);
   }
@@ -3542,8 +3542,8 @@ https://codepen.io/fcj/pen/BwobQo
 
 https://developer.mozilla.org/en-US/docs/Web/API/Element/clientHeight
 
-The Element.clientHeight read-only property is zero for elements with no CSS or inline layout boxes, 
-otherwise it's  the inner height of an element in pixels, 
+The Element.clientHeight read-only property is zero for elements with no CSS or inline layout boxes,
+otherwise it's  the inner height of an element in pixels,
 including padding but not the horizontal scrollbar height, border, or margin.
 
 clientHeight can be calculated as CSS height + CSS padding - height of horizontal scrollbar (if present).
@@ -3597,6 +3597,11 @@ pageXOffset
 pageYOffset
 
 　　pageYOffset表示垂直方向上页面滚动的像素值
+
+
+280) Java NIO
+http://www.cnblogs.com/feidao/archive/2005/07/15/193788.html
+
 
 
 end
