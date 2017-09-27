@@ -3599,9 +3599,48 @@ pageYOffset
 　　pageYOffset表示垂直方向上页面滚动的像素值
 
 
-280) Java NIO
+
+280) 设置chrome支持 Mobile 事件
+
+	step1) chrome://flags/
+	step2) set "Touch Events API Mac, Windows, Linux, Chrome OS" from "Default" to "Enable"
+	step3) reload chrome
+
+	
+
+281) Java NIO
 http://www.cnblogs.com/feidao/archive/2005/07/15/193788.html
 
 
 
+Non blocking mode 非阻塞模式
+一个I/O流的字节必须序列化的访问。各种设备，打印机端口、网络连接等都是常见的例子。
+数据流通常比阻塞式设备慢，而且经常断断续续。大多数操作系统允许将数据流设置为非阻塞模式，
+允许进程检查是否流上是否有可用数据，即使没有也不会导致进程阻塞。
+这种机制能让进程在输入流空闲等待时执行其他逻辑，但是数据到达时又能及时处理。
+操作系统能够观察一堆的数据流并且指示其中哪些处于可用状态。
+通过观察这些可用状态，一个进程可以采用常用的编码和单个线程就能同时处理多个活动的数据流。
+这在网络服务器处理大量网络连接时被广泛使用。
+
+
+
+
+
+282)  Java Netty Spring  ZooKeeper  RPC
+
+https://my.oschina.net/huangyong/blog/361751
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
 end
