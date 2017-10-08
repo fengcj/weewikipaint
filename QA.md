@@ -3606,7 +3606,7 @@ pageYOffset
 	step2) set "Touch Events API Mac, Windows, Linux, Chrome OS" from "Default" to "Enable"
 	step3) reload chrome
 
-	
+
 
 281) Java NIO
 http://www.cnblogs.com/feidao/archive/2005/07/15/193788.html
@@ -3631,6 +3631,9 @@ Non blocking mode 非阻塞模式
 https://my.oschina.net/huangyong/blog/361751
 
 
+283） IO NIO
+
+http://blog.csdn.net/historyasamirror/article/details/5778378
 
 
 
@@ -3640,7 +3643,6 @@ https://my.oschina.net/huangyong/blog/361751
 
 
 
-	
-	
-	
+
+
 end
