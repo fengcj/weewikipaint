@@ -3639,8 +3639,30 @@ http://blog.csdn.net/historyasamirror/article/details/5778378
 
 
 
+284) Java Thread
+
+http://hapinwater.iteye.com/blog/310558
+http://www.cnblogs.com/hapjin/p/5450121.html
 
 
+
+JAVA中如何正确地使用中断机制的细节太多了。
+interrupted()方法与 isInterrupted()方法都是反映当前线程的是否处于中断状态的。
+
+interrupted()方法从源码的注释中看出，它测试的是当前线程(current thread)的中断状态，且这个方法会清除中断状态。
+isInterrupted()方法从源码注释中可以看出，isInterrupted()方法不会清除中断状态。
+
+从源代码可以看出，
+这两个方法都是调用的isInterrupted(boolean ClearInterrupted),只不过一个带的参数是true，另一个带的参数是false。
+
+    public static boolean interrupted() {
+        return currentThread().isInterrupted(true);
+    }
+
+    /************************/
+    public boolean isInterrupted() {
+        return isInterrupted(false);
+    }
 
 
 
