@@ -3676,4 +3676,15 @@ https://www.2cto.com/kf/201202/118914.html
 287） 回填
 
 
+286)  Moblie
+
+在横竖屏切换下，使用window.screen.width 存在延时，最好使用  getBoundingClientRect 更好
+
+不设置viewprot, 默认宽度980px
+
+在横竖屏切换下，字体可能存在缩放，设置 -webkit-text-size-adjust : 100% 取消缩放，按照设置大小显示
+
+设置 -webkit-appearance : none ，是为了去除iOS下的各种圆角
+设置 -webkit-tap-hightlight-color : rgba(0,0,0,0) 是为了去除a标签点击的时候出现阴影高亮
+
 end
