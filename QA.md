@@ -3687,4 +3687,59 @@ https://www.2cto.com/kf/201202/118914.html
 设置 -webkit-appearance : none ，是为了去除iOS下的各种圆角
 设置 -webkit-tap-hightlight-color : rgba(0,0,0,0) 是为了去除a标签点击的时候出现阴影高亮
 
+
+289） Netty
+
+ChanneOption ChannelConfig
+
+290） java
+copyonwrite
+
+300） Java ThreadPoll
+
+
+http://blog.csdn.net/lipc_/article/details/52025993
+http://825635381.iteye.com/blog/2184680
+http://blog.csdn.net/xieyuooo/article/details/8718741
+
+CountDownLatch
+
+
+ 301) Position : absolute / overflow : hidden
+      float:left
+ 加在一起撑开父元素的高度，涉及到BFC的规则
+
+
+302） java
+程序计数器 是每个线程独有
+
+本地方法栈
+
+垃圾回收机制： （引起内存碎片）
+  1） 标记-清除算法
+  2） 复制 ？
+        1/2
+  3） 标记-整理
+
+浮动垃圾？
+
+类加载器
+
+ java -XX:+PrintFlagsFinal
+
+
+303) Spring Cloud
+
+http://www.ityouknow.com/springcloud/2017/10/19/micro-service-practice.html
+
+304) IO
+不可中断睡眠
+
+
+305) css
+
+white-space : nowrap  // 强制不换行
+inline-block 之间会因为html文档中空格出现几个像素的空白，解决方法是
+设置父元素的font-size为0，而inline-block元素的font-size则为正常值
+
 end
