@@ -3800,6 +3800,22 @@ http://www.cnblogs.com/iovec/p/vue_02.html
 http://blog.csdn.net/hengyunabc/article/details/50120001
 http://blog.chingzhu.com/?p=1161
 
+311) BFC
+ 概念，
+
+ 原理，
+  BFC元素不与float元素相互重叠
+  BFC元素计算高度时候，会考虑内部的float元素
+
+ 创建
+  float 不为none
+  position 不为static/relative
+  display 为table相关
+  overflow auto/hidden
+
+  使用的场景
+
+
 
 1. classLoader
 2. Anotation
