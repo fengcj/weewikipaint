@@ -3792,8 +3792,19 @@ a.关注构造方法中的成员变量赋值
 https://my.oschina.net/lifany/blog/517275
 
 
+
 310) Vue
 http://www.cnblogs.com/iovec/p/vue_02.html
+=======
+311) Spring Boot
+http://blog.csdn.net/hengyunabc/article/details/50120001
+http://blog.chingzhu.com/?p=1161
+
+
+1. classLoader
+2. Anotation
+3. spring security
+
 
 
 end
