@@ -3688,6 +3688,34 @@ https://www.2cto.com/kf/201202/118914.html
 设置 -webkit-tap-hightlight-color : rgba(0,0,0,0) 是为了去除a标签点击的时候出现阴影高亮
 
 
+287) Java Queue
+
+http://www.cnblogs.com/jobs/archive/2007/04/27/730255.html
+
+DelayQueue = BlockingQueue + PriorityQueue + Delayed
+
+DelayQueue的关键元素BlockingQueue、PriorityQueue、Delayed。
+可以这么说，DelayQueue是一个使用优先队列（PriorityQueue）实现的BlockingQueue，优先队列的比较基准值是时间。
+
+
+289) Java
+
+You might wonder what happens when a static synchronized method is invoked,
+since a static method is associated with a class, not an object.
+In this case, the thread acquires the intrinsic lock for the Class object associated with the class.
+Thus access to class's static fields is controlled by a lock that's distinct from the lock for any instance of the class.
+
+290） Linux network
+
+netstat -anpt | grep 8080
+
+https://unix.stackexchange.com/questions/97762/how-to-use-netstat-command
+https://www.linux.com/blog/using-netstat-audit-your-network-connections
+
+
+
+
+
 289） Netty
 
 ChanneOption ChannelConfig
@@ -3763,6 +3791,9 @@ a.关注构造方法中的成员变量赋值
 
 https://my.oschina.net/lifany/blog/517275
 
+
+310) Vue
+http://www.cnblogs.com/iovec/p/vue_02.html
 
 
 end
