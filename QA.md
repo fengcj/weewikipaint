@@ -3815,7 +3815,10 @@ http://blog.chingzhu.com/?p=1161
 
   使用的场景
 
+312)
+   event.currentTarget vs target
 
+313）HTTP 管线化
 
 1. classLoader
 2. Anotation
