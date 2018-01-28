@@ -3852,4 +3852,42 @@ js引擎运行机制
 321） Kubernetes
 http://dockone.io/article/932
 
+322）反向代理和正向代理的区别：
+有本质区别么？
+
+https://www.jianshu.com/p/208c02c9dd1d
+
+正向代理是代理客户端，为客户端收发请求，使真实客户端对服务器不可见；而反向代理是代理服务器端，为服务器收发请求，使真实服务器对客户端不可见。
+
+https://segmentfault.com/a/1190000012967320 （跨域总结）
+
+
+
+323）React 全家桶 (TODO)
+https://github.com/brickspert/blog/issues/1
+
+324）HTTP
+
+本文中我们只讨论最新的八芯双绞线实现的千兆网络，这也是当下最常见的局域网技术。
+
+严格意义的路由器是工作在网络层的设备，即 IP 层。但是现代以太网路由器都是 路由器、网关、NAT 服务器、DNS 服务器、DHCP 服务器 的结合体，不少路由器还有防火墙功能。下面我将分开解释这几种功能。
+
+https://lvwenhan.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/489.html
+
+
+325) js总结
+https://zhuanlan.zhihu.com/p/33298555?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io
+
+326）复习常见组件
+
+327) Event Loop
+
+https://juejin.im/post/5a6155126fb9a01cb64edb45
+关键在于知道了task/microtask，以及执行流程
+
+IT程序狮 微博
+
+
+
+
 end
