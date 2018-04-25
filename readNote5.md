@@ -79,3 +79,47 @@ c.对于登录情形，A将更新Cookie与session，然后C再向B发起请求�
 
 生产者/消费者模式：对于一则消息，只有一个消费者线程会去处理它，适用于我们上面所说的评论系统
 发布者/订阅者模式：对于所有订阅者，它可以读取所有在它加入之后发布的消息
+
+
+3) CSS  
+
+:nth-of-type  / :nth-last-of-type
+
+https://css-tricks.com/almanac/selectors/n/nth-of-type/
+
+:nth-of-type iterates through elements starting from the top of the source order.
+ The only difference between it and :nth-last-of-type is that the latter iterates through elements starting from the bottom of the source order.
+
+:nth-child / :nth-last-child
+https://css-tricks.com/almanac/selectors/n/nth-child/
+
+:nth-child iterates through elements starting from the top of the source order. 
+The only difference between it and :nth-last-child is that the latter iterates through elements starting from the bottom of the source order.
+
+
+4) Node Cluster
+
+Node.js Cluster Module: what it is and how it works
+A cluster is a pool of similar workers running under a parent Node process. Workers are spawned using the fork() method of the child_processes module. This means workers can share server handles and use IPC (Inter-process communication) to communicate with the parent Node process.
+
+
+5) Handler File Upload
+http://www.ruanyifeng.com/blog/2012/08/file_upload.html
+http://www.nickdesteffen.com/blog/file-uploading-over-ajax-using-html5
+
+<input type="file">
+FileReader
+readAsDataURL(file)
+
+
+6) Vue 数组拦截
+
+https://juejin.im/post/5ade0e3df265da0b8e7f050b
+
+
+7）async / await
+
+  //Let’s emphasize: await literally makes JavaScript wait until the promise settles, and then go on with the result. 
+  //That doesn’t cost any CPU resources, because the engine can do other jobs meanwhile: execute other scripts, handle events etc.
+
+  // As said, await only works inside async function.
