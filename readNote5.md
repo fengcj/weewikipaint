@@ -119,6 +119,9 @@ https://juejin.im/post/5ade0e3df265da0b8e7f050b
 
 7）async / await
 
+https://javascript.info/async-await
+
+
   //Let’s emphasize: await literally makes JavaScript wait until the promise settles, and then go on with the result. 
   //That doesn’t cost any CPU resources, because the engine can do other jobs meanwhile: execute other scripts, handle events etc.
 
