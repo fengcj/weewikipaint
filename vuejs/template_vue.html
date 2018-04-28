@@ -10,8 +10,22 @@
 <body>
 	<div id="app">
 
+		  <p>{{ message }}</p>
+		  
+		  <hr>
+
+		  <div id="mount-point"></div>
+
 	</div>
 	<script>
+
+		var vm  = new Vue({
+		el: '#app',
+		data: {
+			message: 'Hello Vue2.js!'
+		}
+		})
+
 	</script>
 </body>
 </html>
