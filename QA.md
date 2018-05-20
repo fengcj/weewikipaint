@@ -3892,6 +3892,25 @@ IT程序狮 微博
 
 329) http://2.media.letscodejavascript.com/video/live/tdjs614.mp4
 
+330) dbclick 双击
+
+331) questions
+
+  https://stackoverflow.com/questions/3396754/onkeypress-vs-onkeyup-and-onkeydown
+  // 貌似chrome 在debug模式下，只会触发一种事件（onkeypress/onkeyup），断点
+  // 打在哪个事件的回调下，触发哪个.
+  // 目前来说，用keyup是input里面的字符串都能附在event.target.value中
+  // 而用keypress是input里面的字符串少一个附在event.target.value中，缺少最后一个输入的字符
+
+332) must
+ https://howtodoinjava.com/
+ https://my.oschina.net/kaywu123/blog?sort=time&p=2&temp=1526702180756
+ https://crossoverjie.top/categories/SSM/page/2/
+ https://github.com/dt-fe/weekly
+ https://zhuanlan.zhihu.com/p/36030216?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com
+ http://coolpythoncodes.com/javascript-design-patterns/
+ https://github.com/xingshaocheng/architect-awesome/blob/master/README.md 
+
 
 
 end
