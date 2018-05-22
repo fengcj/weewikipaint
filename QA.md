@@ -3909,8 +3909,8 @@ IT程序狮 微博
  https://github.com/dt-fe/weekly
  https://zhuanlan.zhihu.com/p/36030216?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com
  http://coolpythoncodes.com/javascript-design-patterns/
- https://github.com/xingshaocheng/architect-awesome/blob/master/README.md 
-
+ https://github.com/xingshaocheng/architect-awesome/blob/master/README.md
+https://www.cnkirito.moe/servlet-explore/?utm_source=tuicool&utm_medium=referral
 
 
 end
