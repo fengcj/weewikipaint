@@ -3921,4 +3921,18 @@ https://chuckliu.me/#!/posts/58aefe61820ad92fbbe9a4e0
 334)  Spring document
 https://docs.spring.io/spring/docs/
 
+
+ServletContainerInitializer
+
+    org.springframework.web.SpringServletContainerInitializer
+    AbstractDispatcherServletInitializer
+    AbstractAnnotationConfigDispatcherServletInitializer  
+
+
+org.springframework.web.context.ContextLoaderListener
+
+
+
+
+
 end
