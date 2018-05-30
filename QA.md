@@ -3946,4 +3946,14 @@ http://www.javased.com/?action=example-index
 338） Python
 https://ruslanspivak.com/lsbaws-part1/
 
+
+339）Java
+
+ThreadPoolExecutor
+
+Semaphore
+
+ManagementFactory.getThreadMXBean();
+
+
 end
