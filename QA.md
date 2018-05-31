@@ -3956,4 +3956,17 @@ Semaphore
 ManagementFactory.getThreadMXBean();
 
 
+
+340) win 下查看端口占用
+
+
+netstat -ano|findstr "8888"
+
+显示占用程序的进程号是 6860：
+
+tasklist|findstr 6860  // 查看对应程序
+
+
+
+
 end
