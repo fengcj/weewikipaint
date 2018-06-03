@@ -3970,6 +3970,31 @@ netstat -ano|findstr "8888"
 
 tasklist|findstr 6860  // 查看对应程序
 
+341)
+
+《敏捷软件开发：原则、模式与实践》
+
+342) Spring Boot
+
+/**
+ * The class name of application context that will be used by default for non-web
+ * environments.
+ */
+public static final String DEFAULT_CONTEXT_CLASS = "org.springframework.context."
+    + "annotation.AnnotationConfigApplicationContext";
+
+/**
+ * The class name of application context that will be used by default for web
+ * environments.
+ */
+public static final String DEFAULT_WEB_CONTEXT_CLASS = "org.springframework."
+    + "boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext";
+
+private static final String[] WEB_ENVIRONMENT_CLASSES = { "javax.servlet.Servlet",
+    "org.springframework.web.context.ConfigurableWebApplicationContext" };
+
+
+ApplicationContextAwareProcessor
 
 
 
