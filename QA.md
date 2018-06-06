@@ -3917,6 +3917,9 @@ https://blog.csdn.net/u010820702/article/list/1
 http://fangjian0423.github.io/
 http://www.cnblogs.com/baihuaxiu/p/6654496.html
 
+https://www.jianshu.com/u/cb569cce501b  // java
+http://cxh.me/
+
 333) Vue 源码分析
 
 https://chuckliu.me/#!/posts/58aefe61820ad92fbbe9a4e0
@@ -3954,7 +3957,7 @@ https://ruslanspivak.com/lsbaws-part1/
 339）Java
 
 ThreadPoolExecutor
-
+Executors
 Semaphore
 
 ManagementFactory.getThreadMXBean();
