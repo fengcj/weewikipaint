@@ -4006,4 +4006,10 @@ https://www.jianshu.com/u/90ab66c248e6
 http://hcysun.me/
 
 
+345) git pull force
+
+git reset --hard HEAD
+git pull
+
+
 end
