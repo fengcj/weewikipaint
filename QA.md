@@ -4044,4 +4044,10 @@ ansible
 Go
 
 
+353) Java8
+https://www.javacodegeeks.com/2014/05/java-8-features-tutorial.html
+
+354) ThreadPool
+https://juejin.im/entry/59b232ee6fb9a0248d25139a
+
 end
