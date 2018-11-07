@@ -4050,4 +4050,18 @@ https://www.javacodegeeks.com/2014/05/java-8-features-tutorial.html
 354) ThreadPool
 https://juejin.im/entry/59b232ee6fb9a0248d25139a
 
+355) IDEA Debug
+http://qinghua.github.io/intellij-idea-debug/
+加强debug的技能
+
+356) GoAccess for access_log 
+
+357) TLS in https
+     letsencrypt.org
+
+358) React
+https://courses.wesbos.com
+
+
+
 end
