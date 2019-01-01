@@ -4054,7 +4054,7 @@ https://juejin.im/entry/59b232ee6fb9a0248d25139a
 http://qinghua.github.io/intellij-idea-debug/
 加强debug的技能
 
-356) GoAccess for access_log 
+356) GoAccess for access_log
 
 357) TLS in https
      letsencrypt.org
@@ -4065,6 +4065,10 @@ https://courses.wesbos.com
 
 359) Spring
 https://blog.csdn.net/javaloveiphone/article/category/1275333/2
+
+
+360) Effecative Java 3
+https://www.jianshu.com/p/bcbf22d00823
 
 
 end
