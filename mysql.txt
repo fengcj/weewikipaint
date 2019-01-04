@@ -1,0 +1,13 @@
+1) MySQL
+
+	> help START TRANSACTION
+	
+	  The WITH CONSISTENT SNAPSHOT modifier starts a consistent read for
+	  storage engines that are capable of it. This applies only to InnoDB.
+	  The effect is the same as issuing a START TRANSACTION followed by a
+	  SELECT from any InnoDB table. See
+	  http://dev.mysql.com/doc/refman/5.6/en/innodb-consistent-read.html.
+	  The WITH CONSISTENT SNAPSHOT modifier does not change the current
+	  transaction isolation level, so it provides a consistent snapshot
+	  only if the current isolation level is one that permits consistent
+	  read (REPEATABLE READ or SERIALIZABLE).
