@@ -1,0 +1,6 @@
+OS
+1) https://blog.csdn.net/ITer_ZC/article/details/44195731
+
+2) 缓存
+
+Cache一致性协议之MESI
