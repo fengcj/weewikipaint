@@ -1,0 +1,12 @@
+1) jinfo -flag MaxHeapSize [pid]
+2) jinfo -flag ThreadStackSize [pid]
+3) java -XX:+PrintFlagsFinal -version > flags.txt
+
+4) jstat -gc [pid]
+   jstat -class [pid]
+
+
+5) jmap
+ 堆内存溢出、非堆内存溢出
+	jmap -heap [pid]
+6) Eclipse MAT
