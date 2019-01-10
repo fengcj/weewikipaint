@@ -11,3 +11,10 @@
 	  transaction isolation level, so it provides a consistent snapshot
 	  only if the current isolation level is one that permits consistent
 	  read (REPEATABLE READ or SERIALIZABLE).
+	  
+2) 可重复读：
+	可重复读，要照字面意思理解，就是只有"读"这个操作，是可以重复的，而当transaction (A) 要"更新"某个数据时，由于"更新"就是先"读"后"写",这个时候"读"就必须读最新的数据了,比如说另一个transaction (B) 中，"更新"了该数据：
+	  a) 该transaction (B)提交了，那么transaction (B)直接读提交后的数据
+	  b) 该transaction (B)未提交，那么transaction (A)阻塞一直到 transaction (B)提交为止。
+	  
+	至于为什么"更新"一定要读取最新的数据，反着想想，若是不读最新的，则相当于 transaction (B)的更新丢失了。

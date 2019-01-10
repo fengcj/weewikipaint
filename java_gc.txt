@@ -9,4 +9,5 @@
 5) jmap
  堆内存溢出、非堆内存溢出
 	jmap -heap [pid]
+	jmap -dump:format=b,file=文件名 [pid]
 6) Eclipse MAT
