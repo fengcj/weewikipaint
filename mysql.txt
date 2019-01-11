@@ -1,3 +1,5 @@
+0) http://www.mysqltutorial.org/
+
 1) MySQL
 
 	> help START TRANSACTION
@@ -18,3 +20,59 @@
 	  b) 该transaction (B)未提交，那么transaction (A)阻塞一直到 transaction (B)提交为止。
 	  
 	至于为什么"更新"一定要读取最新的数据，反着想想，若是不读最新的，则相当于 transaction (B)的更新丢失了。
+
+3) Unique
+
+		CREATE TABLE table_1(
+			column_name_1  data_type UNIQUE,
+		);
+
+		or
+
+		CREATE TABLE table_1(
+		   ...
+		   column_name_1 data_type,
+		   ...
+		   UNIQUE(column_name_1)
+		);
+
+		
+		
+		
+		CREATE TABLE table_1(
+		 
+		   ...
+		   column_name_1 data_type,
+		   column_name_2 data_type,
+		   ...
+		   UNIQUE(column_name_1,column_name_2)
+		);
+		
+		
+		
+		eg:
+		
+
+			CREATE TABLE IF NOT EXISTS suppliers (
+				supplier_id INT PRIMARY KEY AUTO_INCREMENT,
+				name VARCHAR(255) NOT NULL,
+				phone VARCHAR(12) NOT NULL UNIQUE,
+				address VARCHAR(255) NOT NULL,
+				CONSTRAINT uc_name_address UNIQUE (name , address)
+			);
+		
+
+
+4)  普通索引 vs 唯一索引
+
+   a) 普通索引（由关键字KEY或INDEX定义的索引）的唯一任务是加快对数据的访问速度。		
+   b) 唯一索引
+
+　　普通索引允许被索引的数据列包含重复的值。比如说，因为人有可能同名，所以同一个姓名在同一个“员工个人资料”数据表里可能出现两次或更多次。
+
+　　如果能确定某个数据列将只包含彼此各不相同的值，在为这个数据列创建索引的时候就应该用关键字UNIQUE把它定义为一个唯一索引。这么做的好处：一是简化了MySQL对这个索引的管理工作，这个索引也因此而变得更有效率；二是MySQL会在有新记录插入数据表时，自动检查新记录的这个字段的值是否已经在某个记录的这个字段里出现过了；如果是，MySQL将拒绝插入那条新记录。也就是说，唯一索引可以保证数据记录的唯一性。事实上，在许多场合，人们创建唯一索引的目的往往不是为了提高访问速度，而只是为了避免数据出现重复。
+
+   c) 主索引
+
+　　在前面已经反复多次强调过：必须为主键字段创建一个索引，这个索引就是所谓的“主索引”。
+  主索引与唯一索引的唯一区别是：前者在定义时使用的关键字是PRIMARY而不是UNIQUE。
