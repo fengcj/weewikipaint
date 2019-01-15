@@ -4,3 +4,9 @@ OS
 2) 缓存
 
 Cache一致性协议之MESI
+
+互连线是处理器于主存以及处理器与处理器之间进行通信的媒介，有两种基本的互联结构：SMP（symmetric multiprocessing 对称多处理）和NUMA（nonuniform memory access 非一致内存访问）
+
+
+3) Buffer / Cache
+

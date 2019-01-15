@@ -11,3 +11,7 @@
 	jmap -heap [pid]
 	jmap -dump:format=b,file=文件名 [pid]
 6) Eclipse MAT
+
+
+7) top -H -p [pid]
+   ps -T -p [pid]
