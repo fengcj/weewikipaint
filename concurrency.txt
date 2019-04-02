@@ -1,0 +1,1 @@
+1.  AbstractQueuedSynchronizer 中的 parkAndCheckInterrupt 是一个阻塞的方法
