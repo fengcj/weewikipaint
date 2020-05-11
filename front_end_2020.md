@@ -156,8 +156,34 @@ select 字段将 value 作为 prop 并将 change 作为事件。
 
 Vue 组件间通信只要指以下 3 类通信：父子组件通信、隔代组件通信、兄弟组件通信
 
+  9) Vue的双向数据绑定
+
+  Vue 主要通过以下 4 个步骤来实现数据双向绑定的：
+实现一个监听器 Observer：对数据对象进行遍历，包括子属性对象的属性，利用 Object.defineProperty() 对属性都加上 setter 和 getter。这样的话，给这个对象的某个值赋值，就会触发 setter，那么就能监听到了数据变化。
+实现一个解析器 Compile：解析 Vue 模板指令，将模板中的变量都替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，调用更新函数进行数据更新。
+实现一个订阅者 Watcher：Watcher 订阅者是 Observer 和 Compile 之间通信的桥梁 ，主要的任务是订阅 Observer 中的属性值变化的消息，当收到属性值变化的消息时，触发解析器 Compile 中对应的更新函数。
+实现一个订阅器 Dep：订阅器采用 发布-订阅 设计模式，用来收集订阅者 Watcher，对监听器 Observer 和 订阅者 Watcher 进行统一管理。
+
+ 10) 
+
+ vue 提供了 Vue.set (object, propertyName, value) / vm.$set (object, propertyName, value) 来实现为对象添加响应式属性，
 
 
+Vue 源码：vue/src/core/instance/index.js
+
+
+vm.$set 的实现原理是：
+
+
+如果目标是数组，直接使用数组的 splice 方法触发相应式；
+
+
+如果目标是对象，会先判读属性是否存在、对象是否是响应式，最终如果要对属性进行响应式处理，则是通过调用   defineReactive 方法进行响应式处理（ defineReactive 方法就是  Vue 在初始化对象时，给对象属性采用 Object.defineProperty 动态添加 getter 和 setter 的功能所调用的方法）
+
+作者：我是你的超级英雄
+链接：https://juejin.im/post/5d59f2a451882549be53b170
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
 作者：我是你的超级英雄
@@ -314,6 +340,20 @@ D、函数体内的 this 对象，绑定使用时所在的对象
 
 
 
+19） 前端高手进阶
+
+当渲染引擎解析 HTML 遇到 script 标签引入文件时，会立即进行一次渲染。所以这也就是为什么构建工具会把编译好的引用 JavaScript 代码的 script 标签放入到 body 标签底部，因为当渲染引擎执行到 body 底部时会先将已解析的内容渲染出来，然后再去请求相应的 JavaScript 文件。如果是内联脚本（即不通过 src 属性引用外部脚本文件直接在 HTML 编写 JavaScript 代码的形式），渲染引擎则不会渲染。
+
+
+为了减少这些时间损耗，可以借助 script 标签的 3 个属性来实现。
+
+    async 属性。立即请求文件，但不阻塞渲染引擎，而是文件加载完毕后阻塞渲染引擎并立即执行文件内容。
+    defer 属性。立即请求文件，但不阻塞渲染引擎，等到解析完 HTML 之后再执行文件内容。
+    HTML5 标准 type 属性，对应值为“module”。让浏览器按照 ECMA Script 6 标准将文件当作模块进行解析，默认阻塞效果同 defer，也可以配合 async 在请求完成后立即执行。
+
+
+dns-prefetch。当 link 标签的 rel 属性值为“dns-prefetch”时，浏览器会对某个域名预先进行 DNS 解析并缓存。
+
 
 
 
@@ -334,3 +374,9 @@ D、函数体内的 this 对象，绑定使用时所在的对象
 4. vue 是重点， 实战还有面试题目
 
 6. 面试题 https://github.com/qiu-deqing/FE-interview
+
+7. 阅读 Vue 数据绑定原理 
+  // https://juejin.im/user/5bc7de8e5188255c6c626f96/posts
+  // https://juejin.im/post/5d421bcf6fb9a06af23853f1
+
+8. Proxy Vs Object.defineProperty
