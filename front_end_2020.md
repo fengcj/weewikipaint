@@ -270,6 +270,27 @@ let 的 暂时性死区 https://segmentfault.com/a/1190000015603779
 另外： TDZ 也意味着 typeof 不再是一个百分之百安全的操作。
 
 
+错误用法：
+    {
+        var a = 1;
+        let a = 2; // erorr, 因为a已经声明过了
+    }
+
+
+    {
+      let a = 1;
+      let a = 2;  // error,  因为a已经声明过了
+    }
+
+
+
+    function say(word){
+        let word = "hello jack"; // error， 用let重新声明word参数
+        alet(word); 
+    }
+    say("hello lili");
+
+
 
 17. es6系列网站   https://jskatas.org/
 
@@ -356,13 +377,109 @@ dns-prefetch。当 link 标签的 rel 属性值为“dns-prefetch”时，浏览
 
 
 
+20) es6 解构
+
+var { b : a} = { b : 2};
+console.log(a);
+
+
+function demo({name="张三"}){
+        console.log("姓名："+name);//结果：姓名：张三
+    }
+demo({});
 
 
 
 
+21) unicode and utf-8
+http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html
 
 
 
+22) symbol
+
+  //定义一个symbol类型的变量name
+    let name = Symbol();
+
+    //定义一个含有两种类型属性的对象
+    let person = {
+        [name]:"张三",  //symbol类型
+        "age":12        //string类型
+    };
+
+    Object.keys(person);//结果：["age"]
+
+    for(let key in person){
+        console.log(key);
+    }
+
+    //打印结果：age
+
+    //结论：
+     person对象有两个属性，属性名有两种类型：symbol类型和string字符串类型，我们通过keys( )函数获取到的属性，
+     只有属性age，我们通过for...in循环打印出来，也只打印出了属性age。
+     以上几种方法都无法获取到symbol类型的属性。
+
+    引出  --->  getOwnPropertySymbols( )函数
+
+    //定义两个symbol类型的变量name，age
+    let name = Symbol("name");
+    let age = Symbol("age");
+
+
+    let person = {
+        [name]:"张三", //symbol类型
+        [age]:12       //symbol类型
+    };
+
+    Object.getOwnPropertySymbols(person);
+    //结果：[Symbol(name), Symbol(age)]
+
+
+   上面的方法，分别获取属性，非常不方便，引出  Reflect.ownKeys( )函数
+    //定义一个对象，含有两种类型的属性
+
+    let person = {
+        [Symbol('name')]:"张三",
+        "age": 21
+
+    };
+
+    Reflect.ownKeys(person);
+
+    //结果：["age",Symbol(name)]
+
+
+ Symbol API：
+    Symbol.for( )函数： 根据参数名，去全局环境中搜索是否有以该参数为名的symbol值，有就返回它，没有就以该参数名来创建一个新的symbol值。
+
+     let n1 = Symbol.for('name');
+    let n2 = Symbol.for('name');
+    console.log(n1 === n2);
+    //结果：true
+
+  
+  Symbol.for() vs Symbol()
+    Symbol.for( )创建的symbol值会被登记在全局环境中，供以后用Symbol.for( )来搜索，而Symbol( )创建的变量就没有这样的效果了。
+
+  所以说：
+    用Symbol( )创建的symbol值，以后用Symbol.for( )去搜索，是找不到的。
+
+
+   let n1 = Symbol('name');
+    let n2 = Symbol.for('name');
+    console.log(n1 === n2);
+    //结果：false
+
+
+  Symbol.keyFor( )函数： 返回一个以被登记在全局环境中的symbol值的key，没有就返回undefined。注意这句话的一个关键词：“被登记在全局环境中”，也就是说这个symbol值是被Symbol.for( )创建的，
+                         不是被Symbol( )创建的。
+    
+
+  
+    let n1 = Symbol('name');
+    Symbol.KeyFor(n1);
+    //结果：undefined
 
 
 
