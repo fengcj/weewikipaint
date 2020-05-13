@@ -62,6 +62,14 @@ https://github.com/LinDaiDai/niubility-coding-js
 
     flex 是多个属性的缩写(flex-grow | flex-shink | flex-basic)
 
+      flex-grow: 0;  //  The element will not grow if there's space available. It will only use the space it needs.
+      flex-grow: 1; //   The element will grow by a factor of 1. It will fill up the remaining space if no other flexbox item has a flex-grow value.
+
+
+      flex-basic : Defines the initial size of a flexbox item.
+          flex-basis: auto; // The element will be automatically sized based on its content, or on any height or width value if they are defined.
+          flex-basis: 80px; // You can define pixel or (r)em values. The element will wrap its content to avoid any overflow.
+
 
     flex-direction : row | row-reverse | column | column-reverse
     flex-wrap : nowrap | wrap | wrap-reverse
@@ -482,6 +490,365 @@ http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html
     //结果：undefined
 
 
+22.2) Proxy
+
+
+    //定义一个对象person
+    var person = {"name":"张三"};
+
+    //创建一个代理对象pro，代理person的读写操作
+    var pro = new Proxy(person,{
+        get:function(target,property){
+            return "李四"
+        }
+    });
+
+    pro.name;//李四
+
+
+
+    set也能拦截
+
+     ownKeys拦截操作，拦截过滤Object.ownKeys()对对象的属性遍历。
+     has( )拦截操作：拦截key in object的操作，结果会返回一个布尔值。
+      apply(),函数也可以被代理。如果被代理的变量是一个函数，那么还会支持一个拦截程序：apply调用。
+
+      Proxy.revocable() : 生成可以取消的代理
+            //定义一个对象
+            let person = {"name":"张三"};
+            //定义一个代理处理程序
+            let handle = {
+                get:function(target,prop){
+                    return "李四";
+                }
+            };
+
+            //使用Proxy.revocable()进行代理
+            let object = Proxy.revocable(person,handle);
+
+            object.proxy.name;//结果：李四
+
+            //调用返回对象object的revoke方法，取消代理
+            object.revoke();
+
+            object.proxy.name;//报错，代理被取消
+
+
+22.3) for...of一种新的遍历方式，能遍历的对象有：数组，类数组对象，字符串，set和map结构等具有iterator接口的数据结构。而且for...in更适合用于对象的遍历。
+
+22.4)  WeakSet结构同样不会存储重复的值，不同与Set的是，它的成员必须是对象类型的值。
+
+22.5)  Map  WeakMap
+
+let m = new Map([
+            ["name","前端君"],
+            ["gender",1]
+        ]);
+    
+    console.log(m);
+    //打印结果：Map {"name" => "前端君", "gender" => 1}
+
+
+WeakMap和Map的区别
+        WeakMap如果是普通的值类型则不允许。比如：字符串，数字，null，undefined，布尔类型。而Map结构是允许的，这就是两者的不同之处，谨记。
+        WeakMap结构和Map结构很类似，不同点在于WeakMap结构的键名只支持引用类型的数据。哪些是引用类型的值呢？比如：数组，对象，函数。
+
+
+22.6) class
+
+  使用super有几个要注意的事项：
+
+    子类必须在constructor方法中调用super方法
+
+    必须先调用super( )，才可以使用this，否则报错
+
+
+22.7) module
+
+使用星号*实现整体导入：
+
+     //使用*实现整体导入
+    import * as obj from "./module-B.js";
+
+    console.log(obj.name)
+    //结果："前端君"
+
+    console.log(obj.age)
+    //结果：25
+
+    obj.say();
+    //结果：say hello
+
+
+默认导出：
+   默认导出，每个模块支持我们导出一个没有名字的变量，我们使用关键语句export default来实现：
+  
+  export default function(){
+        console.log("I am default Fn");
+  }
+    
+    我们使用export default关键字对外导出一个匿名函数，导入这个模块的时候，可以为这个匿名函数取任意的名字，我们试一下导入上面那个匿名函数：
+
+      //取任意名字均可
+    import sayDefault from "./module-B.js";
+
+    sayDefault();
+    //结果：I am default Fn
+
+    同样是使用import关键字导入模块B，但是这次不需要使用大括号{ }。我们使用新的名字：sayDefault来代替导入的匿名函数。
+
+
+    注意事项：
+
+        1、声明的变量，对外都是只读的。  但是，如果模块导出的是对象类型的值，就可修改。
+
+
+
+
+23). https://juejin.im/post/5cc543edf265da03761e9451 
+
+    typeof instanceof
+
+    typeof 对于原始类型来说，除了 null 都可以显示正确的类型
+    typeof 1 // 'number'
+    typeof '1' // 'string'
+    typeof undefined // 'undefined'
+    typeof true // 'boolean'
+    typeof Symbol() // 'symbol'
+    typeof 对于对象来说，除了函数都会显示 object，所以说 typeof 并不能准确判断变量到底是什么类型
+    typeof [] // 'object'
+    typeof {} // 'object'
+    typeof console.log // 'function'
+
+
+
+首先我们要知道，在 JS 中类型转换只有三种情况，分别是：
+
+        转换为布尔值
+        转换为数字
+        转换为字符串
+
+
+    转Boolean
+        在条件判断时，除了 undefined， null， false， NaN， ''， 0， -0，其他所有值都转为 true，包括所有对象。
+
+
+    对象转原始类型
+        对象在转换类型的时候，会调用内置的 [[ToPrimitive]] 函数，对于该函数来说，算法逻辑一般来说如下：·
+         如果已经是原始类型了，那就不需要转换了· 
+         调用 x.valueOf()，如果转换为基础类型，就返回转换的值· 
+         调用 x.toString()，如果转换为基础类型，就返回转换的值· 
+         如果都没有返回原始类型，就会报错
+         当然你也可以重写 Symbol.toPrimitive ，该方法在转原始类型时调用优先级最高。
+
+
+
+24) 移动端适配
+
+// https://juejin.im/post/5b6502686fb9a04fc34c2dfe   详细说明了
+  
+   物理像素（physical pixel）：也叫做：设备像素（device pixel）。可以理解为屏幕上的点，这个是跟硬件有关系，跟Web软件语言没一毛钱关系。
+   分辨率（resolution）： 这也是一个物理概念，其实就是指一个设备上横竖的点数。iPhone手机的主屏：4.7英寸1334x750，就是指：对角线4.7英寸长，高1334个物理像素数，宽750个物理像素数。
+   CSS像素（css pixel） ： 是Web编程的概念，指的是CSS样式代码中使用的逻辑像素（或者叫虚拟像素）。
+                          在CSS规范中，长度单位可以分为绝对单位和相对单位，
+                          比如：px 是一个 相对单位 ，相对的是 物理像素（physical pixel），
+                          这也就是说到底我们平常开发中的 1px 在每个屏幕上怎么显示，完全取决于这个设备！
+
+                       
+
+  ！！！！！有些人把 CSS像素 又叫做 设备无关像素（dips），这是完全错误的。 ！！！！
+
+  大家说到 设备无关像素 就是指 dip/dp ，它是以 160ppi 为基准的一个相对单位，用来解决Android上面屏幕不统一问题的。
+
+  
+  设备像素比（device pixel ratio）： 简写dpr 。 公式：物理像素数（硬件） / 逻辑像素数（软件），它是设备的属性，而不是一个单位。可以通过 window.devicePixelRatio 获取到当前设备的 dpr
+    当 dpr=2 时，表示：1个CSS像素 = 4个物理像素。 像素点都是正方形，
+
+
+
+  像素密度（pixers per inch）： 简写：ppi，当然也叫做：dpi。
+
+    我的iphone5屏幕上每2.54厘米上有320个小灯泡~（ppi=320）
+    我的iphone6屏幕上每2.54厘米上就有375个小灯泡呢！（ppi=375）
+
+    记住：ppi 说的都是物理像素。计算 ppi 只能用对角线的物理像素数来除以对角线的实际单位
+
+
+  设备独立像素（density-independent pixel）： 也叫做：密度无关像素。
+    简写：dips or dp
+
+    为何引入：
+
+      原因是：不同的手机屏幕上 CSS像素 个数可能不一样，虽然大多数是320px!
+举个栗子：
+
+iPhone3GS，物理像素320，dpr=1，所以决定了它的CSS像素320；
+iPhone4，物理像素640，dpr=2，所以，决定了它的CSS像素还是320；
+
+假如这时候我们有个正方形是 30x30px，这是CSS像素，再上面的2个机器上看到的大小都一样，只是在iphone4上更清晰些，因为它用4个物理像素显示1个CSS像素。
+换句话说，如果大家都是手机都是320的CSS像素，那么我们就只管用 px 这个单位就可以了，在每个设备上的看到的大小都一样。
+
+
+如果在iphone5s之前，iOS都不需要关心这个概念，因为你能看到的手机屏幕的CSS像素都是320px。但是，随着iPhone6/plus的出现，就让我们心塞了。
+
+
+
+举个栗子：
+
+  你有个 160px x 160px 的元素，在iphone5s下面看起来宽度正好是 半个屏幕 大小；
+  在iphone6plus下面，看起来宽度貌似只占了屏幕宽度的 不到一半屏幕 大小！Why？因为人家像素数量多啊！
+
+  明白了吗？就是由于不同的设备屏幕，它所支持的屏幕显示的 CSS像素 个数不同（跟物理像素无关），
+  所以，我们如果用 像素（px） 这个单位去WEB开发的话，在不同的手机下面就显得元素不一样大，这就是 dip 的作用，它的出现也就是为了解决这个问题的。
+
+
+  那么，dip 如何解决这个问题呢？
+
+Google规定：ppi = 160时，1px = 1dip（dip在Android下面是一个单位哦！） 那么，我们就能知道，像素数px = dip * ppi / 160
+
+那么，回到刚才的那个栗子：
+
+将 80px x 80px 的元素，单位换为 80dip x 80dip ，在iphone5s下宽度是 163px x 163px（由前2行公式得，163px = 80 * 326 / 160）；
+而这个元素在iphone6plus下，宽度是 207px x 207px（163px = 80 * 414 / 160）；
+
+
+如果我们使用 dip 作单位，那么在2台机器上，显示出来的效果，差不多都等于2台机器宽度的一半！目的就达到了。
+
+
+
+//   https://juejin.im/post/5b6503dee51d45191e0d30d2
+
+ 页面适配主要解决的问题有：
+
+  a.元素自适应问题
+  文字rem问题
+  高清图问题
+  1像素问题
+  横竖屏显示问题
+  手机字体缩放问题
+
+a. 元素自适应问题：
+举个栗子：
+在 1080px 的视觉稿中，左上角有个logo，宽度是 180px（高度问题同理可得）。
+那么logo在不同的手机屏幕上等比例显示应该多大尺寸呢？
+其实按照比例换算，我们大致可以得到如下的结果：
+
+在CSS像素是 375px 的手机上，应该显示多大呢？结果是：375px * 180 / 1080 = 62.5px
+在CSS像素是 360px 的手机上，应该显示多大呢？结果是：360px * 180 / 1080 = 60px
+在CSS像素是 320px 的手机上，应该显示多大呢？结果是：320px * 180 / 1080 = 53.3333px
+
+
+较好的解决方案：
+//定义方法：calc
+@function calc($val){
+    @return $val / 1080;
+}
+
+.logo{
+	width : calc(180rem);
+}
+
+
+
+b) 文字rem问题
+
+
+文字也采用rem的单位主要有什么问题呢？
+
+可能会出现通过rem计算，最终呈现到页面上是 23.335px 这样的奇葩的字体大小，可能还会因此出现锯齿、模糊不清等问题；
+对于大屏希望一行显示的文字多一些，小屏显示的少一些，而不是一视同仁的全部显示同样多的文字。这样在大屏下显得文字特别大（下文 3.5 横竖屏显示问题 会仔细讲）。
+
+
+对于以上问题，我个人的建议：
+
+对于出现奇葩字体的问题，其实手机上表现并没那么明显，主要原因是现在屏幕显示效果统一编号，另外html对字体显示也做优化，所以，如果产品要求不严格，可以不用考虑处理；
+对于横竖屏问题，看情况吧，如果要求不严格，也可以不用考虑。
+
+如果一定要解决这个问题，那么字体就不要使用rem方案了，而是继续使用px单位。
+
+比如：
+
+.title {
+    font-size: 12px;
+}
+[data-dpr="2"] .title {
+    font-size: 24px;
+}
+[data-dpr="3"] .title {
+    font-size: 36px;
+}
+
+
+ -- continue
+c) 高清图问题
+
+d)  1像素问题
+
+ 现象：设计稿上的1px在高清屏上显示的比较粗
+ 原因： devicePixelRatio 大于1 导致， css像素中的1px 会用 4个像素点（devicePixelRatio=2）或者9个像素点（devicePixelRatio = 3）来显示
+        实际上，设计师只是想要1个像素点来渲染
+ 解决方案：http://objcer.com/2017/06/19/one-pixel-border/
+      第一种： 直接设置border
+         border :  0.5px
+         border : 0.33px
+      // 但是要注意有些 Retina 屏的浏览器可能不认识 0.5px 的边框，将会把它解析成 0px，这样就没有边框了。
+      第二种： 使用scale + 伪元素， 兼容性更好 ，但是只能解决直线问题，无法解决圆角问题。
+
+      第三种：  https://juejin.im/post/5b6503dee51d45191e0d30d2  总结起来就是使用页面缩放的方式，但是感觉实在是太怪了。
+      
+
+e)  横竖屏显示问题
+https://juejin.im/post/5b6503dee51d45191e0d30d2 中说的当横屏时候，将 deviceWidth=deviceHeight 的做法是以前没接触过的。
+
+
+js获取屏幕旋转方向：window.orientation
+
+0 - 正常方向
+-90 - 屏幕顺时钟旋转90度
+90 - 屏幕逆时针旋转90度
+180 - 屏幕旋转180度
+
+f)  手机字体缩放问题
+
+
+
+
+
+25.1)  width /  max-width
+
+  The max-width property in CSS is used to set the maximum width of a specified element. The max-width property overrides the width property, but min-width will always override max-width whether followed before or after width in your declaration.
+
+25.2) display:flex vs display:inline-flex
+
+
+http://codepen.io/fcj/pen/YNYEMg
+http://stackoverflow.com/questions/27418104/difference-between-displayinline-flex-and-displayflex
+
+display: inline-flex does not make flex items display inline. It makes the flex container display inline. That is the only difference between display: inline-flex and display: flex. 
+
+
+25.3)  :empty
+
+
+https://egghead.io/lessons/css-target-empty-elements-using-the-empty-pseudo-class
+
+Target empty elements using the :empty pseudo-class
+
+
+You can target an element that has no child elements by using the :empty pseudo-class. 
+Be aware that whitespace is considered a "child", so :empty will not work if the element has no children, but has space between the opening and closing tags.
+
+
+25.4)  :only-of-type  //  https://developer.mozilla.org/en-US/docs/Web/CSS/:only-of-type
+    The :only-of-type CSS pseudo-class represents an element that has no siblings of the same type.
+
+
+
+25.5)  css  white-space : nowrap
+
+The white-space property specifies how white-space inside an element is handled.
+https://www.w3schools.com/cssref/tryit.asp?filename=trycss_text_white-space
+
 
 ------- TODO
 2. pfd简历
@@ -497,3 +864,11 @@ http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html
   // https://juejin.im/post/5d421bcf6fb9a06af23853f1
 
 8. Proxy Vs Object.defineProperty
+
+9. posts:
+
+    1) https://github.com/sunmaobin/sunmaobin.github.io/issues
+    2) https://juejin.im/post/5eb0eca1f265da7bfd7f6cb3
+    3) https://juejin.im/post/5ebb85c4f265da7bc1696f89 (interview)
+    4) https://juejin.im/post/5eba66f95188253c2a564d87  (interview)
+    5) https://juejin.im/post/5ebaa4c9e51d454d90751617  (alg)
