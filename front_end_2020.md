@@ -850,6 +850,171 @@ The white-space property specifies how white-space inside an element is handled.
 https://www.w3schools.com/cssref/tryit.asp?filename=trycss_text_white-space
 
 
+
+
+
+
+
+26） 节流，防抖
+
+//  https://juejin.im/entry/5b1d2d54f265da6e2545bfa4
+
+
+总结
+函数防抖：将几次操作合并为一此操作进行。
+         原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发。
+
+函数节流：使得一定时间内只触发一次函数。原理是通过判断是否到达一定时间来触发函数。
+
+区别： 函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，
+      而函数防抖只是在最后一次事件后才触发一次函数。 
+      比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用节流技术来实现。
+
+
+  防抖：
+    // 关键在于延时处理callback
+    var debounce = function(callback,time){
+        var timeout = null;
+        return function(){
+            if(timeout !== null){
+                cleatTimeout(timeout);
+            }
+            timeout = setTimeout(callback,time);
+        }
+      
+    }
+
+    // 处理函数
+function handle() {
+    console.log(Math.random()); 
+}
+// 滚动事件
+window.addEventListener('scroll', debounce(handle, 1000));
+
+
+
+  节流：
+
+      第一种方法是利用时间戳
+        var throttle = function(func, delay) {
+            var prev = Date.now();
+            return function() {
+                var context = this;
+                var args = arguments;
+                var now = Date.now();
+                if (now - prev >= delay) {
+                    func.apply(context, args);
+                    prev = Date.now();
+                }
+            }
+        }
+        function handle() {
+            console.log(Math.random());
+        }
+        window.addEventListener('scroll', throttle(handle, 1000));
+
+
+
+         第二种方法是利用定时器
+
+            var throttle = function(func, delay) {
+                var timer = null;
+                return function() {
+                    var context = this;
+                    var args = arguments;
+                    if (!timer) {
+                        timer = setTimeout(function() {
+                            func.apply(context, args);
+                            timer = null; //  // 关键在于每次执行后，置空timer
+                        }, delay);
+                    }
+                }
+            }
+            function handle() {
+                console.log(Math.random());
+            }
+            window.addEventListener('scroll', throttle(handle, 1000));
+
+          第三种方法是利用定时器 + 时间戳
+          var throttle = function(func, delay) {
+          var timer = null;
+          var startTime = Date.now();
+          return function() {
+                  var curTime = Date.now();
+                  var remaining = delay - (curTime - startTime);
+                  var context = this;
+                  var args = arguments;
+                  clearTimeout(timer);
+                    if (remaining <= 0) {
+                          func.apply(context, args);
+                          startTime = Date.now();
+                    } else {
+                          timer = setTimeout(func, remaining);
+                    }
+            }
+      }
+      function handle() {
+            console.log(Math.random());
+      }
+      window.addEventListener('scroll', throttle(handle, 1000));
+
+
+
+
+
+
+
+27)  js 数组 常用技巧  // https://juejin.im/post/5ebc9d9be51d454def2278ad
+
+ 27.1) 数组去重
+     利用es6中的set
+
+
+var fruits = [“banana”, “apple”, “orange”, “watermelon”, “apple”, “orange”, “grape”, “apple”];
+
+var uniqueFruits = Array.from(new Set(fruits));
+
+console.log(uniqueFruits); 
+
+var uniqueFruits2 = […new Set(fruits)];
+
+console.log(uniqueFruits2); 
+
+  27.2) 替换数组中的值
+
+   let arrDeletedItems = array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+          
+
+var fruits = ["banana", "apple", "orange", "watermelon", "apple", "orange", "grape", "apple"];
+
+fruits.splice(0, 2, "potato", "tomato");
+
+console.log(fruits); 
+
+ 27.3) map
+
+ var friends = [
+    { name: "John", age: 22 },
+    { name: "Peter", age: 23 },
+    { name: "Mark", age: 24 },
+    { name: "Maria", age: 22 },
+    { name: "Monica", age: 21 },
+    { name: "Martha", age: 19 },]
+    
+var friendsNames = Array.from(friends, ({name}) => name);
+
+console.log(friendsNames); 
+
+
+var names = [];
+friends.map(p => names.push(p.name));
+console.log(names); 
+
+
+
+
+
+
 ------- TODO
 2. pfd简历
 
@@ -876,3 +1041,5 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_text_white-space
 
     js面：
      1） https://juejin.im/post/5eb40b616fb9a0435749c83c
+     2) https://juejin.im/post/5eb800ee5188256d9353afc3
+     3) https://juejin.im/post/5eb8f5cdf265da7bd44254b4 
