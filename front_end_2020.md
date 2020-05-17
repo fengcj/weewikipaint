@@ -880,8 +880,7 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss_text_white-space
                 cleatTimeout(timeout);
             }
             timeout = setTimeout(callback,time);
-        }
-      
+        } 
     }
 
     // 处理函数
@@ -1011,7 +1010,177 @@ friends.map(p => names.push(p.name));
 console.log(names); 
 
 
+28. vue 组件通信：
+   1） 父组件 向子组件传递 属性，传递函数（类似于修改属性的回调）
+        sync语法糖 v-model
+        this.on/ this.emit 原理
 
+        自定义dispatch方法，类似于冒泡，不停向父元素emit事件  （向上通知）
+        自定义broadcast方法，递归遍历子元素，不停emit子元素上的事件 （向下广播）
+        这2种方法，多用于组件库中。
+
+
+
+
+29. vue文档阅读
+   29.1) 不要在选项 property 或回调上使用箭头函数，比如 created: () => console.log(this.a) 或 vm.$watch('a', newValue => this.myMethod())。因为箭头函数并没有 this，this 会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 Uncaught TypeError: Cannot read property of undefined 或 Uncaught TypeError: this.myMethod is not a function 之类的错误。
+
+   29.2) 动态参数的缩写 (2.6.0+)
+
+   29.3) 计算属性  vs watch
+
+   29.4) v-if vs v-show
+v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。
+
+v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。
+
+相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。
+
+一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。
+
+  29.5） 在 v-for 块中，我们可以访问所有父作用域的 property
+        在 v-for 里使用对象
+        不要使用对象或数组之类的非基本类型值作为 v-for 的 key。请用字符串或数值类型的值。
+
+  29.6） Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法包括：
+
+push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()
+
+  29.7） 注意我们不推荐在同一元素上使用 v-if 和 v-for
+
+
+  当它们处于同一节点，v-for 的优先级比 v-if 更高，这意味着 v-if 将分别重复运行于每个 v-for 循环中。当你只想为部分项渲染节点时，这种优先级的机制会十分有用，如下：
+
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+上面的代码将只渲染未完成的 todo。
+
+  
+   29.8） is 涉及到
+
+
+    动态组件
+
+    DOM 模板解析说明
+
+      有些 HTML 元素，诸如 <ul>、<ol>、<table> 和 <select>，对于哪些元素可以出现在其内部是有严格限制的。而有些元素，诸如 <li>、<tr> 和 <option>，只能出现在其它某些特定的元素内部。
+      需要注意的是如果我们从以下来源使用模板的话，这条限制是不存在的：
+
+          字符串 (例如：template: '...')
+          单文件组件 (.vue)
+          <script type="text/x-template">
+
+  29.9） 事件修饰符
+
+      Vue.js 为 v-on 提供了事件修饰符：
+
+          .stop
+          .prevent
+          .capture
+          .self
+          .once
+          .passive
+   
+   29.10） 表单绑定
+
+   v-model 会忽略所有表单元素的 value、checked、selected attribute 的初始值而总是将 Vue 实例的数据作为数据来源。
+   你应该通过 JavaScript 在组件的 data 选项中声明初始值。
+
+   v-model 在内部为不同的输入元素使用不同的 property 并抛出不同的事件：
+
+      text 和 textarea 元素使用 value property 和 input 事件；
+      checkbox 和 radio 使用 checked property 和 change 事件；
+      select 字段将 value 作为 prop 并将 change 作为事件。
+
+
+
+  <input v-model="searchText"> 等价于：
+
+  <input
+    v-bind:value="searchText"
+    v-on:input="searchText = $event.target.value"
+  >
+
+  当用在组件上时，v-model 则会这样：
+
+  <custom-input
+    v-bind:value="searchText"
+    v-on:input="searchText = $event"
+  ></custom-input>
+
+  为了让它正常工作，这个组件内的 <input> 必须：
+
+将其 value attribute 绑定到一个名叫 value 的 prop 上
+在其 input 事件被触发时，将新的值通过自定义的 input 事件抛出
+写成代码之后是这样的：
+
+Vue.component('custom-input', {
+  props: ['value'],
+  template: `
+    <input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    >
+  `
+})
+现在 v-model 就应该可以在这个组件上完美地工作起来了：
+
+<custom-input v-model="searchText"></custom-input>
+
+
+29.10）  <!-- 即便 `42` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+<!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
+<blog-post v-bind:likes="42"></blog-post>
+
+
+传入一个对象的所有 property
+如果你想要将一个对象的所有 property 都作为 prop 传入，你可以使用不带参数的 v-bind (取代 v-bind:prop-name)
+
+<blog-post v-bind="post"></blog-post>
+
+等价于：
+
+<blog-post
+  v-bind:id="post.id"
+  v-bind:title="post.title"
+></blog-post>
+
+
+prop验证：
+  为了定制 prop 的验证方式，你可以为 props 中的值提供一个带有验证需求的对象，而不是一个字符串数组。
+
+  注意那些 prop 会在一个组件实例创建之前进行验证，所以实例的 property (如 data、computed 等) 在 default 或 validator 函数中是不可用的。
+
+禁用 Attribute 继承  // https://www.jianshu.com/p/ce8ca875c337
+//  https://juejin.im/post/5ae4288a5188256712784787
+
+默认情况下vue会把父作用域的不被认作 props 的特性绑定 且作为普通的 HTML 特性应用在子组件的根元素上。绑定就绑定，显示就显示，没啥大不了的，但是怕就怕遇到一些特殊的，就比如上面的input的情况，这个时候inheritAttrs:false的作用就出来啦。
+
+
+
+vm.$attrs
+    包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建高级别的组件时非常有用。
+
+
+29.11) .sync
+
+  <comp :foo.sync="bar"></comp>
+
+  编译成：
+
+  <comp :foo="bar" @update:foo="val => bar = val"></comp>
+
+
+  当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：
+
+  this.$emit('update:foo', newValue)
 
 
 
