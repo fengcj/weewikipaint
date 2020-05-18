@@ -3,3 +3,5 @@
 2. 复习AQS的讲解
 
 //  <并发编程核心78讲>
+
+3. hbase 教程 // http://www.nosqlnotes.com/technotes/hbase/hbase-overview-concepts/
