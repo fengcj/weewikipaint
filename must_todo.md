@@ -29,3 +29,5 @@
 
 
 9. yarn vs kubernetes
+
+10. 复习git 常见操作。

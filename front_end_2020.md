@@ -1209,6 +1209,113 @@ vm.$attrs
 
 
 
+29.13) vm.$nextTick( [callback] )
+
+将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。
+它跟全局方法 Vue.nextTick 一样，不同的是回调的 this 自动绑定到调用它的实例上。
+
+
+eg:
+    new Vue({
+    // ...
+    methods: {
+      // ...
+      example: function () {
+        // 修改数据
+        this.message = 'changed'
+        // DOM 还没有更新
+        this.$nextTick(function () {
+          // DOM 现在更新了
+          // `this` 绑定到当前实例
+          this.doSomethingElse()
+        })
+      }
+    }
+  })
+
+
+
+// 作为一个 Promise 使用 (2.1.0 起新增，详见接下来的提示)
+Vue.nextTick()
+  .then(function () {
+    // DOM 更新了
+  })
+
+
+
+29.14) 异步更新队列
+
+
+
+可能你还没有注意到，Vue 在更新 DOM 时是异步执行的。只要侦听到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更。如果同一个 watcher 被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和 DOM 操作是非常重要的。然后，在下一个的事件循环“tick”中，Vue 刷新队列并执行实际 (已去重的) 工作。Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
+
+例如，当你设置 vm.someData = 'new value'，该组件不会立即重新渲染。当刷新队列时，组件会在下一个事件循环“tick”中更新。多数情况我们不需要关心这个过程，但是如果你想基于更新后的 DOM 状态来做点什么，这就可能会有些棘手。虽然 Vue.js 通常鼓励开发人员使用“数据驱动”的方式思考，避免直接接触 DOM，但是有时我们必须要这么做。为了在数据变化之后等待 Vue 完成更新 DOM，可以在数据变化之后立即使用 Vue.nextTick(callback)。这样回调函数将在 DOM 更新完成后被调用。
+
+
+
+
+
+
+Vue的核心流程大体可以分成以下几步
+
+
+1. 遍历属性为其增加get，set方法，在get方法中会收集依赖(dev.subs.push(watcher))，而set方法则会调用dev的notify方法，此方法的作用是通知subs中的所有的watcher并调用watcher的update方法，我们可以将此理解为设计模式中的发布与订阅
+
+
+2. 默认情况下update方法被调用后会触发queueWatcher函数，此函数的主要功能就是将watcher实例本身加入一个队列中(queue.push(watcher))，然后调用nextTick(flushSchedulerQueue)
+
+
+3. flushSchedulerQueue是一个函数，目的是调用queue中所有watcher的watcher.run方法，而run方法被调用后接下来的操作就是通过新的虚拟dom与老的虚拟dom做diff算法后生成新的真实dom
+
+
+4. 只是此时我们flushSchedulerQueue并没有执行，第二步的最终做的只是将flushSchedulerQueue又放进一个callbacks队列中(callbacks.push(flushSchedulerQueue))，然后异步的将callbacks遍历并执行（此为异步更新队列）
+
+
+如上所说flushSchedulerQueue在被执行后调用watcher.run()，于是你看到了一个新的页面
+
+
+
+1. 我们的同步任务的调用形成了一个栈结构
+2. 除此之外我们还有一个任务队列，当一个异步任务有了结果后会向队列中添加一个任务，每个任务都对应着一个回调函数
+3. 当我们的栈结构为空时，就会读取任务队列，同时调用其对应的回调函数
+4. 重复
+
+这个总结目前来说对于我们比较欠缺的信息就是队列中的任务其实是分为两种的，宏任务(macrotask)与微任务(microtask)。
+当主线程上执行的所有同步任务结束后会从任务队列中抽取出所有微任务执行，当微任务也执行完毕后一轮事件循环就结束了，然后浏览器会重新渲染(请谨记这点，因为正是此原因才会导致文章开头所说的问题)。
+之后再从队列中取出宏任务继续下一轮的事件循环，值得注意的一点是执行微任务时仍然可以继续产生微任务在本轮事件循环中不停的执行。所以本质上微任务的优先级是高于宏任务的
+
+
+
+作者：o1o
+链接：https://juejin.im/post/5a45fdeb6fb9a044ff31c9a8  (好好再看看这个blog中的更新流程) [./vue_nexttick.html 为blog中的例子，文章中最后一个问题，测试答案是可以的，
+猜测原因是vue改变了策略，不再使用宏任务，而是统一使用微任务]
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+
+30. javascript array slice()
+
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+console.log(animals.slice(2));
+// expected output: Array ["camel", "duck", "elephant"]
+
+console.log(animals.slice(2, 4));
+// expected output: Array ["camel", "duck"]
+
+console.log(animals.slice(1, 5));
+// expected output: Array ["bison", "camel", "duck", "elephant"]
+
+
+
+
+
+
+
+
 
 
 

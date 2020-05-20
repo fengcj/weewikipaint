@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.div1 {
+  width: 100px;
+  height: 100px;
+  background: red;
+}
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+</head>
+<body>
+
+
+    <div id="app">
+        <button @click="handle3">button</button>
+        <test v-if="show" class="div1"></test>
+    </div>
+
+    <script>
+
+
+Vue.component('test', {
+  template: '<div>A custom component!</div>',
+  created() {
+  	console.log('created')
+  }
+})
+
+new Vue({
+  el: '#app',
+  data: {
+    show: true
+  },
+  methods: {
+    handle1() {
+      this.show = false
+      this.show = true
+    },
+    handle2() {
+      this.show = false
+      setTimeout(() => { this.show = true }, 0)
+    },
+    handle3() {
+      this.show = false
+     // this.$nextTick(() => { this.show = true })
+     Promise.resolve().then(() => { this.show = true })
+    }
+  }
+})
+
+
+    </script>
+    
+</body>
+</html>
