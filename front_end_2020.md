@@ -1310,6 +1310,358 @@ console.log(animals.slice(1, 5));
 // expected output: Array ["bison", "camel", "duck", "elephant"]
 
 
+31. 加强版本dobounce/ throttle
+
+// 代码2
+const debounce = (func, wait = 0) => {
+  let timeout = null
+  let args
+  function debounced(...arg) {
+    args = arg
+    if(timeout) {
+      clearTimeout(timeout)
+      timeout = null
+    }
+    // 以Promise的形式返回函数执行结果
+    return new Promise((res, rej) => {
+      timeout = setTimeout(async () => {
+        try {
+          const result = await func.apply(this, args)
+          res(result)
+        } catch(e) {
+          rej(e)
+        }
+      }, wait)
+    })
+  }
+  // 允许取消
+  function cancel() {
+    clearTimeout(timeout)
+    timeout = null
+  }
+  // 允许立即执行
+  function flush() {
+    cancel()
+    return func.apply(this, args)
+  }
+  debounced.cancel = cancel
+  debounced.flush = flush
+  return debounced
+}
+
+
+// 值得注意的地方：
+    Promise 的使用
+    将函数作为属性挂载在debounced 上
+    await
+
+
+
+
+
+const throttle = (func, wait = 0, execFirstCall) => {
+  let timeout = null
+  let args
+  let firstCallTimestamp
+
+
+  function throttled(...arg) {
+    if (!firstCallTimestamp) firstCallTimestamp = new Date().getTime()
+    if (!execFirstCall || !args) {
+      console.log('set args:', arg)
+      args = arg
+    }
+    if (timeout) {
+      clearTimeout(timeout)
+      timeout = null
+    }
+    // 以Promise的形式返回函数执行结果
+    return new Promise(async(res, rej) => {
+      if (new Date().getTime() - firstCallTimestamp >= wait) {
+        try {
+          const result = await func.apply(this, args)
+          res(result)
+        } catch (e) {
+          rej(e)
+        } finally {
+          cancel()
+        }
+      } else {
+        timeout = setTimeout(async () => {
+          try {
+            const result = await func.apply(this, args)
+            res(result)
+          } catch (e) {
+            rej(e)
+          } finally {
+            cancel()
+          }
+        }, firstCallTimestamp + wait - new Date().getTime())
+      }
+    })
+  }
+  // 允许取消
+  function cancel() {
+    clearTimeout(timeout)
+    args = null
+    timeout = null
+    firstCallTimestamp = null
+  }
+  // 允许立即执行
+  function flush() {
+    cancel()
+    return func.apply(this, args)
+  }
+  throttled.cancel = cancel
+  throttled.flush = flush
+  return throttle
+}
+
+
+
+
+
+
+
+
+
+32. DOM 标准：
+
+
+关于 DOM 事件标准
+你知道下面 3 种事件监听方式的区别吗？
+
+复制// 方式1
+<input type="text" onclick="click()"/>
+// 方式2
+document.querySelector('input').onClick = function(e) {
+  // ...
+}
+// 方式3
+document.querySelector('input').addEventListener('click', function(e) {
+  //...
+})
+方式 1 和方式 2 同属于 DOM0 标准，通过这种方式进行事件监会覆盖之前的事件监听函数。
+
+方式 3 属于 DOM2 标准，推荐使用这种方式。同一元素上的事件监听函数互不影响，而且可以独立取消，调用顺序和监听顺序一致。
+
+
+33. async / await  // https://yangbo5207.github.io/wutongluo/ji-chu-jin-jie-xi-lie/fu-jian-2-async-await.html
+
+
+async函数是Generator的一个语法糖。如果你不知道Generator是什么函数也没有关系，我们只需要知道async函数实际上返回的是一个Promise对象即可。
+
+async function fn() {
+    return 30;
+}
+
+// 或者
+const fn = async () => {
+    return 30;
+}
+在声明函数时，前面加上关键字async，这就是async的用法。当我们用console.log打印出上面声明的函数fn，我们可以看到如下结果：
+
+console.log(fn());
+
+// result
+Promise = {
+    __proto__: Promise,
+    [[PromiseStatus]]: "resolved",
+    [[PromiseValue]]: 30
+}
+很显然，fn的运行结果其实就是一个Promise对象。因此我们也可以使用then来处理后续逻辑。
+
+fn().then(res => {
+    console.log(res);  // 30
+})
+
+
+await的含义为等待。意思就是代码需要等待await后面的函数运行完并且有了返回结果之后，才继续执行下面的代码。这正是同步的效果。
+
+但是我们需要注意的是，await关键字只能在async函数中使用。并且await后面的函数运行后必须返回一个Promise对象才能实现同步的效果。
+
+当我们使用一个变量去接收await的返回值时，该返回值为Promise中resolve出来的值（也就是PromiseValue）。
+
+
+// 定义一个返回Promise对象的函数
+function fn() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(30);
+        }, 1000);
+    })
+}
+
+// 然后利用async/await来完成代码
+const foo = async () => {
+	  console.log("not wait");
+    const t = await fn();
+    console.log(t);
+    console.log('next code');
+}
+
+foo();
+
+// result:
+// not wait
+// 30
+// next code
+
+
+运行这个例子我们可以看出，当在async函数中，运行遇到await时，就会等待await后面的函数运行完毕，而不会直接执行next code。
+
+
+如果我们直接使用then方法的话，想要达到同样的结果，就不得不把后续的逻辑写在then方法中。
+
+const foo = () => {
+    return fn().then(t => {
+        console.log(t);
+        console.log('next code');    
+    })
+}
+
+foo();
+很显然如果使用async/await的话，代码结构会更加简洁，逻辑也更加清晰。
+
+
+
+异常处理
+在Promise中，我们知道是通过catch的方式来捕获异常。而当我们使用async时，则通过try/catch来捕获异常。
+
+function fn() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject('some error.');
+        }, 1000);
+    })
+}
+
+const foo = async () => {
+    try {
+        await fn();
+    } catch (e) {
+        console.log(e);  // some error
+    }
+}
+
+foo();
+
+
+
+
+如果有多个await函数，那么只会返回第一个捕获到的异常。
+
+function fn1() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject('some error fn1.');
+        }, 1000);
+    })
+}
+function fn2() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject('some error fn2.');
+        }, 1000);
+    })
+}
+
+const foo = async () => {
+    try {
+        await fn1();
+        await fn2();
+    } catch (e) {
+        console.log(e);  // some error fn1.
+    }
+}
+
+foo();
+
+
+34. ... 运算符
+
+
+// 这种方式在react中十分常用
+const props = {
+  size: 1,
+  src: 'xxxx',
+  mode: 'si'
+}
+
+
+const { size, ...others } = props;
+
+console.log(others) // {  src: 'xxxx', mode: 'si'}
+
+// 然后再利用展开运算符传递给下一个元素，再以后封装react组件时会大量使用到这种方式，正在学习react的同学一定要搞懂这种使用方式
+<button {...others} size={size} />
+
+
+35. es6 class
+
+class Person {
+  constructor(name, age) {  // 构造函数
+    this.name = name;
+    this.age = age;
+  }
+
+  getName() {   // 这种写法表示将方法添加到原型中
+    return this.name
+  }
+
+  static a = 20;  // 等同于 Person.a = 20
+
+  c = 20;   // 表示在构造函数中添加属性 在构造函数中等同于 this.c = 20
+
+// 箭头函数的写法表示在构造函数中添加方法，在构造函数中等同于this.getAge = function() {}
+  getAge = () => this.age   
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+36. flex 布局实战
+
+
+37. Promise 实战 // http://www.fly63.com/article/detial/6299
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1356,3 +1708,6 @@ console.log(animals.slice(1, 5));
      1） https://juejin.im/post/5eb40b616fb9a0435749c83c
      2) https://juejin.im/post/5eb800ee5188256d9353afc3
      3) https://juejin.im/post/5eb8f5cdf265da7bd44254b4 
+
+
+     https://leohxj.gitbooks.io/front-end-database/javascript-asynchronous/use-promise.html  (all)
