@@ -33,3 +33,6 @@
 10. 复习git 常见操作。
 
 11. es6 module 细看
+
+12. 函数调用栈和作用域链 js
+    js execution context

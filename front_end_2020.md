@@ -1711,3 +1711,8 @@ class Person {
 
 
      https://leohxj.gitbooks.io/front-end-database/javascript-asynchronous/use-promise.html  (all)
+
+
+
+     java面：
+     1） https://juejin.im/post/5ec0ff4a6fb9a043271c76e9
