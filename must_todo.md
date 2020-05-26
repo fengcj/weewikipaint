@@ -37,6 +37,8 @@
 12. 函数调用栈和作用域链 js
     js execution context
 
+    watch : // https://www.youtube.com/watch?v=ZVXrJ4dnUxM
+
 13. es7 中的装饰器
 
 14. google

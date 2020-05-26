@@ -1719,3 +1719,7 @@ class Person {
 
      java面：
      1） https://juejin.im/post/5ec0ff4a6fb9a043271c76e9
+
+
+     js blog:
+     1) http://dmitrysoshnikov.com/ // 有些看上去nb的课程。
