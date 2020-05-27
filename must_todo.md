@@ -44,3 +44,7 @@
 14. google
 
     export {default as Header} from 'header.js'  语法
+
+15. download   <speaking javascript> https://github.com/divyanshu-rawat/js-worth-read'
+
+16. youtube js lexical environment outer // https://www.youtube.com/watch?v=1qXypjZu0sU

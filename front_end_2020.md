@@ -1648,13 +1648,40 @@ class Person {
 
 
 
+38. 经典面试：
+
+var a = 1
+function out(){
+    var a = 2
+    inner()
+}
+function inner(){
+    console.log(a)
+}
+out()  //====>  1
+
+
+作用域链
+当查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从父级(词法层面上的父级)执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。
+这样由多个执行上下文的变量对象构成的链表就叫做作用域链。
+
+
+40. exection stack
+
+对于每个执行上下文都有三个重要的属性，变量对象（Variable object，VO），作用域链（Scope chain）和this。这三个属性跟代码运行的行为有很重要的关系。
+
+https://medium.com/@5066aman/lexical-environment-the-hidden-part-to-understand-closures-71d60efac0e0
+
+
+http://speakingjs.com/es5/ch16.html  // greate blog
 
 
 
+https://medium.com/@bdov_/javascript-typescript-execution-vs-lexical-vs-variable-environment-37ff3f264831
 
-
-
-
+Function 的内部属性 
+  [[Scope]]
+  [[Environment]]
 
 
 
@@ -1723,3 +1750,4 @@ class Person {
 
      js blog:
      1) http://dmitrysoshnikov.com/ // 有些看上去nb的课程。
+     2) https://javascript.info/js  // core js
