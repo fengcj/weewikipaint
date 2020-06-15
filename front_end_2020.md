@@ -2914,9 +2914,15 @@ m)
 n)
 
 
-60. 
+60. css background-orgin
 
+https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_background-origin
 
+// 这个属性是设置背景图片的位置， 其value 可以是
+    background-origin: padding-box;
+    background-origin: border-box;
+    background-origin: content-box;
+    
 
 
 61.
