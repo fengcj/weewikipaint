@@ -88,17 +88,19 @@ var person1 = new Person('Nishant');
     Person.displayName();*/
 
 
-    function letIsNotHositing(){
+/* function letIsNotHositing() {
 
-    	console.log(myLet);  // ReferenceError: myLet is not defined
-    	let myLet = 4;
+	console.log(myLet); // ReferenceError: myLet is not defined
+	let myLet = 4;
 
-    }
-    letIsNotHositing();
-
-
+}
+letIsNotHositing(); */
 
 
 
 
-
+let func = x => y => x + y;
+let firstCall = func(1);
+console.log(typeof firstCall);
+let secondCall = firstCall(10);
+console.log(secondCall);

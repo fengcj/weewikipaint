@@ -35,3 +35,27 @@ Google的四大基础设施，分别是GFS、MapReduce、BigTable、Chubby，其
 5. 发现了一个很不错的网站：  https://www.w3cschool.cn/architectroad/architectroad-distributed-lock-2.html
 
 
+6. java8 collectors
+
+
+        //  https://github.com/shekhargulati/java8-the-missing-tutorial
+        
+        // https://blog.csdn.net/yangyangye/article/details/98489749
+        // https://juejin.im/post/5e0df8475188253a6772b6e2
+
+        ConcurrentHashMap<String, Long> map = LongStream.rangeClosed(1, 10)
+                .boxed()
+                .collect(Collectors.toConcurrentMap(i -> UUID.randomUUID().toString(), Function.identity(),
+                        (o1, o2) -> o1, ConcurrentHashMap::new));
+
+        // 关键在于Collectors.toConcurrentMap， 四个入参 API doc如下:
+
+            * @param keyMapper a mapping function to produce keys
+            * @param valueMapper a mapping function to produce values
+            * @param mergeFunction a merge function, used to resolve collisions between
+            *                      values associated with the same key, as supplied
+            *                      to {@link Map#merge(Object, Object, BiFunction)}
+            * @param mapFactory a supplier providing a new empty {@code ConcurrentMap}
+            *                   into which the results will be inserted
+
+        

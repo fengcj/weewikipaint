@@ -48,3 +48,31 @@
 15. download   <speaking javascript> https://github.com/divyanshu-rawat/js-worth-read'
 
 16. youtube js lexical environment outer // https://www.youtube.com/watch?v=1qXypjZu0sU
+
+17. 作用域链
+
+18. 全面系统讲解css
+
+19. skb中的webworker使用
+
+20. symbol 作为key的用法
+
+21. 尝试Parcel
+
+22. 复习webpack 拉钩 写出思维导图
+
+23. 箭头函数中的this
+
+24. 手写bind
+
+25. ​​​​Quokka
+
+26. jsonp
+
+27. 考点总结：
+    1） 浏览器跨域，本质上是浏览器从安全的角度考虑，在跨域上做了限制。
+
+
+
+28. vscode plugin eslint+Prettier
+// https://www.youtube.com/watch?v=bfyI9yl3qfE

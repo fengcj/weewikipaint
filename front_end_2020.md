@@ -1685,6 +1685,946 @@ Function 的内部属性
 
 
 
+41. css 命名
+
+这里简单补充一下 BEM 相关知识，
+
+BEM 是 Block、Element、Modifier 三个单词的缩写，Block 代表独立的功能组件，Element 代表功能组件的一个组成部分，Modifier 对应状态信息。
+
+
+
+对于样式文件的管理，推荐使用 7-1 模式简化后的目录结构，包括 pages/、components/、abastracts/、base/ 4 个目录。对于样式命名，可以采用 BEM 来命名组件、面向属性的方式来命名公共样式。
+
+42. browser 
+
+这一课时主要讲解了浏览器渲染引擎生成页面的 7 个步骤，前面 4 个步骤为 DOM 树的生成过程，后面 3 个步骤是利用 DOM 树和 CSSOM 树来渲染页面的过程。我们想要理解和记忆这些过程其实很简单，那就是以数据变化为线索，具体来说数据的变化过程为：
+
+字节 → 字符 → 令牌 → 树 → 页面
+
+43. v8
+
+
+首先 V8 会接收到要执行的 JavaScript 源代码，不过这对 V8 来说只是一堆字符串，V8 并不能直接理解这段字符串的含义，它需要结构化这段字符串。结构化，是指信息经过分析后可分解成多个互相关联的组成部分，各组成部分间有明确的层次结构，方便使用和维护，并有一定的操作规范。
+
+V8 源代码的结构化之后，就生成了抽象语法树 (AST)，我们称为 AST，AST 是便于 V8 理解的结构。
+
+这里还需要注意一点，在生成 AST 的同时，V8 还会生成相关的作用域，作用域中存放相关变量，我们会在《 06 | 作用域链：V8 是如何查找变量的？》和《12 | 延迟解析：V8 是如何实现闭包的？》这两个节课中详细分析。
+
+理解了这一点，我们就可以来深入分析 V8 执行一段 JavaScript 代码所经历的主要流程了，这包括了：
+  初始化基础环境；
+  解析源码生成 AST 和作用域；
+  依据 AST 和作用域生成字节码；
+  解释执行字节码；
+  监听热点代码；
+  优化热点代码为二进制的机器代码；
+  反优化生成的二进制机器代码。
+
+
+
+
+
+虽然 JavaScript 是基于对象设计的，但是它却不是一门面向对象的语言 (Object-Oriented Programming Language)，因为面向对象语言天生支持封装、继承、多态，但是 JavaScript 并没有直接提供多态的支持，因此要在 JavaScript 中使用多态并不是一件容易的事。
+
+
+
+也就是说，函数除了可以拥有常用类型的属性值之外，还拥有两个隐藏属性，分别是 name 属性和 code 属性。
+
+隐藏 name 属性的值就是函数名称，如果某个函数没有设置函数名，则该函数对象的默认的 name 属性值就是 anonymous，表示该函数对象没有被设置名称。
+
+另外一个隐藏属性是 code 属性，其值表示函数代码，以字符串的形式存储在内存中。当执行到一个函数调用语句时，V8 便会从函数对象中取出 code 属性值，也就是函数代码，然后再解释执行这段函数代码。
+
+
+我们也把这种将外部变量和和函数绑定起来的技术称为闭包。V8 在实现闭包的特性时也做了大量的额外的工作，关于闭包的详细实现，我们会在《12 | 延迟解析：V8 是如何实现闭包的？》这节课再介绍。
+
+
+
+在 ECMAScript 规范中定义了数字属性应该按照索引值大小升序排列，字符串属性根据创建时的顺序升序排列。
+
+p在这里我们把对象中的数字属性称为排序属性，在v8中被称为elements,字符串属性被称为常规属性，在v8中被称为properties.
+
+
+在 V8 内部，为了有效地提升存储和访问这两种属性的性能，分别使用了两个线性数据结构来分别保存排序属性和常规属性。
+
+分解成这两种线性数据结构之后，如果执行索引操作，那么 V8 会先从 elements 属性中按照顺序读取所有的元素，然后再在 properties 属性中读取所有的元素，这样就完成一次索引操作。
+
+
+本文我们的主要目标是介绍 V8 内部是如何存储对象的，因为 JavaScript 中的对象是由一组组属性和值组成的，所以最简单的方式是使用一个字典来保存属性和值，但是由于字典是非线性结构，所以如果使用字典，读取效率会大大降低。
+
+为了提升查找效率，V8 在对象中添加了两个隐藏属性，排序属性和常规属性，指向了 elements 对象，在 elements 对象中，会按照顺序存放排序属性。properties 属性则指向了 properties 对象，在 properties 对象中，会按照创建时的顺序保存常规属性。
+
+通过引入这两个属性，加速了 V8 查找属性的速度，为了更加进一步提升查找效率，V8 还实现了内置内属性的策略，当常规属性少于一定数量时，V8 就会将这些常规属性直接写进对象中，这样又节省了一个中间步骤。
+
+但是如果对象中的属性过多时，或者存在反复添加或者删除属性的操作，那么 V8 就会将线性的存储模式降级为非线性的字典存储模式，这样虽然降低了查找速度，但是却提升了修改对象的属性的速度。
+
+
+
+上面这段就是 V8 生成的作用域，我们可以看到，作用域中包含了变量 x 和 foo，变量 x 的默认值是 undefined，变量 foo 指向了 foo 函数对象，foo 函数对象被 V8 存放在内存中的堆空间了，这些变量都是在编译阶段被装进作用域中的。
+
+因为在执行之前，这些变量都被提升到作用域中了，所以在执行阶段，V8 当然就能获取到所有的定义变量了。我们把这种在编译阶段，将所有的变量提升到作用域的过程称为
+
+
+
+表达式是不会在编译阶段执行的。
+
+function foo(){
+  console.log("Foo");
+}
+
+执行上面这段代码，它并没有输出任何内容，所以可以肯定，函数声明并不是一个表达式，而是一个语句。
+V8 在变量提升阶段，如果遇到函数声明，那么 V8 同样会对该函数声明执行变量提升操作。
+
+
+函数也是一个对象，所以在编译阶段，V8 就会将整个函数对象提升到作用域中，并不是给该函数名称赋一个 undefined，理解这一点尤为重要。
+
+总的来说，在 V8 解析 JavaScript 源码的过程中，
+如果遇到普通的变量声明，那么便会将其提升到作用域中，并给该变量赋值为 undefined，
+如果遇到的是函数声明，那么 V8 会在内存中为声明生成函数对象，并将该对象提升到作用域中。
+
+
+
+函数声明和变量声明类似，V8 在编译阶段，都会对其执行变量提升的操作，将它们提升到作用域中，在执行阶段，如果使用了某个变量，就可以直接去作用域中去查找。
+
+不过 V8 对于提升函数和提升变量的策略是不同的，如果提升了一个变量，那么 V8 在将变量提升到作用域中时，还会为其设置默认值 undefined，如果是函数声明，那么 V8 会在内存中创建该函数对象，并提升整个函数对象。
+
+
+函数表达式也是表达式的一种，在编译阶段，V8 并不会将表达式中的函数对象提升到全局作用域中，所以无法在函数表达式之前使用该函数。函数立即表达式是一种特别的表达式，主要用来封装一些变量、函数，可以起到变量隔离和代码隐藏的作用，因此在一些大的开源项目中有广泛的应用。
+
+
+var n = 1;
+(function foo(){
+  n = 100;
+  console.log(n);
+})();
+console.log(n);
+
+
+
+var n = 1;
+function foo(){
+  n = 100;
+  console.log(n);
+};
+console.log(n);
+foo();
+
+
+
+
+在这里还要注意一点，不要将原型链接和作用域链搞混淆了，作用域链是沿着函数的作用域一级一级来查找变量的，而原型链是沿着对象的原型一级一级来查找属性的，虽然它们的实现方式是类似的，但是它们的用途是不同的，关于作用域链，我会在《06 | 作用域链：V8 是如何查找变量的？》这节课来介绍。
+
+
+
+还记得我们介绍函数时提到关于函数有两个隐藏属性吗？这两个隐藏属性就是 name 和 code，其实函数还有另外一个隐藏属性，那就是 prototype，刚才介绍构造函数时我们也提到过。一个函数有以下几个隐藏属性：
+
+
+
+
+44. Function __proto__
+
+https://juejin.im/post/5cc99fdfe51d453b440236c3
+
+对象的__proto__属性就是指向自己的原型对象。这里要注意，因为JS内所有函数都是Function函数的实例对象，所以Person函数也有个__proto__属性指向自己的原型对象，即Function函数的prototype。至于Function函数为何有个__proto__属性指向自己（蓝色箭头）也不用解释了吧，它拿自身作为自己的构造函数，反正就是个特例，不讲道理。
+
+
+var obj = new Object();
+obj.__proto__ === Object.prototype
+
+
+为了解释清楚这个问题，我们引入了作用域的概念。作用域就是用来存放变量和函数的地方，全局作用域中存放了全局环境中声明的变量和函数，函数作用域中存放了函数中声明的变量和函数。当在某个函数中使用某个变量时，V8 就会去这些作用域中查找相关变量。沿着这些作用域查找的路径，我们就称为作用域链。
+
+要了解查找路径，我们需要明白词法作用域，词法作用域是按照代码定义时的位置决定的，而 JavaScript 所采用的作用域机制就是词法作用域，所以作用域链的路径就是按照词法作用域来实现的。
+
+
+
+通俗地理解，V8 会提供了一个 ToPrimitve 方法，其作用是将 a 和 b 转换为原生数据类型，其转换流程如下：
+
+  先检测该对象中是否存在 valueOf 方法，如果有并返回了原始类型，那么就使用该值进行强制类型转换；
+  如果 valueOf 没有返回原始类型，那么就使用 toString 方法的返回值；
+  如果 vauleOf 和 toString 两个方法都不返回基本类型值，便会触发一个 TypeError 的错误。
+
+
+
+所以说，在执行加法操作的时候，V8 会通过 ToPrimitve 方法将对象类型转换为原生类型，最后就是两个原生类型相加，如果其中一个值的类型是字符串时，则另一个值也需要强制转换为字符串，然后做字符串的连接运算。在其他情况时，所有的值都会转换为数字类型值，然后做数字的相加。
+
+
+在 JavaScript 中，数字和字符串相加会返回一个新的字符串，这是因为 JavaScript 认为字符串和数字相加是有意义的，V8 会将其中的数字转换为字符，然后执行两个字符串的相加操作，最终得到的是一个新的字符串。
+
+在 JavaScript 中，类型系统是依据 ECMAScript 标准来实现的，所以 V8 会严格根据 ECMAScript 标准来执行。在执行加法过程中，V8 会先通过 ToPrimitive 函数，将对象转换为原生的字符串或者是数字类型，在转换过程中，ToPrimitive 会先调用对象的 valueOf 方法，如果没有 valueOf 方法，则调用 toString 方法，如果 vauleOf 和 toString 两个方法都不返回基本类型值，便会触发一个 TypeError 的错误。
+
+
+1 + "2" //"12"
+
+1 - "2" // -1
+
+
+问题：你认为作用域和执行上下文是什么关系？欢迎你在留言区与我分享讨论。
+
+  作用域是逻辑概念，只要函数确定，作用域就确定了。执行上下文其实就是“栈帧”。作用域和子作用域有从属关系，是静态的。
+  执行上下文是函数的调用关系，是动态的。
+
+  1. 作用域是静态的，函数定义的时候就已经确定了。
+  2. 执行上下文是动态的，调用函数时候创建，结束后还会释放。
+
+
+// 细看 《图解V8》 09）运行时环境：运行JavaScript代码的基石
+
+
+
+消息队列中的任务类型有哪些。你可以参考下Chromium 的官方源码，这里面包含了很多内部消息类型，如输入事件（鼠标滚动、点击、移动）、微任务、文件读写、WebSocket、JavaScript 定时器等等。
+
+除此之外，消息队列中还包含了很多与页面相关的事件，如 JavaScript 执行、解析 DOM、样式计算、布局计算、CSS 动画等。
+
+以上这些事件都是在主线程中执行的，所以在编写 Web 应用时，你还需要衡量这些事件所占用的时长，并想办法解决单个任务占用主线程过久的问题。
+
+
+
+
+浏览器怎么实现 setTimeout
+要了解定时器的工作原理，就得先来回顾下之前讲的事件循环系统，我们知道渲染进程中所有运行在主线程上的任务都需要先添加到消息队列，然后事件循环系统再按照顺序执行消息队列中的任务。下面我们来看看那些典型的事件：
+
+    当接收到 HTML 文档数据，渲染引擎就会将“解析 DOM”事件添加到消息队列中，
+    当用户改变了 Web 页面的窗口大小，渲染引擎就会将“重新布局”的事件添加到消息队列中。
+    当触发了 JavaScript 引擎垃圾回收机制，渲染引擎会将“垃圾回收”任务添加到消息队列中。
+    同样，如果要执行一段异步 JavaScript 代码，也是需要将执行任务添加到消息队列中。
+以上列举的只是一小部分事件，这些事件被添加到消息队列之后，事件循环系统就会按照消息队列中的顺序来执行事件。
+
+
+问题：今天我们介绍了 setTimeout，相信你现在也知道它是怎么工作的了，不过由于使用 setTimeout 设置的回调任务实时性并不是太好，所以很多场景并不适合使用 setTimeout。比如你要使用 JavaScript 来实现动画效果，函数 requestAnimationFrame 就是个很好的选择。
+
+那么今天留给你的作业是：你需要网上搜索了解下 requestAnimationFrame 的工作机制，并对比 setTimeout，然后分析出 requestAnimationFrame 实现的动画效果比 setTimeout 好的原因。
+
+使用 requestAnimationFrame 不需要设置具体的时间，由系统来决定回调函数的执行时间，requestAnimationFrame 里面的回调函数是在页面刷新之前执行，它跟着屏幕的刷新频率走，保证每个刷新间隔只执行一次，内如果页面未激活的话，requestAnimationFrame 也会停止渲染，这样既可以保证页面的流畅性，又能节省主线程执行函数的开销
+
+
+
+
+同步回调就是在当前主函数的上下文中执行回调函数，这个没有太多可讲的。下面我们主要来看看异步回调过程，异步回调是指回调函数在主函数之外执行，一般有两种方式：
+
+第一种是把异步函数做成一个任务，添加到信息队列尾部；
+第二种是把异步函数添加到微任务队列中，这样就可以在当前任务的末尾处执行微任务了。
+
+
+对比上一篇文章，setTimeout 是直接将延迟任务添加到延迟队列中，而 XMLHttpRequest 发起请求，是由浏览器的其他进程或者线程去执行，然后再将执行结果利用 IPC 的方式通知渲染进程，之后渲染进程再将对应的消息添加到消息队列中。如果你搞懂了 setTimeout 和 XMLHttpRequest 的工作机制后，再来理解其他 WebAPI 就会轻松很多了，因为大部分 WebAPI 的工作逻辑都是类似的。
+
+
+
+浏览器的应用领域越来越广泛，消息队列中这种粗时间颗粒度的任务已经不能胜任部分领域的需求，所以又出现了一种新的技术——微任务。微任务可以在实时性和效率之间做一个有效的权衡。
+
+从目前的情况来看，微任务已经被广泛地应用，基于微任务的技术有 MutationObserver、Promise 以及以 Promise 为基础开发出来的很多其他的技术。
+
+
+
+宏任务
+前面我们已经介绍过了，页面中的大部分任务都是在主线程上执行的，这些任务包括了：
+
+渲染事件（如解析 DOM、计算布局、绘制）；
+用户交互事件（如鼠标点击、滚动页面、放大缩小等）；
+JavaScript 脚本执行事件；
+网络请求完成、文件读写完成事件。
+为了协调这些任务有条不紊地在主线程上执行，页面进程引入了消息队列和事件循环机制，渲染进程内部会维护多个消息队列，比如延迟执行队列和普通的消息队列。然后主线程采用一个 for 循环，不断地从这些任务队列中取出任务并执行任务。我们把这些消息队列中的任务称为宏任务。
+
+
+
+微任务和宏任务是绑定的，每个宏任务在执行时，会创建自己的微任务队列。
+微任务的执行时长会影响到当前宏任务的时长。比如一个宏任务在执行过程中，产生了 100 个微任务，执行每个微任务的时间是 10 毫秒，那么执行这 100 个微任务的时间就是 1000 毫秒，也可以说这 100 个微任务让宏任务的执行时间延长了 1000 毫秒。所以你在写代码的时候一定要注意控制微任务的执行时长。
+在一个宏任务中，分别创建一个用于回调的宏任务和微任务，无论什么情况下，微任务都早于宏任务执行。
+
+
+
+《浏览器工作原理与实践 》之 19丨Promise：使用Promise，告别回调函数
+第一是嵌套调用，下面的任务依赖上个任务的请求结果，并在上个任务的回调函数内部执行新的业务逻辑，这样当嵌套层次多了之后，代码的可读性就变得非常差了。
+第二是任务的不确定性，执行每个任务都有两种可能的结果（成功或者失败），所以体现在代码中就需要对每个任务的执行结果做两次判断，这种对每个任务都要进行一次额外的错误处理的方式，明显增加了代码的混乱程度。
+原因分析出来后，那么问题的解决思路就很清晰了：
+
+第一是消灭嵌套调用；
+第二是合并多个任务的错误处理。
+这么讲可能有点抽象，不过 Promise 已经帮助我们解决了这两个问题。
+
+
+是因为 Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被 onReject 函数处理或 catch 语句捕获为止。具备了这样“冒泡”的特性后，就不需要在每个 Promise 对象中单独捕获异常了。
+
+
+
+问题：（自己想）
+  Promise 中为什么要引入微任务？
+Promise 中是如何实现回调函数返回值穿透的？
+Promise 出错后，是怎么通过“冒泡”传递给最后那个捕获异常的函数？
+
+
+
+
+ DOMContentLoaded 和 Load 两个事件，以及这两个事件的完成时间。
+
+DOMContentLoaded，这个事件发生后，说明页面已经构建好 DOM 了，这意味着构建 DOM 所需要的 HTML 文件、JavaScript 文件、CSS 文件都已经下载完成了。
+Load，说明浏览器已经加载了所有的资源（图像、样式表等）。
+
+
+
+
+
+Promise 通过回调函数延迟绑定、回调函数返回值穿透和和错误“冒泡”技术 // Promise 的 core
+
+
+
+
+我在两段 div 中间插入了一段 JavaScript 脚本，这段脚本的解析过程就有点不一样了。<script>标签之前，所有的解析流程还是和之前介绍的一样，但是解析到<script>标签时，渲染引擎判断这是一段脚本，此时 HTML 解析器就会暂停 DOM 的解析，因为接下来的 JavaScript 可能要修改当前已经生成的 DOM 结构。
+
+
+
+因为JavaScript 文件的下载过程会阻塞 DOM 解析，而通常下载又是非常耗时的，会受到网络环境、JavaScript 文件大小等因素的影响。
+
+不过 Chrome 浏览器做了很多优化，其中一个主要的优化是预解析操作。当渲染引擎收到字节流之后，会开启一个预解析线程，用来分析 HTML 文件中包含的 JavaScript、CSS 等相关文件，解析到相关文件之后，预解析线程会提前下载这些文件。
+
+
+async 和 defer 虽然都是异步的，不过还有一些差异，使用 async 标志的脚本文件一旦加载完成，会立即执行；而使用了 defer 标记的脚本文件，需要在 DOMContentLoaded 事件之前执行。
+
+执行 JavaScript 之前，需要先解析 JavaScript 语句之上所有的 CSS 样式。所以如果代码里引用了外部的 CSS 文件，那么在执行 JavaScript 之前，还需要等待外部的 CSS 文件下载完成，并解析生成 CSSOM 对象之后，才能执行 JavaScript 脚本。
+
+
+而 JavaScript 引擎在解析 JavaScript 之前，是不知道 JavaScript 是否操纵了 CSSOM 的，所以渲染引擎在遇到 JavaScript 脚本时，不管该脚本是否操纵了 CSSOM，都会执行 CSS 文件下载，解析操作，再执行 JavaScript 脚本。
+
+ JavaScript 脚本是依赖样式表的，
+
+
+ JavaScript 会阻塞 DOM 生成，而样式文件又会阻塞 JavaScript 的执行，所以在实际的工程中需要重点关注 JavaScript 文件和样式表文件，使用不当会影响到页面性能的。
+
+
+
+ 和 DOM 一样，CSSOM 也具有两个作用，第一个是提供给 JavaScript 操作样式表的能力，第二个是为布局树的合成提供基础的样式信息。
+
+
+
+ 在解析 DOM 的过程中，如果遇到了 JavaScript 脚本，那么需要先暂停 DOM 解析去执行 JavaScript，因为 JavaScript 有可能会修改当前状态下的 DOM。
+
+不过在执行 JavaScript 脚本之前，如果页面中包含了外部 CSS 文件的引用，或者通过 style 标签内置了 CSS 内容，那么渲染引擎还需要将这些内容转换为 CSSOM，因为 JavaScript 有修改 CSSOM 的能力，所以在执行 JavaScript 之前，还需要依赖 CSSOM。也就是说 CSS 在部分情况下也会阻塞 DOM 的生成。
+
+
+
+不管 CSS 文件和 JavaScript 文件谁先到达，都要先等到 CSS 文件下载完成并生成 CSSOM，然后再执行 JavaScript 脚本，最后再继续构建 DOM，构建布局树，绘制页面。 !!!!!!!!
+
+
+
+主要问题是白屏时间，如果白屏时间过久，就会影响到用户体验。为了缩短白屏时间，我们来挨个分析这个阶段的主要任务，包括了解析 HTML、下载 CSS、下载 JavaScript、生成 CSSOM、执行 JavaScript、生成布局树、绘制页面一系列操作。
+
+通常情况下的瓶颈主要体现在下载 CSS 文件、下载 JavaScript 文件和执行 JavaScript。
+
+
+所以要想缩短白屏时长，可以有以下策略：
+
+通过内联 JavaScript、内联 CSS 来移除这两种类型的文件下载，这样获取到 HTML 文件之后就可以直接开始渲染流程了。
+但并不是所有的场合都适合内联，那么还可以尽量减少文件大小，比如通过 webpack 等工具移除一些不必要的注释，并压缩 JavaScript 文件。
+还可以将一些不需要在解析 HTML 阶段使用的 JavaScript 标记上 sync 或者 defer。
+对于大的 CSS 文件，可以通过媒体查询属性，将其拆分为多个不同用途的 CSS 文件，这样只有在特定的场景下才会加载特定的 CSS 文件。
+通过以上策略就能缩短白屏展示的时长了，不过在实际项目中，总是存在各种各样的情况，这些策略并不能随心所欲地去引用，所以还需要结合实际情况来调整最佳方案。
+
+
+
+
+
+
+渲染流水线。关于其中任意一帧的生成方式，有重排、重绘和合成三种方式。
+
+这三种方式的渲染路径是不同的，通常渲染路径越长，生成图像花费的时间就越多。比如重排，它需要重新根据 CSSOM 和 DOM 来计算布局树，这样生成一幅图片时，会让整个渲染流水线的每个阶段都执行一遍，如果布局复杂的话，就很难保证渲染的效率了。而重绘因为没有了重新布局的阶段，操作效率稍微高点，但是依然需要重新计算绘制信息，并触发绘制操作之后的一系列操作。
+
+相较于重排和重绘，合成操作的路径就显得非常短了，并不需要触发布局和绘制两个阶段，如果采用了 GPU，那么合成的效率会非常高。
+
+所以，关于渲染引擎生成一帧图像的几种方式，按照效率我们推荐合成方式优先，若实在不能满足需求，那么就再退后一步使用重绘或者重排的方式。
+
+本文我们的焦点在合成上，所以接下来我们就来深入分析下 Chrome 浏览器是怎么实现合成操作的。Chrome 中的合成技术，可以用三个词来概括总结：分层、分块和合成。
+
+
+合成操作是在合成线程上完成的，这也就意味着在执行合成操作时，是不会影响到主线程执行的。这就是为什么经常主线程卡住了，但是 CSS 动画依然能执行的原因。
+
+
+在写 Web 应用的时候，你可能经常需要对某个元素做几何形状变换、透明度变换或者一些缩放操作，如果使用 JavaScript 来写这些效果，会牵涉到整个渲染流水线，所以 JavaScript 的绘制效率会非常低下。
+
+这时你可以使用 will-change 来告诉渲染引擎你会对该元素做一些特效变换，CSS 代码如下：
+
+.box {
+    will-change: transform, opacity;
+}
+这段代码就是提前告诉渲染引擎 box 元素将要做几何变换和透明度变换操作，这时候渲染引擎会将该元素单独实现一帧，等这些变换发生时，渲染引擎会通过合成线程直接去处理变换，这些变换并没有涉及到主线程，这样就大大提升了渲染的效率。这也是 CSS 动画比 JavaScript 动画高效的原因。
+
+
+
+
+好了，今天就介绍到这里，下面我来总结下今天的内容。
+
+首先我们介绍了显示器显示图像的原理，以及帧和帧率的概念，然后基于帧和帧率我们又介绍渲染引擎是如何实现一帧图像的。通常渲染引擎生成一帧图像有三种方式：重排、重绘和合成。其中重排和重绘操作都是在渲染进程的主线程上执行的，比较耗时；而合成操作是在渲染进程的合成线程上执行的，执行速度快，且不占用主线程。
+然后我们重点介绍了浏览器是怎么实现合成的，其技术细节主要可以使用三个词来概括：分层、分块和合成。
+最后我们还讲解了 CSS 动画比 JavaScript 动画高效的原因，以及怎么使用 will-change 来优化动画或特效。
+
+
+
+通过前面文章的讲解，你应该已经知道了并非所有的资源都会阻塞页面的首次绘制，比如图片、音频、视频等文件就不会阻塞页面的首次渲染；而 JavaScript、首次请求的 HTML 资源文件、CSS 文件是会阻塞首次渲染的，因为在构建 DOM 的过程中需要 HTML 和 JavaScript 文件，在构造渲染树的过程中需要用到 CSS 文件。
+
+
+
+
+/浏览器工作原理与实践/06-浏览器中的页面 (8讲)/25丨页面性能：如何系统地优化页面？.html  *****
+
+
+
+DOM 的缺陷
+通过前面一系列文章的学习，你对 DOM 的生成过程应该已经有了比较深刻的理解，并且也知道了通过 JavaScript 操纵 DOM 是会影响到整个渲染流水线的。另外，DOM 还提供了一组 JavaScript 接口用来遍历或者修改节点，这套接口包含了 getElementById、removeChild、appendChild 等方法。
+
+比如，我们可以调用document.body.appendChild(node)往 body 节点上添加一个元素，调用该 API 之后会引发一系列的连锁反应。首先渲染引擎会将 node 节点添加到 body 节点之上，然后触发样式计算、布局、绘制、栅格化、合成等任务，我们把这一过程称为重排。除了重排之外，还有可能引起重绘或者合成操作，形象地理解就是“牵一发而动全身”。另外，对于 DOM 的不当操作还有可能引发强制同步布局和布局抖动的问题，这些操作都会大大降低渲染效率。因此，对于 DOM 的操作我们时刻都需要非常小心谨慎。
+
+
+
+/浏览器工作原理与实践/05-浏览器中的页面循环系统%20(6讲)/20丨async-await：使用同步的方式去写异步代码.html
+
+
+
+
+HTTP/1.1 的主要问题
+虽然 HTTP/1.1 采取了很多优化资源加载速度的策略，也取得了一定的效果，但是 HTTP/1.1对带宽的利用率却并不理想，这也是 HTTP/1.1 的一个核心问题。
+
+带宽是指每秒最大能发送或者接收的字节数。我们把每秒能发送的最大字节数称为上行带宽，每秒能够接收的最大字节数称为下行带宽。
+
+之所以说 HTTP/1.1 对带宽的利用率不理想，是因为 HTTP/1.1 很难将带宽用满。比如我们常说的 100M 带宽，实际的下载速度能达到 12.5M/S，而采用 HTTP/1.1 时，也许在加载页面资源时最大只能使用到 2.5M/S，很难将 12.5M 全部用满。
+
+
+HTTP/2 的解决方案可以总结为：一个域名只使用一个 TCP 长连接和消除队头阻塞问题。
+
+
+HTTP/2 添加了一个二进制分帧层，那我们就结合图来分析下 HTTP/2 的请求和接收过程。
+
+首先，浏览器准备好请求数据，包括了请求行、请求头等信息，如果是 POST 方法，那么还要有请求体。
+这些数据经过二进制分帧层处理之后，会被转换为一个个带有请求 ID 编号的帧，通过协议栈将这些帧发送给服务器。
+服务器接收到所有帧之后，会将所有相同 ID 的帧合并为一条完整的请求信息。
+然后服务器处理该条请求，并将处理的响应行、响应头和响应体分别发送至二进制分帧层。
+同样，二进制分帧层会将这些响应数据转换为一个个带有请求 ID 编号的帧，经过协议栈发送给浏览器。
+浏览器接收到响应帧之后，会根据 ID 编号将帧的数据提交给对应的请求。
+从上面的流程可以看出，通过引入二进制分帧层，就实现了 HTTP 的多路复用技术。
+
+
+
+
+HTTP/3 选择了一个折衷的方法——UDP 协议，基于 UDP 实现了类似于 TCP 的多路数据流、传输可靠性等功能，我们把这套功能称为QUIC 协议。
+
+
+// 这个说的挺有见解
+我的看法：这些年但凡觉得TCP不满足自己需求的人，基本都是在UDP上重新“发明”一套自己的流控和包顺序控制算法。说白了吧，就是重新造轮子再做一个（自己认为）更好的TCP。只是这类型的协议，目前没有一个能真的威胁到TCP的，固然有老师说的TCP协议僵化存在的原因，但是我也在想：TCP就真的这么不堪吗
+
+XSS 全称是 Cross Site Scripting，为了与“CSS”区分开来，故简称 XSS，翻译过来就是“跨站脚本”。XSS 攻击是指黑客往 HTML 文件中或者 DOM 中注入恶意脚本，从而在用户浏览页面时利用注入的恶意脚本对用户实施攻击的一种手段。
+
+通常情况下，主要有存储型 XSS 攻击、反射型 XSS 攻击和基于 DOM 的 XSS 攻击三种方式来注入恶意脚本。
+
+
+Web 服务器不会存储反射型 XSS 攻击的恶意脚本，这是和存储型 XSS 攻击不同的地方。
+
+
+
+
+CSRF 英文全称是 Cross-site request forgery，所以又称为“跨站请求伪造”，是指黑客引诱用户打开黑客的网站，在黑客的网站中，利用用户的登录状态发起的跨站请求。简单来讲，CSRF 攻击就是黑客利用了用户的登录状态，并通过第三方的站点来做一些坏事。
+
+
+
+和 XSS 不同的是，CSRF 攻击不需要将恶意代码注入用户的页面，仅仅是利用服务器的漏洞和用户的登录状态来实施攻击
+
+
+
+
+首先假设你发出登录InfoQ的站点请求，然后在InfoQ返回HTTP响应头给浏览器，InfoQ响应头中的某些set-cookie字段如下所示：
+set-cookie: a_value=avalue_xxx; expires=Thu, 21-Nov-2019 03:53:16 GMT; path=/; domain=.infoq.com; SameSite=strict
+set-cookie: b_value=bvalue_xxx; expires=Thu, 21-Nov-2019 03:53:16 GMT; path=/; domain=.infoq.com; SameSite=lax
+set-cookie: c_value=cvaule_xxx; expires=Thu, 21-Nov-2019 03:53:16 GMT; path=/; domain=.infoq.com; SameSite=none
+set-cookie: d_value=dvaule_xxxx; expires=Thu, 21-Nov-2019 03:53:16 GMT; path=/; domain=.infoq.com;
+
+
+我们可以看出，
+a_value的SameSite属性设置成了strict，
+b_value的SameSite属性设置成了lax
+c_value的SameSite属性值设置成了none
+d_value没有设置SameSite属性值
+
+
+好，这些Cookie设置好之后，当你再次在InfoQ的页面内部请求InfoQ的资源时，这些Cookie信息都会被附加到HTTP的请求头中，如下所示：
+cookie: a_value=avalue_xxx;b_value=bvalue_xxx;c_value=cvaule_xxx;d_value=dvaule_xxxx;
+
+但是，假如你从time.geekbang.org的页面中，通过a标签打开页面，如下所示：
+<a href="https://www.infoq.cn/sendcoin?user=hacker&number=100">点我下载</a>
+当用户点击整个链接的时候，因为InfoQ中a_vaule的SameSite的值设置成了strict，那么a_vaule的值将不会被携带到这个请求的HTTP头中。
+
+如果time.geekbang.org的页面中，有通过img来加载的infoq的资源代码，如下所示：
+ <img src="https://www.infoq.cn/sendcoin?user=hacker&number=100">
+那么在加载infoQ资源的时候，只会携带c_value,和d_value的值。
+
+
+这样写不知道你明白没有，如果还有疑惑欢迎继续提问。
+
+
+
+我们知道浏览器被划分为两个核心模块，其中浏览器内核是由网络进程、浏览器主进程和 GPU 进程组成的，渲染内核就是渲染进程。那如果我们在浏览器中打开一个页面，这两个模块是怎么配合的呢？
+
+
+所有的网络资源都是通过浏览器内核来下载的，下载后的资源会通过 IPC 将其提交给渲染进程（浏览器内核和渲染进程之间都是通过 IPC 来通信的）。然后渲染进程会对这些资源进行解析、绘制等操作，最终生成一幅图片。但是渲染进程并不负责将图片显示到界面上，而是将最终生成的图片提交给浏览器内核模块，由浏览器内核模块负责显示这张图片。
+
+
+
+浏览器工作原理与实践/08-浏览器安全%20(5讲)/35丨安全沙箱：页面和系统之间的隔离墙.html  // 更高的维度讲解的浏览器架构
+
+
+
+
+
+44. 观察者模式
+
+
+45. node
+  1) 资源压缩 zlib
+  2) 文件读取 fs
+      同步/异步
+  3）DNS域名解析
+  4）http 模块是基于stream 模块
+
+
+//  https://stackoverflow.com/questions/59750976/what-are-primordials-in-node-js
+
+
+46. 又一道坑爹的js题目：
+
+https://www.zhihu.com/question/41220520
+
+
+
+let a = {n: 1};
+let b = a;
+a.x = a = {n: 2};
+console.log(a.x);
+console.log(b);
+
+
+
+JS引擎是怎样计算一般的赋值表达式 A = B的呢？简单地说，按如下步骤：
+
+   1） 计算表达式A，得到一个引用refA；
+
+   2）  计算表达式B，得到一个值valueB；
+
+   3）  将valueB赋给refA指向的名称绑定；
+
+   4）  返回valueB。
+
+
+window.requestAnimationFrame 应该是在每一帧的开始就执行吧？
+作者回复: 应该说raf的回调任务会在每一帧的开始执行
+
+
+
+
+47.  p标签 包含div 是不合法的。也就是说block元素不一定能包含block元素
+  因为inline元素一般不能包含block元素
+  特殊情况是 a标签是可以包含block元素的，因为这个时候browser是将a标签当做透明元素，即不存在
+
+48. js中的坑
+
+NaN == NaN // false
+typeof NaN // number
+
+
+除了特殊的几个值 ‘’ 、 undefined 、 NAN 、 null 、 false 、 0 转化为 Boolean 为 false
+之外，其他类型值都转化为 true 。
+
+
+
+Boolean('') // false 
+Boolean(undefined) // false 
+Boolean(null) // false 
+Boolean(NaN) // false 
+Boolean(false) // false 
+Boolean(0) // false 
+Boolean({}) // true 
+Boolean([]) // true
+
+
+
+
+转化原始类型分为两种情况：转化为字符串类型或其他原始类型。
+    如果已经是原始类型，不需要再进行转化。
+    如果转字符串类型，就调用内置函数中的 toString() 方法。
+    如果是其他基本类型，则调用内置函数中的 valueOf() 方法。
+    如果返回的不是原始类型，则会继续调用 toString() 方法。
+    如果还没有返回原始类型，则报错。
+
+
+
+一共有四种数据类型检测：
+typeof ：
+instanceof
+constructor
+Object.prototype.toString.call()
+
+
+
+
+面试官：为什么 typeof null 等于 Object?
+不同的对象在底层原理的存储是用二进制表示的，在 javaScript 中，如果二进制的前三位都为 0 的
+话，系统会判定为是 Object 类型。 null 的存储二进制是 000 ，也是前三位，所以系统判定 null 为 Object 类型。
+扩展：
+这个 bug 个第一版的 javaScript 留下来的。俺也进行扩展一下其他的几个类型标志位：
+000 ：对象类型。
+1 ：整型，数据是31位带符号整数。
+010 ：双精度类型，数据是双精度数字。
+100 ：字符串，数据是字符串。
+110 ：布尔类型，数据是布尔值。
+
+
+
+四则运算法则中，除了加法之外，其余都是数学计算。在 JS 中只有【加法】可能存在字符串拼接（一
+旦遇到字符串，则不是数学运算，而是字符串拼接）
+
+其他算术运算符（比如减法、除法和乘法）都不会发生重载。它们的规则是：所有运算子一
+律转为数值，再进行相应的数学运算。
+
+
+
+
+赋值操作
+
+A && B
+  首先看 A 的真假， A 为假，返回 A 的值， A 为真返回 B 的值。（不管 B 是啥）
+  console.log(0 && 1) // 0 
+  console.log(1 && 2) // 2 
+
+A || B
+  首先看 A 的真假， A 为真返回的是 A 的值， A 为假返回的是 B 的值（不管 B 是啥）
+  console.log(0 || 1) // 1 
+  console.log(1 || 2) // 1
+
+
+
+
+0.1 + 0.2 // 0.30000000000000004
+出现这种情况的原因在于计算的时候，JavaScript 引擎会先将十进制数转换为二进制，然后进行加法运算，再将所得结果转换为十进制。在进制转换过程中如果小数位是无限的，就会出现误差。
+
+
+[undefined, null, true, '', 0, Symbol(), {}].map(it => typeof it)// ["undefined", "object", "boolean", "string", "number", "symbol", "object"]
+
+
+// 在遍历 Object 类型数据时，我们需要把 Symbol 数据类型也考虑进来，所以不能通过 Object.keys 获取键名或 for...in 方式遍历，而是通过 getOwnPropertyNames 和 getOwnPropertySymbols 函数将键名组合成数组，然后进行遍历。对于键数组长度为 0 的非 Object 类型的数据可直接返回，然后再遍历递归，最终实现拷贝。
+
+
+function clone(data) {
+  let result = {}
+  const keys = [...Object.getOwnPropertyNames(data), ...Object.getOwnPropertySymbols(data)]
+  if(!keys.length) return data
+  keys.forEach(key => {
+    let item = data[key]
+    if (typeof item === 'object' && item) {
+      result[key] = clone(item)
+    } else {
+      result[key] = item
+    }
+  })
+  return result
+}
+
+
+// 针对变量互相引用的改进版本
+function clone(obj) {
+  let map = new WeakMap()
+  function deep(data) {
+    let result = {}
+    const keys = [...Object.getOwnPropertyNames(data), ...Object.getOwnPropertySymbols(data)]
+    if(!keys.length) return data
+    const exist = map.get(data)
+    if (exist) return exist
+    map.set(data, result)
+    keys.forEach(key => {
+      let item = data[key]
+      if (typeof item === 'object' && item) {
+        result[key] = deep(item)
+      } else {
+        result[key] = item
+      }
+    })
+    return result
+  }
+  return deep(obj)
+}
+
+
+
+
+
+
+let b = '10';
+ switch(b){ case 10: b++; break; default: b--; }
+console.log(b); // 9
+
+//if （==）和 switch （===）的区别
+
+
+
+
+手写call：
+
+  
+    首先 context 为可选参数，如果不传的话默认上下文为 window ；
+    接下来给 context 创建一个 fn 属性，并将值设置为需要调用的函数；
+    因为 call 可以传入多个参数作为调用函数的参数，所以需要将参数剥离出来；
+    然后调用函数并将对象上的函数删除。
+// this 为调用的函数 
+// context 是参数对象 
+Function.prototype.myCall = function(context){ 
+  // 判断调用者是否为函数 if(typeof this !== 'function'){ throw new TypeError('Error') }
+  // 不传参默认为 window 
+   context = context || window 
+  // 新增 fn 属性,将值设置为需要调用的函数 
+   context.fn = this 
+  // 将 arguments 转化为数组将 call 的传参提取出来 [...arguments] 
+  const args = Array.from(arguments).slice(1) 
+  // 传参调用函数 
+    const result =  context.fn(...args) 
+  // 删除函数 
+  delete context.fn 
+  // 返回执行结果 
+  return result; 
+  }
+
+
+规定 变量和函数 的可使用范围叫做作用域
+
+
+49. css基础
+
+iconfont 原理是自定义字体
+line-height 垂直居中
+img 3px 问题 （默认按照base-line对齐） // https://stackoverflow.com/questions/2402761/is-img-element-block-level-or-inline-level 
+img 是 inline元素，所以会按照base-line对齐，故存在3px 像素问题，但是又可以设置其宽高。
+
+
+预处理器：嵌套，变量，mixin，extend,import
+
+css 如何实现三角形  边框斜切
+
+
+flex : flex-grow/flex-shrink/flex-basic
+
+flex : 1   是 flex: 1 1 0 的缩写
+
+
+
+       flex-wrap
+
+
+       
+
+ wwww.cnblogs.com/best/p/8093144.html (很好的css总结)
+
+ 三、特殊性（优先级）
+a)、同类型，同级别的样式后者先于前者
+b)、ID > 类样式 > 标签 > *
+c)、内联>ID选择器>伪类>属性选择器>类选择器>标签选择器>通用选择器(*)>继承的样式
+d)、具体 > 泛化的，特殊性即css优先级
+e)、近的 > 远的 (内嵌样式 > 内部样式表 > 外联样式表)
+
+内嵌样式：内嵌在元素中，<span style="color:red">span</span>
+
+内部样式表：在页面中的样式，写在<style></style>中的样式
+
+外联样式表：单独存在一个css文件中，通过link引入或import导入的样式
+f)、!important 权重最高，比 inline style 还要高
+
+
+
+
+3.2、计算特殊性值
+important > 内嵌 > ID > 类 > 标签 | 伪类 | 属性选择 > 伪对象 > 继承 > 通配符
+权重、特殊性计算法：
+CSS样式选择器分为4个等级，a、b、c、d
+1.如果样式是行内样式（通过Style=“”定义），那么a=1，1,0,0,0
+2.b为ID选择器的总数 0,1,0,0
+3.c为属性选择器，伪类选择器和class类选择器的数量。0,0,1,0
+
+4.d为标签、伪元素选择器的数量 0,0,0,1
+
+5.!important 权重最高，比 inline style 还要高
+
+ 比如结果为：1093比1100，按位比较，从左到右，只要一位高于则立即胜出，否则继续比较。
+
+
+ chrome浏览器限制了最小字体大小为12px
+
+
+
+50. vue 源码
+
+//https://juejin.im/post/5ecf0abc6fb9a047ab2c1720  // 很好的源码分析文章
+Object.setPrototypeOf(obj, prototype)
+
+
+51. es6 generator 协程
+
+Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。
+
+function* gen(x){
+  var y = yield x + 2;
+  return y;
+}
+
+上面代码就是一个 Generator 函数。它不同于普通函数，是可以暂停执行的，所以函数名之前要加星号，以示区别。
+
+整个 Generator 函数就是一个封装的异步任务，或者说是异步任务的容器。异步操作需要暂停的地方，都用 yield 语句注明。Generator 函数的执行方法如下。
+
+
+var g = gen(1);
+g.next() // { value: 3, done: false }
+g.next() // { value: undefined, done: true }
+
+
+上面代码中，调用 Generator 函数，会返回一个内部指针（即遍历器 ）g 。这是 Generator 函数不同于普通函数的另一个地方，即执行它不会返回结果，返回的是指针对象。调用指针 g 的 next 方法，会移动内部指针（即执行异步任务的第一段），指向第一个遇到的 yield 语句，上例是执行到 x + 2 为止。
+
+换言之，next 方法的作用是分阶段执行 Generator 函数。每次调用 next 方法，会返回一个对象，表示当前阶段的信息（ value 属性和 done 属性）。value 属性是 yield 语句后面表达式的值，表示当前阶段的值；done 属性是一个布尔值，表示 Generator 函数是否执行完毕，即是否还有下一个阶段。
+
+Generator 函数可以暂停执行和恢复执行，这是它能封装异步任务的根本原因。除此之外，它还有两个特性，使它可以作为异步编程的完整解决方案：函数体内外的数据交换和错误处理机制。
+
+next 方法返回值的 value 属性，是 Generator 函数向外输出数据；next 方法还可以接受参数，这是向 Generator 函数体内输入数据。
+
+
+function* gen(x){
+  var y = yield x + 2;
+  return y;
+}
+
+var g = gen(1);
+g.next() // { value: 3, done: false }
+g.next(2) // { value: 2, done: true }
+上面代码中，第一个 next 方法的 value 属性，返回表达式 x + 2 的值（3）。第二个 next 方法带有参数2，这个参数可以传入 Generator 函数，作为上个阶段异步任务的返回结果，被函数体内的变量 y 接收。因此，这一步的 value 属性，返回的就是2（变量 y 的值）。
+
+Generator 函数内部还可以部署错误处理代码，捕获函数体外抛出的错误。
+
+
+function* gen(x){
+  try {
+    var y = yield x + 2;
+  } catch (e){ 
+    console.log(e);
+  }
+  return y;
+}
+
+var g = gen(1);
+g.next();
+g.throw（'出错了'）; // 出错了
+上面代码的最后一行，Generator 函数体外，使用指针对象的 throw 方法抛出的错误，可以被函数体内的 try ... catch 代码块捕获。这意味着，出错的代码与处理错误的代码，实现了时间和空间上的分离，这对于异步编程无疑是很重要的。
+
+
+
+yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
+
+function* foo(x) {
+  var y = 2 * (yield (x + 1));
+  var z = yield (y / 3);
+  return (x + y + z);
+}
+
+var a = foo(5);
+a.next() // Object{value:6, done:false}
+a.next() // Object{value:NaN, done:false}
+a.next() // Object{value:NaN, done:true}
+
+var b = foo(5);
+b.next() // { value:6, done:false }
+b.next(12) // { value:8, done:false }
+b.next(13) // { value:42, done:true }
+
+
+
+//  https://github.com/frontend9/fe9-interview/issues/6
+
+
+//  https://www.jianshu.com/p/f8ae14a3ebff
+async function test(){
+  await readFile('a'); 
+  console.log('b');
+  console.log('c')
+}
+test(); 
+console.log('d');   //d a b c
+// d的打印没有被await阻塞住，先打印了d。await只会影响async函数内部的执行顺序。
+
+
+
+
+52. flutter vs cordova
+https://waverleysoftware.com/blog/flutter-vs-cordova/
+
+
+
+
+53. es6 module 
+
+const a = 1;
+export defalut a;
+// 等价于
+export { a as default }
+
+
+es6和 commonjs的区别  // https://juejin.im/post/5e4cb5e7f265da576c24c2f3
+
+// https://juejin.im/post/5e5f10176fb9a07cd443c1e2 (未读)
+
+
+54. Vue vs React
+
+a) react 没有 vue 中内置的各种v-指令
+b) vue中有slot ，而在react中则是 this.props.children 
+
+
+55. arrow function
+
+箭头函数和普通函数相比，有以下几个区别，在开发中应特别注意：
+
+不绑定 arguments 对象，也就是说在箭头函数内访问 arguments 对象会报错；
+不能用作构造器，也就是说不能通过关键字 new 来创建实例；
+默认不会创建 prototype 原型属性；
+不能用作 Generator() 函数，不能使用 yeild 关键字。
+
+
+56. flutter
+
+
+  Ionic/Cordova（Hybrid），在技术原理上的核心是，将原生的一些能力通过 JSBridge 封装给 Web 来调用，扩充了 Web 应用能力。但是这种方法有两个不足，一是依赖客户端，二是在性能和体验上都非常依赖于 Web 端。因此，整体上的体验不可预知。目前这个技术还经常被应用到，例如，当前 App 内会提供白名单域名和可调用的 JSBridge 方法，由此来增强 H5 与客户端交互能力，从而提升 App 内 H5 的灵活性。
+
+
+  React Native/Weex，在原来的 Hybrid 的 JSBridge 基础上进行改进，将 JavaScript 的界面以及交互转化为 Native 的控件，从而在体验上和原生界面基本一致。但因为是 JIT 模式，因此需要频繁地在 JavaScript 与 Native 之间进行通信，从而会有一定的性能损耗影响，导致体验上与原生会有一些差异。
+
+  Flutter，取长补短，结合了之前的一些优点，解决了与 Native 之间通信的问题，同时也有了自渲染模式（框架自身实现了一套 UI 基础框架，与原来的渲染模式基本一致）。从而在体验和性能上相对之前的两种框架表现都较好，具体是如何做到的，我会在接下来的第 22 课时中详细介绍。
+
+
+
+Hybrid 其实是一个 H5 页面，在每个 APP 中包了一个 H5 的 Web 页面，只是在需要原生功能的地方，通过原生封装一些 JSAPI 给到页面去调用，看起来就像是 H5 拥有了原生 APP 交互功能。所以文章里面说的依赖 Web 的性能就是这个原因。 React Native 以及 Weex ，就改变了用 H5 实现的方式，使用的是原生的界面，但是用户的各类事件操作，都是需要与 JS 进行操作，而 JS 操作后，需要将响应反馈到原生 Native 中，所以需要一个交互过程（ JIT 意思就是运行时编译，就像在运行的时候将 JS 编译为原生界面的过程 ）。
+
+
+
+57.  vuex vs redux
+
+https://lq782655835.github.io/blogs/react/diff-vuex-redux.html
+
+
+// redux 核心概念
+
+Store 收到 Action 以后，必须给出一个新的 State，这样 View 才会发生变化。这种 State 的计算过程就叫做 Reducer。
+
+Reducer 是一个函数，它接受 Action 和当前 State 作为参数，返回一个新的 State。
+
+Reducer 函数最重要的特征是，它是一个纯函数。也就是说，只要是同样的输入，必定得到同样的输出。
+
+Store 允许使用store.subscribe方法设置监听函数，一旦 State 发生变化，就自动执行这个函数。
+
+
+
+// 参考 http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html
+       http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_two_async_operations.html
+       http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html
+
+
+// 作为开发只是想要一个集中的状态管理组件，为何redux搞的那么复杂？
+
+// 个人觉得redux 使用起来更复杂些，有各种中间件的概念，同时redux将store中的各个状态分散在不同的reducer中
 
 
 
@@ -1693,18 +2633,293 @@ Function 的内部属性
 
 
 
+Vuex使用
+
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+// 初始化
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})
+
+
+// commit
+store.commit('increment')
+console.log(store.state.count) // -> 1
+
+// 注入
+new Vue({
+  el: '#app',
+  store: store,
+})
+
+
+
+// vuex中的getter
+Vuex 允许我们在 store 中定义“getter”（可以认为是 store 的计算属性）。就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
+
+
+// 使用常量替代 Mutation 事件类型
+
+    // mutation-types.js
+    export const SOME_MUTATION = 'SOME_MUTATION'
+    // store.js
+    import Vuex from 'vuex'
+    import { SOME_MUTATION } from './mutation-types'
+
+    const store = new Vuex.Store({
+      state: { ... },
+      mutations: {
+        // 我们可以使用 ES2015 风格的计算属性命名功能来使用一个常量作为函数名
+        [SOME_MUTATION] (state) {
+          // mutate state
+        }
+      }
+    })
+
+
+// mutation 必须是同步函数
+
+
+// action
+Action 类似于 mutation，不同在于：
+
+Action 提交的是 mutation，而不是直接变更状态。
+Action 可以包含任意异步操作。
+
+
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  },
+  actions: {
+    increment (context) { // Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象，因此你可以调用 context.commit 提交一个                       //  mutation，或者通过 context.state 和 context.getters 来获取 state 和 getters。
+      context.commit('increment')
+    }
+  }
+})
+
+
+Action 通过 store.dispatch 方法触发：
+
+store.dispatch('increment')
+
+
+
+
+58.  异步队列优先级
+
+常见的异步函数优先级如下，从上到下优先级逐层降低：
+
+process.nextTick(Node.js) > 
+MutationObserver(浏览器)/promise.then(catch、finnally)>
+setImmediate(IE) > 
+setTimeout/setIntervalrequestAnimationFrame >
+其他 I/O 操作 / 浏览器 DOM 事件
+
+
+
+
+假设现在要按照顺序执行调用 asyncF 函数 n 次，该怎么实现呢？
+
+对于这种场景可以通过数组函数 reduce 来实现，而不是简单地使用 for 循环或数组的 forEach 函数，比如像下面这样：
+
+[1...n].reduce(async (lastPromise, i) => {
+  try {
+    await lastPromise
+    console.log(await asyncF())
+  } catch(e) {
+    console.error(e)
+  }
+}, Promise.resolve())
 
 
 
 
 
+现在需要延迟打印数组 [1,2,3,4,5]，每一次打印的初始延迟为 1000ms，增长延迟为 500ms。打印结果如下所示：
+
+0s:    1
+1s:    2
+2.5s: 3
+4.5s: 4
+7s:    5
+这道题也是将多个异步函数改为串行执行的典型例子，所以也可以通过 reduce 函数来实现。由于引入了递增的延迟执行，所以都需要得到上一次执行的延迟时间。具体代码如下：
+
+const arr = [1, 2, 3, 4, 5]
+arr.reduce(async (prs, cur, index) => {
+  const t = await prs
+  const time = index === 0 ? 0 : 1000 + (index - 1) * 500
+  return new Promise((res) => {
+    setTimeout(() => {
+      console.log(cur);
+      res(time)
+    }, time)
+  })
+}, Promise.resolve(0))
+
+
+59. es6 复习
+
+a）对象结构
+
+let person = {
+    name : "beijing"
+}
+
+let {name : key} = person
+
+key // "beijing"
+
+name // name is not define
+
+
+b) String API
+
+startWith/endWith/includes
+
+c) 定义对象
+
+let a = 10;
+let b = "name";
+
+
+let obj = {
+
+  a,
+  b,
+  add(){
+    this.a + this.b
+  }
+};
+
+
+d) Object.is()
+
+Object.is(NaN,NaN) //true
+Object.is(+0,-0) //false
+
+e) Object.assign() // 浅拷贝
+
+f) Object.setPrototypeOf/Object.getPrototypeOf
+
+g) super关键字 // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super
+在构造函数中使用时，super关键字将单独出现，并且必须在使用this关键字之前使用。super关键字也可以用来调用父对象上的函数。
+
+h) iterator
+
+{value : xxx , done : true/false}
+
+function chef(foods){
+
+    let i = 0;
+    return {
+
+        next(){
+            let done = i === foods.length ? true : false;
+            let value = done ? void 0 : foods[i++] ;
+            
+            return {
+                value,
+                done,
+            }
+        }
+
+
+    }
+
+}
+
+let foods = [1,2,3,4];
+let iterator = chef(foods);
+console.log(iterator.next()); //?
+console.log(iterator.next()); //?
+console.log(iterator.next()); //?
+console.log(iterator.next()); //?
+console.log(iterator.next()); //?
+
+i) generator
+
+function* chef(foods){
+
+    for(let i=0;i<foods.length;i++){
+        yield foods[i];
+    }
+}
+
+let iterator = chef([1,2,3,4]);
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+
+
+j) Class 中的getter/setter
+
+
+class Chef{
+
+    constructor(){
+        this.dish = [];
+    }
+
+    // get 是关键字
+    get menu(){
+        return this.dish
+    }
+    // set 是关键字
+    set menu(food){
+        this.dish.push(food);
+    }
+
+}
+
+let chef1 = new Chef();
+chef1.menu = "apple";
+chef1.menu = "milk";
+
+console.log(chef1.menu); //["apple","milk"] 
+
+
+k) Set
+
+new Set([iterable]);
+
+let s1 = new Set("123")
+console.log(s1); // Set {1,2,3}
+
+
+let s2 = new Set([1,2,3,3,3,4,4])
+console.log(s2); // Set {1,2,3,4}
+l)
+
+
+
+m)
+
+n)
+
+
+60. 
 
 
 
 
-
-
-
+61.
 
 
 
@@ -1739,6 +2954,9 @@ Function 的内部属性
      2) https://juejin.im/post/5eb800ee5188256d9353afc3
      3) https://juejin.im/post/5eb8f5cdf265da7bd44254b4 
 
+     4)https://juejin.im/post/5ecc0cbef265da770274b2a5 
+
+    5） https://github.com/frontend9/fe9-interview/issues
 
      https://leohxj.gitbooks.io/front-end-database/javascript-asynchronous/use-promise.html  (all)
 
