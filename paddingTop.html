@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+.mod_banner {
+    position: relative;
+    /*可以使用padding-top 实现固定宽高比为的图片区域，比如100:750*/
+    padding-top: 150px;
+    height: 0;
+    width: 150px;
+    overflow: hidden;
+    background-color: antiquewhite;
+}
+
+.mod_banner img {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: 0;
+        top: 0; 
+    }
+
+
+
+    </style>
+
+
+</head>
+<body>
+
+
+
+<div class="mod_banner">
+
+    <img src="" alt="">
+
+</div>
+
+<script>
+
+    window.onload = () => {
+
+        
+        setTimeout(()=>{
+            let img = document.getElementsByTagName("img")[0];
+            img.src = "https://via.placeholder.com/150";    
+        },3000);
+
+    }
+
+</script>
+    
+</body>
+</html>

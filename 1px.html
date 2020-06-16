@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 px issue</title>
+</head>
+<style>
+
+.mod_grid {
+    position: relative;
+    height: 200px;
+    background-color: aqua;   
+}
+
+.mod_grid::after {
+        /* 实现1物理像素的下边框线 */
+        content: '';
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        background-color: red;
+        height: 1px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            -webkit-transform: scaleY(0.5);
+            -webkit-transform-origin: 50% 0%;
+        }
+    }
+
+
+
+</style>
+
+
+<body>
+    <div class="mod_grid"></div>
+</body>
+</html>

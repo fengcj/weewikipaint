@@ -2449,6 +2449,94 @@ CSS样式选择器分为4个等级，a、b、c、d
  chrome浏览器限制了最小字体大小为12px
 
 
+CSS3新增伪类有那些?
+p:first-of-type 选择属于其父元素的首个元素
+p:last-of-type 选择属于其父元素的最后元素
+p:only-of-type 选择属于其父元素唯一的元素
+p:only-child 选择属于其父元素的唯一子元素
+p:nth-child(2) 选择属于其父元素的第二个子元素
+:enabled :disabled 表单控件的禁用状态。
+:checked 单选框或复选框被选中。
+
+
+CSS优化、提高性能的方法有哪些？？？ google
+
+
+CSS动画CSS 中的 transform，transition 和 animation 是分开的三部分内容，其中 transfrom 主要是控制元素变形，并没有一个时间控制的概念，而 transition 和 animation 才是动画的部分，它们可以控制在一个时间段里，元素在两个或以上的状态切换的效果。
+
+
+transition 相关的事件transitionend 事件会在 transition 动画结束的时候触发。通常我们会在动画结束后执行一些方法，例如继续下一个动画效果或者其他。Zepto.js 中的动画方法都是使用 CSS 动画属性来处理，而其中动画运行后的回调便应该是使用这个事件来处理。
+
+
+
+
+
+animation example:
+
+  div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: 10;
+}
+
+  @keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
+  }
+
+
+
+
+怎样才能形成BFC根元素或其它包含它的元素；
+浮动 (元素的float不为none)；
+绝对定位元素 (元素的position为absolute或fixed)；
+行内块inline-blocks(元素的 display: inline-block)；
+表格单元格(元素的display: table-cell，HTML表格单元格默认属性)；
+overflow的值不为visible的元素；
+弹性盒 flex boxes (元素的display: flex或inline-flex)；但其中，最常见的就是overflow:hidden、float:left/right、position:absolute。也就是说，每次看到这些属性的时候，就代表了该元素以及创建了一个BFC了。
+
+浏览器对BFC区域的约束规则：
+
+生成BFC元素的子元素会一个接一个的放置。
+垂直方向上他们的起点是一个包含块的顶部，两个相邻子元素之间的垂直距离取决于元素的margin特性。在BFC中相邻的块级元素的外边距会折叠(Mastering margin collapsing)。
+生成BFC元素的子元素中，每一个子元素左外边距与包含块的左边界相接触（对于从右到左的格式化，右外边距接触右边界），即使浮动元素也是如此（尽管子元素的内容区域会由于浮动而压缩），除非这个子元素也创建了一个新的BFC（如它自身也是一个浮动元素）。BFC是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面元素，反之亦然。我们可以利用BFC的这个特性来做很多事。
+
+
+//  https://juejin.im/post/5909db2fda2f60005d2093db#heading-18
+
+visibility:hidden和display:none
+display:none  隐藏对应的元素，在文档布局中不再给它分配空间，它各边的元素会合拢，
+就当他从来不存在。
+
+visibility:hidden  隐藏对应的元素，但是在文档布局中仍保留原来的空间。
+使用CSS display:none属性后，HTML元素（对象）的宽度、高度等各种属性值都将“丢失”;而使用visibility:hidden属性后，HTML元素（对象）仅仅是在视觉上看不见（完全透明），而它所占据的空间位置仍然存在。
+
+
+
+我们可以从业界一些热门可靠的 CSS 框架中寻找参考答案，例如 [Bulma](https://bulma.io/)，其采用的「样式断点」有 5 个：
+
+| 断点名称   | 断点描述）                           |
+| :--------- | :----------------------------------- |
+| mobile     | 移动设备断点，视窗宽度 ≤ 768 px      |
+| tablet     | 平板电脑设备断点，视窗宽度 ≥ 769 px  |
+| desktop    | 桌面电脑断点，视窗宽度 ≥ 1024 px     |
+| widescreen | 宽屏电脑断点，视窗宽度 ≥ 1216 px     |
+| fullhd     | 高清宽屏电脑断点，视窗宽度 ≥ 1408 px |
+
+在实际工作中，「样式断点」的制定需要我们同视觉设计师一起沟通确认，因为视觉设计师可能需要根据不同的断点为页面设计不同的视觉表现。
+
+
+
+
+动画
+
+
+
+
+
 
 50. vue 源码
 
@@ -2583,6 +2671,19 @@ b) vue中有slot ，而在react中则是 this.props.children
 默认不会创建 prototype 原型属性；
 不能用作 Generator() 函数，不能使用 yeild 关键字。
 
+
+function fn(){
+    let arr = [1,2,3];
+    arr.map(function(){
+        console.log(this); // undefined 
+    });
+    arr.map(() => console.log(this)) //{a:100}
+}
+
+fn.call({a:100});
+
+
+this 问题？
 
 56. flutter
 
@@ -2925,8 +3026,32 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_background-origin
     
 
 
-61.
+61. npx
 
+// https://www.ruanyifeng.com/blog/2019/02/npx.html
+
+目前看主要就是2点：
+ 1） 执行本地node_modules中的可执行脚本
+ 2） 当使用npx安装某个modules时候，会临时下载，用完后再删除
+
+
+
+62. js 原型：
+
+
+> 题目：如何理解 JavaScript 的原型
+
+
+对于这个问题，可以从下面这几个要点来理解和回答，**下面几条必须记住并且理解**
+
+- **所有的引用类型（数组、对象、函数），都具有对象特性，即可自由扩展属性（`null`除外）**
+- **所有的引用类型（数组、对象、函数），都有一个`__proto__`属性，属性值是一个普通的对象**
+- **所有的函数，都有一个`prototype`属性，属性值也是一个普通的对象**
+- **所有的引用类型（数组、对象、函数），`__proto__`属性值指向它的构造函数的`prototype`属性值**
+
+
+
+63.
 
 
 
