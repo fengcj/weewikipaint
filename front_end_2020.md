@@ -3051,7 +3051,190 @@ https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_background-origin
 
 
 
-63.
+63. react example
+
+// https://codesandbox.io/s/6n20nrzlxz
+
+
+
+
+64. tcp
+
+https://blog.csdn.net/qzcsu/article/details/72861891
+https://dy.163.com/article/EENRSF0705315U6Q.html;NTESwebSI=58406168E255F8FF033F5090B80686E7.hz-subscribe-web-docker-cm-online-rpqqn-8gfzd-flemn-cbf955mzll9-8081
+
+65. 
+
+
+class PrimitiveString {
+    static [Symbol.hasInstance](x) {
+      return typeof x === 'string'
+    }
+  }
+  console.log('hello world' instanceof PrimitiveString)
+
+
+
+你可能不知道 `Symbol.hasInstance` 是什么东西，其实就是一个能让我们自定义 `instanceof` 行为的东西，以上代码等同于 `typeof 'hello world' === 'string'`，所以结果自然是 `true` 了。这其实也侧面反映了一个问题， `instanceof` 也不是百分之百可信的。
+
+
+
+### 对象转原始类型
+
+对象在转换类型的时候，会调用内置的 `[[ToPrimitive]]` 函数，对于该函数来说，算法逻辑一般来说如下：
+
+- 如果已经是原始类型了，那就不需要转换了
+- 调用 `x.valueOf()`，如果转换为基础类型，就返回转换的值
+- 调用 `x.toString()`，如果转换为基础类型，就返回转换的值
+- 如果都没有返回原始类型，就会报错
+
+当然你也可以重写 `Symbol.toPrimitive` ，该方法在转原始类型时调用优先级最高。
+
+let a = {
+  valueOf() {
+    return 0
+  },
+  toString() {
+    return '1'
+  },
+  [Symbol.toPrimitive]() {
+    return 2
+  }
+}
+1 + a // => 3
+
+
+
+### 四则运算符
+
+加法运算符不同于其他几个运算符，它有以下几个特点：
+
+- 运算中其中一方为字符串，那么就会把另一方也转换为字符串
+- 如果一方不是字符串或者数字，那么会将它转换为数字或者字符串
+
+```js
+1 + '1' // '11'
+true + true // 2
+4 + [1,2,3] // "41,2,3"
+```
+
+如果你对于答案有疑问的话，请看解析：
+
+- 对于第一行代码来说，触发特点一，所以将数字 `1` 转换为字符串，得到结果 `'11'`
+- 对于第二行代码来说，触发特点二，所以将 `true` 转为数字 `1`
+- 对于第三行代码来说，触发特点二，所以将数组通过 `toString` 转为字符串 `1,2,3`，得到结果 `41,2,3`
+
+另外对于加法还需要注意这个表达式 `'a' + + 'b'`
+
+```js
+'a' + + 'b' // -> "aNaN"
+```
+
+因为 `+ 'b'` 等于 `NaN`，所以结果为 `"aNaN"`，你可能也会在一些代码中看到过 `+ '1'` 的形式来快速获取 `number` 类型。
+
+那么对于除了加法的运算符来说，只要其中一方是数字，那么另一方就会被转为数字
+
+4 * '3' // 12
+4 * [] // 0
+4 * [1, 2] // NaN
+
+
+### 比较运算符
+
+1. 如果是对象，就通过 `toPrimitive` 转换对象
+2. 如果是字符串，就通过 `unicode` 字符索引来比较
+
+```js
+let a = {
+  valueOf() {
+    return 0
+  },
+  toString() {
+    return '1'
+  }
+}
+a > -1 // true
+```
+
+在以上代码中，因为 `a` 是对象，所以会通过 `valueOf` 转换为原始类型再比较值。
+
+
+
+
+那么最后我们总结下这小节的内容：
+
+- 函数提升优先于变量提升，函数提升会把整个函数挪到作用域顶部，变量提升只会把声明挪到作用域顶部
+- `var` 存在提升，我们能在声明之前使用。`let`、`const` 因为暂时性死区的原因，不能在声明前使用
+- `var` 在全局作用域下声明变量会导致变量挂载在 `window` 上，其他两者不会
+- `let` 和 `const` 作用基本一致，但是后者声明的变量不能再次赋值
+
+
+66.
+
+
+## 缓存策略
+
+通常浏览器缓存策略分为两种：**强缓存**和**协商缓存**，并且缓存策略都是通过设置 HTTP Header 来实现的。
+
+
+### 强缓存
+
+强缓存可以通过设置两种  HTTP Header 实现：`Expires` 和 `Cache-Control` 。强缓存表示在缓存期间不需要请求，`state code` 为 200。
+
+#### Expires
+
+```http
+Expires: Wed, 22 Oct 2018 08:41:00 GMT
+```
+
+`Expires` 是 HTTP/1 的产物，表示资源会在  `Wed, 22 Oct 2018 08:41:00 GMT`  后过期，需要再次请求。并且 `Expires` **受限于本地时间**，如果修改了本地时间，可能会造成缓存失效。
+
+
+#### Cache-control
+
+```http
+Cache-control: max-age=30
+```
+
+`Cache-Control` 出现于 HTTP/1.1，**优先级高于 `Expires`** 。该属性值表示资源会在 30 秒后过期，需要再次请求。
+
+`Cache-Control` **可以在请求头或者响应头中设置**，并且可以组合使用多种指令
+
+
+
+
+### 协商缓存
+
+如果缓存过期了，就需要发起请求验证资源是否有更新。协商缓存可以通过设置两种  HTTP Header 实现：`Last-Modified` 和 `ETag` 。
+
+当浏览器发起请求验证资源时，如果资源没有做改变，那么服务端就会返回 304 状态码，并且更新浏览器缓存有效期。
+
+
+
+#### ETag 和 If-None-Match
+
+`ETag` 类似于文件指纹，`If-None-Match` 会将当前 `ETag` 发送给服务器，询问该资源 `ETag` 是否变动，有变动的话就将新的资源发送回来。并且 `ETag` 优先级比 `Last-Modified` 高。
+
+
+### 频繁变动的资源
+
+对于频繁变动的资源，首先需要使用 `Cache-Control: no-cache` 使浏览器每次都请求服务器，然后配合 `ETag` 或者 `Last-Modified` 来验证资源是否有效。这样的做法虽然不能节省请求数量，但是能显著减少响应数据大小。
+
+
+
+
+67.
+
+
+
+68.
+
+
+
+69.
+
+
+
 
 
 
