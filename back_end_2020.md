@@ -58,4 +58,29 @@ Google的四大基础设施，分别是GFS、MapReduce、BigTable、Chubby，其
             * @param mapFactory a supplier providing a new empty {@code ConcurrentMap}
             *                   into which the results will be inserted
 
-        
+
+7. 设计一个朋友圈系统
+
+
+8. 高效延时环形队列
+
+
+9. 不同业务比较
+
+QQ业务
+微博业务
+秒杀业务，12306业务
+
+由数据层的锁冲突决定的。
+        降读：缓存
+        降写：把请求拦截在系统的上游
+
+
+10. https://draven.co/whys-the-design/
+
+11. LinkedHashMap  // https://juejin.im/post/6844903544152129550
+
+12. 幂等
+
+
+

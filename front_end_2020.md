@@ -3223,18 +3223,935 @@ Cache-control: max-age=30
 
 
 
-67.
+67. Vue 源码分析
+
+https://github.com/AnnVoV/blog/issues/7
 
 
 
-68.
+68.  es9 for await of
 
 
 
-69.
+69. vue面试
+
+a) computed 是具有缓存的，当被依赖的date未被改变的时候，computed是不会被计算的
+
+b) watch 深度监听， 设置    deep: true
+
+
+注意，不应该使用箭头函数来定义 watcher 函数 (例如 searchQuery: newValue => this.updateAutocomplete(newValue))。理由是箭头函数绑定了父级作用域的上下文。所以 this 将不会按照期望指向 Vue 实例，this.updateAutocomplete 将是 undefined。
+
+c) v-show 当条件不满足的时候，对应 display:none。 而v-if 条件不满足，则是不生成对应的组件
+
+d) v-if 和 v-for 不能在同一个tag中使用
+
+e) vue中的event是原生的事件对象，且事件监听被挂载在设置监听的element上。
+
+f) 事件修饰符 .stop .prevent .capture .self
+   按键修饰符 .ctrl .exact
+   v-modle 修饰符  .number .lazy .trim
+      <textarea v-modle="desc">
+      下面这种是不对的       <textarea >{{desc}}</textarea>
+
+g) 组件通信
+    props $emit 
+    基于new Vue()的自定义事件发布订阅,同时需要注意监听的销毁  on/emit/off
+
+h) 生命周期
+     挂载阶段 beforeCreate create beforeMounted mounted
+     更新阶段 beforeUpdate updated
+     销毁阶段 beforeDestory destoryed
+
+
+  父子组件
+     创建时是从父到子
+     挂载时是从子到父
+
+     更新时, 先调用父 beforeUpdate ,再调用子 beforeUpdate, 再调用子的updated, 最后调用父的updated
+
+
+h) 自定义组件的v-model
+
+Vue.component('base-checkbox', {
+  model: { // 关键是 model 属性
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    checked: Boolean
+  },
+  template: `
+    <input
+      type="checkbox"
+      v-bind:checked="checked"
+      v-on:change="$emit('change', $event.target.checked)"
+    >
+  `
+})
+
+i) $nextTick(callback)  异步渲染
+
+  当DOM更新后,callback被调用
+
+j) slot // 其实可以当做父组件传递到子组件的callback
+
+？？？作用域slot
+
+具名slot
+
+
+在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)。
+它取代了 slot 和 slot-scope 这两个目前已被废弃但未被移除且仍在文档中的 attribute。新语法的由来可查阅这份 RFC。  
+
+k) 动态组件
+
+<component :is="dynamicComponentName">
+
+l) 异步组件
+  import("/componentURI")
+
+m) keep-alive
+  缓存组件，避免重复渲染
+
+n) mixin
+
+  exprot default {
+    mixins : [mixin1,mixin2]
+  }
+
+o) vdom
+根本原因是操作dom太耗时，而操作js则效率更高。相当于是增加了一层，把能用js做的工作全在js这边给做了。
+
+diff 算法  h / vnode / patch / updateChildren
+
+p) 模板编译
+
+with语法
+  with(this){ // this 是 vue实例
+
+  }
+
+编译后是生成一个render函数，该函数执行后返回vnode，再渲染，更新。
+
+所以可以直接使用render代替template
+
+
+q) watcher 具体在干什么
+
+
+r)  vue router
+
+location.href = "#test" // 会在url上添加#test
+
+location.href = "http://www.google.com" // 会redirect到google
+
+当改变url上的hash时候，浏览器的前进/后退按钮也会跟着改变。
+
+关键是 window.onhashchange = (event) => {...}
 
 
 
+h5 history:
+
+  window.onpopstate = () => {...}
+  history.pushState = () => {...}
+
+  在支持H5的浏览器中，有一个window.onpopstate事件，该事件可以监听如下操作：
+
+      点击浏览器的前进按钮/后退按钮
+      执行js代码:history.go(n) / history.forward() /
+
+  history.pushState(state, title[, url])
+
+// 参考： https://www.renfei.org/blog/html5-introduction-3-history-api.html 
+关键： 浏览器不会刷新页面，甚至不会检测目标页面是否存在。
+
+
+s)
+
+t)
+
+
+70. es6以后的新feature
+
+
+
+a) es10
+
+// Object.fromEntries()
+let arr = [["a",1],["b",2]]
+
+Object.fromEntries(arr) // {a:1,b:2}
+
+
+
+let res = Object.entries(obj).filter( 
+  ([key,value]) => { console.log(value); return new String(value).length > 3}
+  )
+
+
+
+
+
+// try catch 增强
+try{
+
+}catch{ // 无需添加 (exception)
+
+}
+
+
+// bigInt
+
+let a = 111111111n;
+
+typeof a // "bigint"
+
+
+
+b) es6
+
+// Reflect
+
+Reflect.apply/Reflect.construct
+
+console.log(Reflect.apply(Math.floor,null,[3,17]))
+
+console.log(Math.floor.apply(null,[3.17]))
+
+let date = Reflect.construct(Date,[])
+
+一些Object上的方法也会迁移到Reflect上去
+
+Reflect.defineProperty() // 和Object.defineProperty() 不同在于返回值不一样。前者返回true/false，后者返回对象
+Reflect.deleteProperty()
+Reflect.get()
+Reflect.set()
+Reflect.getOwnPropertyDescriptor()
+Reflect.getPrototypeOf()
+Reflect.has()
+Reflect.isExtensible()
+Reflect.ownKeys()
+Reflect.preventExtensions()
+Reflect.setPrototypeOf()
+
+// https://wangdoc.com/es6/reflect.html#reflectsettarget-name-value-receiver
+
+
+
+// Proxy
+
+let obj = {
+  a : 100,
+  b : 100
+}
+
+let proxy = new Proxy(obj,{
+  get(target,key){
+    if(key === "a") return target[key] + 10;
+    return target[key]
+  }
+})
+
+proxy.a  // 110
+proxy.b  // 100
+
+可撤销Proxy :  
+  let res = Proxy.revocable({
+    a : 1
+  },{
+    get(){
+
+    }
+    set(){
+      
+    }
+  })
+
+
+// Promise
+
+
+ ？？ then中传入的一个promise
+查看MDN文档：
+onFulfilled 可选
+    当 Promise 变成接受状态（fulfilled）时调用的函数。该函数有一个参数，即接受的最终结果（the fulfillment  value）。如果该参数不是函数，则会在内部被替换为 (x) => x，即原样返回 promise 最终结果的函数
+onRejected 可选
+    当 Promise 变成拒绝状态（rejected）时调用的函数。该函数有一个参数，即拒绝的原因（rejection reason）。  如果该参数不是函数，则会在内部被替换为一个 "Thrower" 函数 (it throws an error it received as argument)。
+
+也就是说当传入的参数不是function，而是表达式的情况下，会忽略该表达式，用 x => x 来替换。但是传入的是一个表达式，那么就会执行。
+
+
+
+
+返回值
+当一个 Promise 完成（fulfilled）或者失败（rejected）时，返回函数将被异步调用（由当前的线程循环来调度完成）。具体的返回值依据以下规则返回。如果 then 中的回调函数：
+
+    返回了一个值，那么 then 返回的 Promise 将会成为接受状态，并且将返回的值作为接受状态的回调函数的参数值。
+
+    没有返回任何值，那么 then 返回的 Promise 将会成为接受状态，并且该接受状态的回调函数的参数值为 undefined。
+
+    抛出一个错误，那么 then 返回的 Promise 将会成为拒绝状态，并且将抛出的错误作为拒绝状态的回调函数的参数值。
+
+    返回一个已经是接受状态的 Promise，那么 then 返回的 Promise 也会成为接受状态，并且将那个 Promise 的接受状态的回调函数的参数值作为该被返回的Promise的接受状态回调函数的参数值。
+
+    返回一个已经是拒绝状态的 Promise，那么 then 返回的 Promise 也会成为拒绝状态，并且将那个 Promise 的拒绝状态的回调函数的参数值作为该被返回的Promise的拒绝状态回调函数的参数值。
+
+    返回一个未定状态（pending）的 Promise，那么 then 返回 Promise 的状态也是未定的，并且它的终态与那个 Promise 的终态相同；同时，它变为终态时调用的回调函数参数与那个 Promise 变为终态时的回调函数的参数是相同的。
+
+
+
+then/catch/finally
+
+71. React
+
+{}  // 插值是使用一个大括号，而vue是使用{{}}
+
+className
+
+key不能是index // https://segmentfault.com/a/1190000019961419
+
+bind(this) , 可用arrow function 规避
+
+event 非原生， react是定制化了组合event，且绑定到了document上。
+
+受控组件/非受控组件
+
+函数组件（无state）
+
+setState: 
+  不可变值
+  可能会异步更新
+  可能会被合并
+
+class组件/函数组件
+
+Context API // 抽取公共属性 <Provider> <Consumer>
+
+异步组件：
+  React.lazy
+  React.suspense
+
+性能优化：
+  shouldComponentUpdate()
+
+React 默认父组件更新，子组件无条件更新。
+
+PureComponent 在scu中实现了浅比较。
+
+高阶组件（HOC） // 类似工程模式
+
+Render Props
+
+Vue 如何使用高阶组件？？？
+
+React 动画： react-transition-group
+
+UI组件/容器组件
+
+无状态组件 // 只有render函数
+
+
+// react16 的新特性 https://zhuanlan.zhihu.com/p/52016989
+
+
+Redux
+  创建store -> createStore()
+  store 有三个重要方法：
+    getState() // 获取state
+    dispatch(action)  // 派发action
+    subscribe(() => {...}) // 组件用来订阅state的变化
+
+  reducer(preState,action) // pure function,根据action和preState产生新的state
+
+react-redux
+  <Provider>
+  connect
+
+
+React CSS 解决方法：
+  inine-style // 无法使用伪元素，伪类，无法复用style
+  lib styled-components
+  css-module // 依赖webpack打包
+
+  // https://juejin.im/post/5b39e63ae51d4562aa017c81
+
+React 事务机制
+
+dirtyComponent
+
+合成事件
+
+setState batchUpdate
+
+PureComponent // 对数据进行浅层次比较
+
+
+react-router:
+  withRouter
+
+
+redux:
+  bindActionCreators
+// https://egghead.io/lessons/react-redux-implementing-combinereducers-from-scratch
+
+72. "use strict 中的this
+
+// https://segmentfault.com/a/1190000010108912
+
+简单来说：
+  1. 全局作用域中,this指向window
+  2. 函数作用域中， this指向undefined
+
+
+73. let const
+
+var me = 'xiuyan';
+
+{
+	me = 'bear';
+	let me;
+}
+// 运行出错 
+
+// why ?
+
+这是因为 ES6 中有明确的规定：如果区块中存在 let 和 const 命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。假如我们尝试在声明前去使用这类变量，就会报错。
+
+这一段会报错的危险区域，有一个专属的名字，叫”暂时性死区“。
+
+74.  vue中watcher的创建时机
+
+
+
+75. node中的event loop
+
+https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
+
+Node 清空微任务队列的手法比较特别。在浏览器中，我们只有一个微任务队列需要接受处理；但在 Node 中，有两类微任务队列：next-tick 队列和其它队列。其中这个 next-tick 队列，专门用来收敛 process.nextTick 派发的异步任务。在清空队列时，优先清空 next-tick 队列中的任务，随后才会清空其它微任务。
+
+
+
+
+76. http 队头阻塞
+
+// https://cloud.tencent.com/developer/article/1509279
+
+1、首先我们厘清了一个概念，那就是http长连接其实指的是tcp长连接。
+
+2、队头阻塞是一种现象，http因为请求-响应模型会有队头阻塞的现象出现，队头阻塞指的是在同一个tcp链接中，如果先发送的http请求如果没有响应的话，后面的http请求也不会响应。
+
+3、解决队头阻塞的第一个方案就是并发长连接，浏览器默认是6-8个长连接，我们可以用域名分片的技术突破这个数值。
+
+4、并发长连接虽然在一定程度上解决了http的队头阻塞，但是会对服务器的性能有较高的要求。
+
+
+补充：https://http3-explained.haxx.se/zh/why-quic/why-h2
+
+
+
+77. webpack/babel
+
+
+
+78. jest
+亮点: 支持各种命令模式，加快了测试效率。
+异步测试: done
+
+
+
+
+79. js this
+
+
+new 绑定
+    函数如果作为构造函数使用 new 调用时， this 绑定的是新创建的构造函数的实例。
+
+    function Foo() {
+        console.log(this)
+    }
+
+    var bar = new Foo()       // 输出: Foo 实例，this 就是 bar
+    实际上使用 new 调用构造函数时，会依次执行下面的操作：
+
+    创建一个新对象；
+    构造函数的 prototype 被赋值给这个新对象的 __proto__；
+    将新对象赋给当前的 this；
+    执行构造函数；
+    如果函数没有返回其他对象，那么 new 表达式中的函数调用会自动返回这个新对象，如果返回的不是对象将被忽略；
+
+
+80. Virual DOM 的思考:
+
+// https://www.zhihu.com/question/318928283
+// https://www.zhihu.com/question/59953136/answer/170980510
+
+
+81. React lifecycle
+
+ https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+
+82. React 面试题:
+
+https://juejin.im/post/5d5f44dae51d4561df7805b4#heading-12
+
+
+
+83. web2020 roadmap
+
+https://coggle.it/diagram/XfeRbWj7xy3dsEX8/t/web-development-in-2020
+
+
+
+84. babel原理
+ES6、7代码输入 -> babel parse 进行解析 -> 得到AST（抽象语法树）-> plugin用babel-traverse对AST树进行遍历转译 ->得到新的AST树->用babel-generator通过AST树生成ES5代码
+
+85. 《React技术揭秘》
+
+https://react.iamkasong.com/
+
+让我们从“响应自然”的角度考虑：当输入字符时，用户是否在意下拉框能在一瞬间就更新？
+
+事实是：并不在意。
+
+如果我们能稍稍延迟下拉框更新的时间，为浏览器留出时间渲染UI，让输入不卡顿。这样的体验是更自然的。
+
+为了实现这个目标，需要将同步的更新变为可中断的异步更新。
+
+在浏览器每一帧的时间中，预留一些时间给JS线程，React利用这部分时间更新组件（可以看到，在源码中，预留的初始时间是5ms）。
+
+当预留的时间不够用时，React将线程控制权交还给浏览器使其有时间渲染UI，React则等待下一帧时间到来继续被中断的工作。
+
+
+对于React的更新来说，由于递归执行，所以更新一旦开始，中途就无法中断。当层级很深时，递归更新时间超过了16ms，用户交互就会卡顿。
+
+解决办法——用可中断的异步更新代替同步的更新。那么React15的架构不支持异步更新么！！！
+
+
+
+
+React16架构可以分为三层：
+
+Scheduler（调度器）—— 调度任务的优先级，高优任务优先进入Reconciler
+Reconciler（协调器）—— 负责找出变化的组件
+Renderer（渲染器）—— 负责将变化的组件渲染到页面上
+可以看到，相较于React15，React16中新增了Scheduler（调度器），让我们来了解下他
+
+
+我们知道，在React15中Reconciler是递归处理虚拟DOM的。让我们看看React16的Reconciler。
+
+我们可以看见，更新工作从递归变成了可以中断的循环过程。
+
+
+那么React16是如何解决中断更新时DOM渲染不完全的问题呢？
+
+在React16中，Reconciler与Renderer不再是交替工作。当Scheduler将任务交给Reconciler后，Reconciler会为变化的虚拟DOM打上代表增/删/更新的标记，类似这样：
+
+export const Placement = /*             */ 0b0000000000010;
+export const Update = /*                */ 0b0000000000100;
+export const PlacementAndUpdate = /*    */ 0b0000000000110;
+export const Deletion = /*              */ 0b0000000001000;
+
+整个Scheduler与Reconciler的工作都在内存中进行。只有当所有组件都完成Reconciler的工作，才会统一交给Renderer。
+
+
+JSX在编译时会被Babel编译为React.createElement方法。
+
+
+86. react setState 源码分析
+
+https://juejin.im/post/5aa25967518825558251f61f
+
+
+87. react hook
+
+useEffect // 依赖数组使用的细节
+
+https://www.youtube.com/watch?v=RnwqU9dqTr4
+
+useCallback // 仔细理解使用场景
+useMemo
+
+88. react forwardRef ?
+
+
+
+89. 浏览器相关  // https://juejin.im/post/5f184aade51d4534aa4ad7c0
+
+
+
+浏览器是多进程的，一个进程中包含多个线程。js线程和ui线程互斥。浏览器的线程还有浏览器事件触发线程、定时触发器线程、异步HTTP请求线程。
+
+
+
+Load事件 vs  DOMContentLoaded 事件
+
+DOMContentLoaded事件触发时：仅当DOM解析完成后，不包括样式表，图片等资源。
+onload 事件触发时,页面上所有的 DOM,样式表,脚本,图片等资源已经加载完毕。
+那么也就是先DOMContentLoaded -> load
+
+
+
+
+90. react css
+1） 正常导入css文件，使用 className 属性
+2） 使用style变量。 <com style = { styleVal } />
+3)  使用 react-script ，xxx.mudole.css ，像使用js变量一样使用css中的class
+4） css-in-js lib, such as style-component
+
+
+91. http://www.vorlonjs.io/   || https://www.browsersync.io/
+
+
+
+92. Tailwind CSS 
+
+93. fastclick
+
+
+
+event.stopPropagation，event​.stop​Immediate​Propagation的区别你真的知道吗 🧐，event.stopPropagation 阻止捕获和冒泡阶段中当前事件的进一步传播。如果有多个相同类型事件的事件监听函数绑定到同一个元素，当该类型的事件触发时，它们会按照被添加的顺序执行。如果其中某个监听函数执行 event.stopImmediatePropagation 方法，则当前元素剩下的监听函数将不会被执行。
+
+
+作者：创宇前端
+链接：https://juejin.im/post/6844903850160160782
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+94. CSR、SSR、Prerender 原理全解密
+
+
+https://juejin.im/post/6844903971664953352
+
+
+95. react 事件机制
+
+https://juejin.im/post/6844903939092348936
+
+
+96. html li 4px 间隔
+
+http://www.yzktw.com.cn/post/156.html
+
+所以还是用flex布局搞定所有问题
+
+
+97. https://juejin.im/post/6855468132186882055#heading-0
+https://juejin.im/post/6844903939092348936
+
+
+98. book
+https://www.worldswithoutend.com/lists_fantasy100.asp
+
+
+99. https://github.com/iuap-design/blog/issues
+
+100. vue 递归组件
+
+111. ***** https://github.com/Advanced-Frontend/Daily-Interview-Question
+
+  137) window.performance.timing // 记录各种加载时间
+  145) chrome performance tool
+
+
+112. 
+   Array.from()
+    Array.from(document.body.querySelector("*"))
+
+
+   Array.flat()
+
+
+   Array.flatMap()
+
+   Array.fill()
+
+
+
+
+113. Vue 优化 https://juejin.im/post/6857856269488193549#heading-1
+
+114. Vue 总结  https://juejin.im/post/6844903953969184775#heading-9
+
+115. https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/140
+
+116. https://zhuanlan.zhihu.com/p/181731816?utm_source=wechat_timeline&utm_medium=social&utm_oi=789809800245551104 (关于模块设计的思考)
+
+
+117. 能冒泡的事件：  https://www.cnblogs.com/rubylouvre/p/5080464.html
+
+
+118. js 类型判断
+
+
+// 输出 function
+console.log(typeof (() => {}))
+
+// 输出 object
+console.log(typeof ['前端有的玩','公众号'])
+
+// 输出 object
+console.log(typeof null)
+
+// 输出 undefined
+console.log(typeof undefined)
+
+// 输出 function 
+console.log(typeof Function.prototype)
+
+// 输出 false
+console.log('子君' instanceof String)
+
+// 输出 true
+console.log(new Date() instanceof Date)
+
+
+118. https://juejin.im/post/6859121743869509646 （有意思的题目）
+
+
+119. react-redux 源码分析  （https://juejin.im/post/6861538848963461133）
+
+
+120. BFC (https://zhuanlan.zhihu.com/p/25321647)
+
+
+121. Vue 图解生命周期 （https://juejin.im/post/6857669921166491662）
+
+  从 new Vue 开始，首先通过 get、set 监听 Data 中的数据变化，同时创建 Dep 用来搜集使用该 Data 的 Watcher。
+
+  编译模板，创建 Watcher，并将 Dep.target 标识为当前 Watcher。
+
+ 编译模板时，如果使用到了 Data 中的数据，就会触发 Data 的 get 方法，然后调用 Dep.addSub 将 Watcher 搜集起来。
+
+ 数据更新时，会触发 Data 的 set 方法，然后调用 Dep.notify 通知所有使用到该 Data 的 Watcher 去更新 DOM。
+
+
+122. Vue nextTick(userCallback)  https://juejin.im/post/6861737267426394125
+
+简单来说的，就是当数据更新的时候，相对应的watcher不会马上执行，而是被push到一个queue中，
+
+随后该queue则会在一个Vue_function中使用，首先是 排序(排序，先渲染父节点，再渲染子节点,这样可以避免不必要的子节点渲染，如：父节点中 v-if 为 false 的子节点，就不用渲染了),然后取出watcher执行。 【注意，此时该Vue_function并未执行，本段文字只是在描述Vue_function的功能】
+
+而该Vue_function 同样会被当作callback传入nextTick中。
+
+而nextTick的code非常简单：
+
+
+
+const callbacks = [];
+let timerFunc;
+
+function nextTick(cb?: Function, ctx?: Object) {
+  let _resolve;
+  // 1.将传入的 flushSchedulerQueue 方法添加到回调数组
+  callbacks.push(() => {
+    cb.call(ctx);
+  });
+  // 2.执行异步任务
+  // 此方法会根据浏览器兼容性，选用不同的异步策略
+  timerFunc();
+}
+
+
+同样是将传入的callback放入数组中，在timerFunc()中遍历执行。
+其中会先执行Vue_function,也就是watcher中的update方法，随后执行userCallback。这也是为什么userCallback中能
+拿到最新的更新数据。
+
+值得注意的是timeFunc() 是根据浏览器的支持的不同而使用不用的异步方法。目前绝大多数都支持Promise,所以用的就是
+Promise.resolve().then(flushCallbacks)的方式。
+
+
+
+
+123. 
+typeof Symbol()    //"symbol"
+typeof Number()    //"number"
+typeof String()    //"string"
+typeof Function()    //"function"
+typeof Object()    //"object"
+typeof Boolean()    //"boolean"
+typeof null    //"object"
+typeof undefined    //"undefined"
+
+
+124. js 垃圾回收  https://juejin.im/post/6861967094318284814
+
+？？？ weakmap weakset 
+
+125. 浏览器渲染 https://juejin.im/post/6860088295905296397
+
+
+面试题 8：event loop + GUI 执行顺序
+
+  顺序：宏任务 -> 微任务 -> GUI渲染 -> 宏任务 -> ..
+
+
+  document.body.style = 'background:blue'
+  console.log(1);
+  Promise.resolve().then(()=>{    console.log(2);    document.body.style = 'background:pink'});
+  console.log(3);
+
+  答案：1、 3、 2
+
+  页面的背景直接变成粉色。
+
+126. vuex mapState 源码分析(https://juejin.im/post/6844903599764406286)
+
+127. js 常用function (https://juejin.im/post/6862591794312560647)
+
+
+128. 简易Vue-router (https://segmentfault.com/a/1190000020172729)
+
+
+
+129. babel 知识 （https://juejin.im/post/6863705400773083149）
+
+
+
+130. react PureComponent (https://segmentfault.com/a/1190000006741060)
+
+
+
+131. react17 (https://juejin.im/post/6862493682252283912)
+
+
+132. redux-react 知识点
+
+
+133. vue 递归组件 （https://www.jianshu.com/p/84eb67487113）
+
+134. 性能优化 具体指标 （https://juejin.im/post/6850037270729359367）
+
+135. Vue 面试题 
+    （https://github.com/lgwebdream/FE-Interview/issues/904）
+     （https://github.com/lgwebdream/FE-Interview/issues/905）keep-alive 源码分析
+     （https://github.com/lgwebdream/FE-Interview/issues/906） react-hooks 使用及源码简单实现
+    (https://github.com/lgwebdream/FE-Interview/issues/46)  (函数声明写在运算符中，其为true，但放在运算符中的函数声明在执行阶段是找不到的。另外，对未声明的变量执行typeOf不会报错，会返回undefined)
+    (https://github.com/lgwebdream/FE-Interview/issues/45)
+    (https://github.com/lgwebdream/FE-Interview/issues/44) delete
+    (https://github.com/lgwebdream/FE-Interview/issues/41) 类型转换
+    https://github.com/lgwebdream/FE-Interview/issues/40
+    https://github.com/lgwebdream/FE-Interview/issues/39
+    https://github.com/lgwebdream/FE-Interview/issues/38 ？？？？
+
+    https://github.com/lgwebdream/FE-Interview/issues/36  proxy的使用
+
+    https://github.com/lgwebdream/FE-Interview/issues/35  简单算法
+    https://github.com/lgwebdream/FE-Interview/issues/34 发布订阅
+
+    https://www.cnblogs.com/Wayou/p/requestIdleCallback.html (requestIdelCallback)
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/33 （react fiber ）
+        https://www.youtube.com/watch?v=ALenYXLjsPI&list=PL3Q5d1VRpOyH5B6MeH-kDTdFGJhDJwAU9&index=46
+        https://www.cnblogs.com/Wayou/p/requestIdleCallback.html
+        https://www.dazhuanlan.com/2019/10/20/5dabc56a750fd/
+    
+
+    https://github.com/lgwebdream/FE-Interview/issues/139 Vue set
+    https://github.com/lgwebdream/FE-Interview/issues/30 Promise.all()
+    https://github.com/lgwebdream/FE-Interview/issues/29 Promise 实现
+    https://github.com/lgwebdream/FE-Interview/issues/26 event loop
+    https://github.com/lgwebdream/FE-Interview/issues/25 webpack 优化
+    https://github.com/lgwebdream/FE-Interview/issues/24 array
+    https://github.com/lgwebdream/FE-Interview/issues/23 react 事件
+    https://github.com/lgwebdream/FE-Interview/issues/20
+    https://github.com/lgwebdream/FE-Interview/issues/19 贪心问题
+
+    https://github.com/lgwebdream/FE-Interview/issues/17 闭包
+    https://github.com/lgwebdream/FE-Interview/issues/16 安全
+    https://github.com/lgwebdream/FE-Interview/issues/242  Array.flat()
+    https://github.com/lgwebdream/FE-Interview/issues/241 react 实现dialog
+    https://github.com/lgwebdream/FE-Interview/issues/66  类数组      
+
+
+    
+
+
+
+136. arrow function this 
+https://juejin.im/post/6864737961188163598
+
+
+137. build 增量打包构建 （https://juejin.im/post/6865101730166767623）
+
+139. react Children API
+
+140. curry
+
+
+let currying = (fn, ...args) =>
+            fn.length > args.length ?
+            (...arguments) => currying(fn, ...args, ...arguments) :
+            fn(...args)
+
+
+let addSum = (a, b, c) => a+b+c
+let add = curry(addSum)
+console.log(add(1)(2)(3))
+console.log(add(1, 2)(3))
+console.log(add(1,2,3))
+
+
+141. css 伪元素 vs  伪类
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements
+常见的有 ::before ::after ::first-line ::first-letter
+
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes
+常见的有  :hover :active :focus :nth-child()
+
+
+
+142. vue 属性透传  render 函数
+https://juejin.im/post/6865451649817640968
+
+143. 西瓜视频
+https://juejin.im/post/6844904196689379335
+
+144. vue 测试 （未看完）
+
+https://juejin.im/post/6865477717220851720 
+
+
+145. 高频面试题：
+https://juejin.im/post/6855129007852093453#heading-5
+
+146. 从规范角度理解闭包（https://juejin.im/post/6858052418862235656）
+
+147. 
+
+  Scopes and Closures In-depth 10 - Compilation and Interpretation
+
+
+
+148. react setState batch  
+https://stackoverflow.com/questions/33613728/what-happens-when-using-this-setstate-multiple-times-in-react-component
+
+149. 性能监控
+
+https://juejin.im/post/6865908266199842824
+
+150. iphoneX 适配
+https://juejin.im/post/6865873665104773128
+
+151. js执行上下文
+
+https://juejin.im/post/6865320800473088007
+
+
+152. DevTool 使用
+
+https://juejin.im/post/6854573212412575757#heading-32
+
+153. 防抖和节流
+
+PS：防抖和节流的作用都是防止函数多次调用。
+区别在于，假设一个用户一直触发这个函数，且每次触发函数的间隔小于wait，防抖的情况下只会调用一次，
+而节流的 情况会每隔一定时间（参数wait）调用函数。
 
 
 

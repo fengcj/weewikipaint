@@ -97,5 +97,13 @@
 
 38. Vue router 按需加载
 
-39. git history diff
+39. git history diff vs plugin
+
+40. vue 异步更新策略 
+
+41. JavaScript——DOM编程艺术 总结
+
+42. node中的事件循环
+
+43. 复习 李兵 「浏览器工作原理与实践」
 
