@@ -4180,6 +4180,65 @@ same-site
 https://www.imperva.com/learn/performance/cache-control/
 
 
+156. Pormise (https://juejin.im/post/6866372840451473415)
+
+1) 判断resolve和reject未传入的情况，解决空值透传问题
+
+
+ then(resolve, reject) {
+    // 判断resolve和reject未传入的情况，解决空值透传问题
+    // then()情况
+    typeof resolve !== 'function' ? resolve = value => value : resolve
+    typeof reject !== 'function' ? reject = reason => throw new Error(reason instanceof Error ? reason.message : reason )
+
+    .....
+ 
+ }  
+ 
+ 
+ 2) catch 的实现
+
+ catch(errorFn) {
+    // 这里只需注册执行下then，传入callback就能实现
+    this.then(null, errorFn);
+  }
+
+
+
+
+157. E-tag 生成方式
+
+https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/383
+
+
+158. Promise.retry()
+
+https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/387
+
+
+
+159. ToyReact
+
+https://juejin.im/post/6864843574148923406#heading-21
+
+
+要仔细看看
+
+
+160. Flex 计算
+
+https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/382
+
+
+
+https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/381 （以前不知道如何计算）
+
+https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/380
+
+
+
+
+
 
 
 ------- TODO
