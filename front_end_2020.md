@@ -4067,6 +4067,16 @@ typeof undefined    //"undefined"
     https://github.com/lgwebdream/FE-Interview/issues/66  类数组      
 
 
+
+    https://github.com/lgwebdream/FE-Interview/issues/935  es import require（detail : https://juejin.im/post/6844904159385239566 / https://juejin.im/post/6844904052841512973）
+        在本文件夹下的es6.html中，测试了es import
+          验证了传言有误的地方：
+          import 是引用传递，这个表述是不准确的，因为使用 default export出去的也是值传递，详情可见测试用例
+            
+           另外， 
+           import 进来的变量，是没办法再赋值的。在转换成es5的过程中，这些变量都是使用Object.defineProperty()，类似Vue，但是只有get()方法，没有set()方法，所以无法负责。
+
+
     
 
 
@@ -4234,6 +4244,42 @@ https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/382
 https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/381 （以前不知道如何计算）
 
 https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/380
+
+
+
+161. Flex 布局
+
+
+https://juejin.im/post/6866914148387651592
+
+
+
+
+flex作用规则
+
+三个属性的简写，是flex-grow  flex-shrink flex-basis的简写
+常用简化写法👇
+flex:1 —>  flex:1 1 0%;
+flex:3 —> flex:3 1 0%;
+注意:flexbox布局和原来的布局是两个概念，部分css属性在flexbox盒子里面不起作用，eg：float， clear， column,vertical-align 等等
+
+
+
+
+flex-basic : 
+
+ 1) 在不伸缩的情况下，flex-basis给子容器设置大小才有作用。
+     
+  2)   当主轴为横向时，即👇
+        flex-direction：row | row-reverse
+        flex-basis设置的大小为宽度，并且会覆盖witdh值
+
+  3) 当主轴为纵向时，即👇
+
+        flex-direction：column | column-reverse
+        flex-basis设置的大小为高度，并且会覆盖height值
+
+
 
 
 
