@@ -4122,6 +4122,10 @@ typeof undefined    //"undefined"
     https://github.com/lgwebdream/FE-Interview/issues/189  按需加载
 
 
+
+    https://github.com/lgwebdream/FE-Interview/issues/64  异步 很好的题目  *****
+
+
 136. arrow function this 
 https://juejin.im/post/6864737961188163598
 
