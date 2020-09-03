@@ -4029,7 +4029,7 @@ typeof undefined    //"undefined"
      （https://github.com/lgwebdream/FE-Interview/issues/905）keep-alive 源码分析
      （https://github.com/lgwebdream/FE-Interview/issues/906） react-hooks 使用及源码简单实现
     (https://github.com/lgwebdream/FE-Interview/issues/46)  (函数声明写在运算符中，其为true，但放在运算符中的函数声明在执行阶段是找不到的。另外，对未声明的变量执行typeOf不会报错，会返回undefined)
-    (https://github.com/lgwebdream/FE-Interview/issues/45)
+    (https://github.com/lgwebdream/FE-Interview/issues/45)  (命名函数表达式函数只能在函数体内有效)
     (https://github.com/lgwebdream/FE-Interview/issues/44) delete
     (https://github.com/lgwebdream/FE-Interview/issues/41) 类型转换
     https://github.com/lgwebdream/FE-Interview/issues/40
@@ -4048,6 +4048,20 @@ typeof undefined    //"undefined"
         https://www.youtube.com/watch?v=ALenYXLjsPI&list=PL3Q5d1VRpOyH5B6MeH-kDTdFGJhDJwAU9&index=46
         https://www.cnblogs.com/Wayou/p/requestIdleCallback.html
         https://www.dazhuanlan.com/2019/10/20/5dabc56a750fd/
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/555  node.js 集群管理
+
+    https://github.com/lgwebdream/FE-Interview/issues/210 数组
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/303  以前见过，当时想明白了，现在又忘了。(https://www.zhihu.com/question/41220520)
+
+    https://github.com/lgwebdream/FE-Interview/issues/944 webpack  (这篇文章很好 https://juejin.im/post/6867797346550284296)
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/64 
+
     
 
     https://github.com/lgwebdream/FE-Interview/issues/139 Vue set
@@ -4064,7 +4078,23 @@ typeof undefined    //"undefined"
     https://github.com/lgwebdream/FE-Interview/issues/16 安全
     https://github.com/lgwebdream/FE-Interview/issues/242  Array.flat()
     https://github.com/lgwebdream/FE-Interview/issues/241 react 实现dialog
-    https://github.com/lgwebdream/FE-Interview/issues/66  类数组      
+    https://github.com/lgwebdream/FE-Interview/issues/66  类数组   
+
+    https://github.com/lgwebdream/FE-Interview/issues/532  事件循环
+    https://github.com/lgwebdream/FE-Interview/issues/548  组件状态管理，私有放组件内部，公共状态vuex,redux
+
+    https://github.com/lgwebdream/FE-Interview/issues/455  js垃圾回收
+    https://github.com/lgwebdream/FE-Interview/issues/461  跨域
+
+    https://github.com/lgwebdream/FE-Interview/issues/896  react 特性  *****
+        https://libin1991.github.io/2019/10/23/%E7%90%86%E8%A7%A3-React-Fiber-%E6%9E%B6%E6%9E%842/
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/388  3sum 问题 简单算法 思路是两两相加，并用map记录结果，再遍历数组。
+            ？？？？ 先排序后有更优解法 
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/622  js string 不可变
 
 
 
@@ -4077,8 +4107,19 @@ typeof undefined    //"undefined"
            import 进来的变量，是没办法再赋值的。在转换成es5的过程中，这些变量都是使用Object.defineProperty()，类似Vue，但是只有get()方法，没有set()方法，所以无法负责。
 
 
-    
+    https://github.com/lgwebdream/FE-Interview-Planet/issues/943  Deep Clone
+        正确情况下，JSON.parse() JSON.stringify() 基本就可以满足需求了。
+        但是无法解决循环引用的问题，要解决循环引用的话，得使用 weakmap<原对象引用，新对象引用> 来保存已经deep clone 过的数据
 
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/939  js安全
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/786  react组件通信  context API 忘记了
+
+    https://github.com/lgwebdream/FE-Interview/issues/34 EventEmit
+    https://github.com/lgwebdream/FE-Interview/issues/189  按需加载
 
 
 136. arrow function this 
@@ -4278,6 +4319,13 @@ flex-basic :
 
         flex-direction：column | column-reverse
         flex-basis设置的大小为高度，并且会覆盖height值
+
+
+
+
+162. 封装 PerfectScrollbar 为vue 中的指令 
+
+https://segmentfault.com/a/1190000014821207
 
 
 
