@@ -4062,6 +4062,8 @@ typeof undefined    //"undefined"
 
     https://github.com/lgwebdream/FE-Interview/issues/64 
 
+    https://github.com/lgwebdream/FE-Interview/issues/361  HTTP2.0
+    https://github.com/lgwebdream/FE-Interview/issues/156  数组
     
 
     https://github.com/lgwebdream/FE-Interview/issues/139 Vue set
@@ -4095,6 +4097,7 @@ typeof undefined    //"undefined"
 
 
     https://github.com/lgwebdream/FE-Interview/issues/622  js string 不可变
+    https://github.com/lgwebdream/FE-Interview/issues/445  事件代理
 
 
 
@@ -4121,10 +4124,41 @@ typeof undefined    //"undefined"
     https://github.com/lgwebdream/FE-Interview/issues/34 EventEmit
     https://github.com/lgwebdream/FE-Interview/issues/189  按需加载
 
+    https://github.com/lgwebdream/FE-Interview/issues/878  react 组件通信
+
 
 
     https://github.com/lgwebdream/FE-Interview/issues/64  异步 很好的题目  *****
 
+
+    https://github.com/lgwebdream/FE-Interview/issues/273  ****
+
+    https://github.com/lgwebdream/FE-Interview/issues/789  简单算法
+
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/869  Node 性能优化 *****
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/614 webpack 打包
+
+    https://github.com/lgwebdream/FE-Interview/issues/876 react fiber
+
+    https://github.com/lgwebdream/FE-Interview/issues/354  this 
+
+    https://github.com/lgwebdream/FE-Interview/issues/15  节流/防抖 ******
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/157 简单算法  洗牌
+
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/719   arguments  ???
+
+    https://github.com/lgwebdream/FE-Interview/issues/71  catch 作用域
+
+
+    https://github.com/lgwebdream/FE-Interview/issues/931 单点登录
 
 136. arrow function this 
 https://juejin.im/post/6864737961188163598
