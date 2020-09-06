@@ -14,6 +14,14 @@ Function.prototype.myBind = function (context) {
     }
 }
 
+Function.prototype.bind = Function.prototype.bind || function (...rest1) {
+    const self = this
+    const context = rest1.shift()
+    return function (...rest2) {
+        return self.apply(context, [...rest1, ...rest2])
+    }
+}
+
 
 Function.prototype.myCall = function (context) {
     var context = context || window
